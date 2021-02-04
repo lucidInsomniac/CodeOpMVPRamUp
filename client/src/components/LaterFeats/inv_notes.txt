@@ -1,0 +1,51 @@
+//Later Feat: Gear return, seasonal inventory procedure go here
+
+//Google Sheet updates: https://developers.google.com/sheets/api/quickstart/nodejs
+
+
+// Teams 
+    //Table:
+            //All
+            //Team
+            //Gear Rtn to Inv
+            //Loop Dismantle
+            //Locker Clearout
+
+
+//Items
+    //Table:
+            // Tops:
+                //Pract
+                //Baselayer
+                //Warmup
+                //Travel
+                //Uniform
+
+            //Bottoms:
+                //Pract
+                //Baselayer
+                //Warmup
+                //Travel
+                //Uniform
+
+            //Outdoor
+                //Beanie
+                //Boathouse Parka
+                //Outdoor Jacket
+                //Rain Jacket
+
+            //Bags:
+                //Duffle
+                //Backpack
+
+            //Accessories;
+                //Socks
+                //Gloves
+                //Helmets
+                //Pinnies
+                //Balls
+                //Umbrellas
+                //Goggles
+                //Towels
+                //Swim Caps
+                //Misc

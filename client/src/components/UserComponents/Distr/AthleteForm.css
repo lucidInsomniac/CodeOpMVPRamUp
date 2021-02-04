@@ -1,0 +1,51 @@
+
+form {
+    display: inline-block;
+    justify-content: center;
+    width: 100%;
+    object-fit: contain;
+}
+  
+h3, .jacket-size, .collegeYr {
+    margin-top: 60px;
+    margin-bottom: 20px;
+}
+
+input {
+    display: flex;
+    text-align: center;
+    padding: 0px;
+    width: 30%;
+    border: solid thin;
+    height: 30px;
+}
+
+
+.row1, .row2, .row3, .row4, .row5, .row6 {
+    margin: 30px 30px;
+    text-align: left;
+    margin-left: 15%;
+}
+ /*spacing between 3 items ina  row*/
+ .sweatshirt-size, .sweatpants-size {
+    margin-left: 5%;
+}
+
+/*spacing between two items in a row*/
+.tshirt-size, .shorts-size, .athYr, .jacket-size, .shoe-size{
+    margin-left: 10%;
+    
+}
+
+
+/*Space btwn label and select*/
+.collegeYr, .athYr, .tshirt-sizee, 
+.jacket-size, .base-top-size, .sweatshirt-size,
+.warmtop-size, .basebottom-size, .shorts-size, 
+.sweatpants-size, .pants-size, .shoe-size {
+    margin-right: 10px;
+}
+
+button{
+    margin-top: 5%;
+}
