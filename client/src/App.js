@@ -5,26 +5,39 @@ import React, {useState} from 'react'
 // import OrdRecv from './components/UserComponents/Recv/OrdRecv'
 // import OrderForm from './components/UserComponents/Recv/OrderForm'
 // import Inventory from './components/UserComponents/Inventory/Inventory'
-import GearDistr from './components/UserComponents/Distr/GearDistr';
+import GearDistr from './components/LaterFeats/Distr/GearDistr';
 // import AthleteCard from './components/UserComponents/Distr/AthleteCard'
-import AthleteForm from './components/UserComponents/Distr/AthleteForm'
-import AthleteList from './components/UserComponents/Distr/AthleteList'
+import AthleteForm from './components/LaterFeats/Distr/AthleteForm'
+import AthleteList from './components/LaterFeats/Distr/AthleteList'
 import './App.css';
 
 // This displays all the components, react-router to coordinate
 export default function App() {
 
-  //hook for collection of state objs from AthleteForm:
-  const [athletes, setAthletes] = useState([])
+
+  /***********************LATER FEATURE****************** */
+
+  // //hook for collection of state objs from AthleteForm:
+  // const [athletes, setAthletes] = useState([])
   
-  function addAthlete(newAthlete) {
-    console.log('parent-newath', newAthlete)
-    setAthletes((state) => [...state, newAthlete]);
-  }
-  console.log('parent-athletes', athletes)
+  // function addAthlete(newAthlete) {
+  //   console.log('parent-newath', newAthlete)
+  //   setAthletes((state) => [...state, newAthlete]);
+  // }
+  // console.log('parent-athletes', athletes) */
   
 
   //hook for collection of state objs from OrderForm:
+
+
+ {/* Later Feature
+
+          <AthleteCard /> 
+          <AthleteForm onSubmit={(newAthlete) => addAthlete(newAthlete)} />
+          <AthleteList athletes={athletes} onSelectedAth={athelete => setAthletes(athelete)} />
+          <GearDistr /> 
+          */}
+
 
 
   /**************GET Data********************************** */
@@ -85,13 +98,9 @@ export default function App() {
     <div className="App">
       <h1>Dashboard</h1>
       <nav>
-          {/* <OrdRecv />
+           <OrdRecv />
           <OrderForm />
           <Inventory />
-          <AthleteCard /> */}
-          <AthleteForm onSubmit={(newAthlete) => addAthlete(newAthlete)} />
-          <AthleteList athletes={athletes} onSelectedAth={athelete => setAthletes(athelete)} />
-          <GearDistr />
       </nav>
     </div>
   );

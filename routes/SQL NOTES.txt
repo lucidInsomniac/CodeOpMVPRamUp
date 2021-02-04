@@ -174,6 +174,43 @@ Login to MYSQL:
 
 
 
+        HOw TO CREATE TABLE WITH FOREIGN KEY:
+            Link: https://linuxhint.com/mysql-primary-and-foreign-keys/
+
+            Command: 
+
+                    CREATE TABLE inventory (                                         <--name of table
+                    inv_id INT NOT NULL AUTO_INCREMENT,                              <--primary key id
+                    team VARCHAR(100),                                              <--name of column #2
+                    manager_id INT NOT NULL,                                        <--primary key of referenced table
+                    PRIMARY KEY (inv_id),                                           <--identify which is primary key for table being create
+                    FOREIGN KEY (manager_id) REFERENCES manager(manager_id)         <--primary key of referenced table, then name of referenced table with primary key name of referenced table
+                    );
+
+
+
+            MYSQL responds:
+
+                    Query OK, 0 rows affected (0.08 sec)
+
+
+            Check table with command:
+
+                    describe [name of table]
+
+                    ex: describe inventory
+
+
+            Displays:
+
+                +------------+--------------+------+-----+---------+-------+
+                | Field      | Type         | Null | Key | Default | Extra |
+                +------------+--------------+------+-----+---------+-------+
+                | inv_id     | int          | NO   | PRI | NULL    |       |
+                | team       | varchar(100) | YES  |     | NULL    |       |
+                | manager_id | int          | NO   | MUL | NULL    |       |
+                +------------+--------------+------+-----+---------+-------+
+
 
 5) Now to insert some data, you can do this:
 
@@ -203,6 +240,44 @@ Login to MYSQL:
                 +----+-------------+
                 |  1 | feed dragon |
                 +----+-------------+
+
+
+
+    HOW TO INSERT INTO A TABLE THAT HAS FOREIGN KEY:
+
+    Command:
+
+            INSERT INTO inventory                         <--name of table you want to add data to
+            (team, manager_id) VALUES                     <--column where data will go, and Foreign key int the targeted table
+            ( "basketball",                               <-- value you want to add here
+            (SELECT manager_id FROM manager               <--select from where the foreign key is based on, grab the primary key and primary key's table name
+                                                                 EX: My table "inventory" has a reference to foreign key called "manager_id" at the end.
+                                                                     I want to add new values in my "inventory"table and reference it to the manager_id in the table "manager"
+            WHERE manager_id=1)                           <-- I want to reference this new value to where the manager_id has the value of 1, in the table "manager"
+            );                                            <-- end command
+
+        MYSQL responds :
+
+            
+            Query OK, 1 row affected (0.02 sec)
+
+
+        Check to make sure insert works:
+
+
+            Command:
+
+                 SELECT * FROM inventory;
+
+
+            Display:
+
+                    +--------+------------+------------+
+                    | inv_id | team       | manager_id |
+                    +--------+------------+------------+
+                    |      1 | basketball |          1 |
+                    +--------+------------+------------+
+                    1 row in set (0.00 sec)
 
 
 
