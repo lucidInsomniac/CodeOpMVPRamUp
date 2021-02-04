@@ -1,0 +1,14 @@
+Bug tracking:
+    Jira
+
+Software:
+
+CSS:   
+    Pure CSS
+    //Material UI for icons
+
+Client-Routing:
+    React-Router
+
+    
+
