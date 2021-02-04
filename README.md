@@ -59,3 +59,89 @@ This app has 6 pages:
 5. There is a "Distribution"page, that shows a grid of athlete's where you can click on them to display and enlarged image of the athlete and their provided information
 
 6. An "Athlete" form for an athlete to fill out in order to receive gear for their sport.
+
+### Technologies
+
+- React
+
+- Pure CSS
+
+- Material UI
+
+- Jira
+
+- React Router
+
+- MYSQL
+
+- Express
+
+### Roadmap
+
+1. Identify users, user stories, and actions to map workflow
+
+2. Utilize page sketches to render layout and CSS choices
+
+3. Narrow down to core functional components and create basic mock-up pages
+
+4. Identify what type of data will be entered and passed around
+
+5. Pseudo code workflow for each page
+
+6. Use test data on the individual static pages to test site functionality
+
+7. Create data schema
+
+8. Create backend and test database data against it
+
+9. Connect Frontend and backend
+
+10. Test entire functionality
+
+## Features to Revisit
+
+Future features in the pipeline, might not be included in MVP based on time allotted.
+
+- FAQ
+
+- Schedule Appointments: integrate G-Cal and G-Forms
+
+- Check-in/out for uniforms and daily items
+
+- Generate to PDF for print
+
+- Form: Edit, Cancel, Delete, Save settings
+
+- Login/Register
+
+- User roles: Manager, Student Staff, and Athlete
+
+- Search Bar for inventory, orders, and athletes
+
+- Filter for Search Bar
+
+### Technologies
+
+- Google Apps Script API for Google Calendar, Gmail Suite, and Google Sheets
+
+- Passport JS
+
+- Google's OAuth 2.0 API
+
+- Zendesk
+
+- Barcode scanner API
+
+- Confluence: Internal FAQ
+
+## Roadmap
+
+1. Psuedo code routes in backend to link to external APIs
+
+2. Test APIs in Postman
+
+3. Research how to link external APIs to update from the API's native workspace to update database in MYSQL while still linking MYSQL to frontend to receive updates at the same time.
+
+4. Document user workflow for each user role and provide as public (athlete) and internal (manager, student staff) FAQ
+
+5. Integrate Zendesk as contact for users to report issues

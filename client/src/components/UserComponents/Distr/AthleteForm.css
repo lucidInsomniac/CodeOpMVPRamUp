@@ -32,9 +32,11 @@ input {
 }
 
 /*spacing between two items in a row*/
-.tshirt-size, .shorts-size, .athYr, .jacket-size, .shoe-size {
+.tshirt-size, .shorts-size, .athYr, .jacket-size, .shoe-size{
     margin-left: 10%;
+    
 }
+
 
 /*Space btwn label and select*/
 .collegeYr, .athYr, .tshirt-sizee, 
