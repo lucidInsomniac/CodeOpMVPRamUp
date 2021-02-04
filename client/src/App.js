@@ -5,9 +5,10 @@ import React, {useState} from 'react'
 // import OrdRecv from './components/UserComponents/Recv/OrdRecv'
 // import OrderForm from './components/UserComponents/Recv/OrderForm'
 // import Inventory from './components/UserComponents/Inventory/Inventory'
-// import GearDistr from './components/UserComponents/Distr/GearDistr';
+import GearDistr from './components/UserComponents/Distr/GearDistr';
 // import AthleteCard from './components/UserComponents/Distr/AthleteCard'
 import AthleteForm from './components/UserComponents/Distr/AthleteForm'
+import AthleteList from './components/UserComponents/Distr/AthleteList'
 import './App.css';
 
 // This displays all the components, react-router to coordinate
@@ -87,11 +88,10 @@ export default function App() {
           {/* <OrdRecv />
           <OrderForm />
           <Inventory />
-          <GearDistr />
           <AthleteCard /> */}
-          <AthleteForm onSubmit={(newAthlete) => addAthlete(newAthlete)} 
-  
-          />
+          <AthleteForm onSubmit={(newAthlete) => addAthlete(newAthlete)} />
+          <AthleteList athletes={athletes} onSelectedAth={athelete => setAthletes(athelete)} />
+          <GearDistr />
       </nav>
     </div>
   );
