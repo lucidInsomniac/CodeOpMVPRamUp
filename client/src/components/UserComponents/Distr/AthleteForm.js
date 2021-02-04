@@ -10,12 +10,6 @@ import './AthleteForm.css'
     //Distr Date
     //Rtnd Date
 
-
-//Done: 
-    //Form works with passing state obj to parent from static frontend
-    //Jira bug tracked 1 issue: https://donna-chin.atlassian.net/browse/CDP-2?atlOrigin=eyJpIjoiNDYxY2IzNzhhNDBlNDk0MTg3NTU2MDMzNmMzY2E0MDIiLCJwIjoiaiJ9
-    //Jira ticket status: Done
-
 //Next: Connect to MYSQL, and write client api functions on App.js
 
 export default function AthleteForm (props) {
