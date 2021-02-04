@@ -2,13 +2,13 @@
 
 ## Summary
 
-Ramp Up! is an app for equipment managers in the athletics industry to manage inventory, and athletic gear distribution.
+Ramp Up'!' is an app for equipment managers in the athletics industry to manage inventory, and athletic gear distribution.
 
 ## Motivation and Description
 
 At the moment, the athletics industry  does not have an app made with the equipment manager in mind.  There are similar apps available that offer basic needs like helping to keep  track of inventory with barcodes or QR codes. They even provide distribution and return features, as well as check in or out options for individual items.
 
-However, equipment management require a more thorough app to help with daily operations such as: 
+However, equipment management require a more thorough app to help with daily operations such as:
 
 - Break down of how many items were returned vs given out
 
@@ -28,7 +28,7 @@ However, equipment management require a more thorough app to help with daily ope
 
 - Communicate directly with Student Athletes via email on the app that automatically bcc a copy to the manager's registered email
 
-Ramp Up! helps provide a more efficient workflow by allowing equipment managers to enter their orders into a inventory database. When gear is distributed to an athlete, the items will automatically update from the inventory database, thus assuring a better inventory record.
+Ramp Up'!' helps provide a more efficient workflow by allowing equipment managers to enter their orders into a inventory database. When gear is distributed to an athlete, the items will automatically update from the inventory database, thus assuring a better inventory record.
 
 ## Minimal Product
 

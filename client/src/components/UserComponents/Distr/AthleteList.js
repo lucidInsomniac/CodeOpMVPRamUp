@@ -1,5 +1,8 @@
 import React from 'react'
 
+
+//This shows an image gallery of athletes
+//Done but not rendering
 export default function AthleteList (props) {
     console.log('gear',props)
     
@@ -14,6 +17,7 @@ export default function AthleteList (props) {
                         src={athlete.imageURL}
                         alt="profile pic displayed"
                         key={athlete.id} 
+                        // this part is not rendering
                         onClick={event => props.onSelectedAth(athlete)} 
                     />
                 ))}
