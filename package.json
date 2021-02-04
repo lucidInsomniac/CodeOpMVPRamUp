@@ -3,11 +3,16 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+<<<<<<< HEAD
     "start": "nodemon ./bin/www"
+=======
+    "start": "node ./bin/www"
+>>>>>>> 03e63f1d0614865223c8967b697f893a1bc08174
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+<<<<<<< HEAD
     "dotenv": "^8.2.0",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
@@ -36,4 +41,11 @@
  
   
   
+=======
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.1"
+  }
+>>>>>>> 03e63f1d0614865223c8967b697f893a1bc08174
 }

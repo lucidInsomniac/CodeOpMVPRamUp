@@ -11,7 +11,11 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+<<<<<<< HEAD
 app.set('view engine', 'jade')
+=======
+app.set('view engine', 'jade');
+>>>>>>> 03e63f1d0614865223c8967b697f893a1bc08174
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -35,7 +39,11 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
+<<<<<<< HEAD
   res.send('error');
+=======
+  res.render('error');
+>>>>>>> 03e63f1d0614865223c8967b697f893a1bc08174
 });
 
 module.exports = app;
