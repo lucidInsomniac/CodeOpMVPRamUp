@@ -145,3 +145,6 @@ Future features in the pipeline, might not be included in MVP based on time allo
 4. Document user workflow for each user role and provide as public (athlete) and internal (manager, student staff) FAQ
 
 5. Integrate Zendesk as contact for users to report issues
+
+​ _This is a student project that was created at
+[CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona._
