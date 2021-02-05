@@ -470,6 +470,9 @@ Login to MYSQL:
                 |  1 | rewire the time capacitor in the TARDIS |
                 +----+-----------------------------------------+
 
+HOW TO UPDATE LINKED AREAS:
+https://www.mysqltutorial.org/mysql-update-join/
+
 
 8) How to delete an entry:
 

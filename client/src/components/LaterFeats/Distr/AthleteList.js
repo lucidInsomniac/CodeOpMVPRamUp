@@ -25,3 +25,6 @@ export default function AthleteList (props) {
         </div>
     )
 }
+
+//Troubleshoot solution?
+//https://medium.com/@carlie.anglemire/requiring-images-in-react-9bcf6a8c2cb
