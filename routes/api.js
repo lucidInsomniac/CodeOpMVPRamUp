@@ -78,7 +78,7 @@ router.get("/rampup/:id", async (req, res) => {
     //these set of codes. Previous codes will not cause errors.
 
     //since it is async, we keep the link open to await a response for the DB
-    // to select and returnt the matched id record
+    // to select and return the matched id record
     let results = await db(sql);
     //returns obj and not the array for items, results.data is array, we want the index of [0]
     res.send(results.data[0]);
@@ -87,35 +87,36 @@ router.get("/rampup/:id", async (req, res) => {
   }
 });
 
-// //POST new data, MAKE SURE SOURCE LINK IS SET TO : http://localhost:5000/api/todos/items2
-// //!!NEED TO MAKE SURE MYSQL HAS COLUMN "TASK" BEFORE TESTING
-// //Make sure http matches mysql table features, In MYSQL check table name: "items"(or whatever), and column called : "id" & "task"
-// //!!!!!!Make sure url matches this, and on Postman, make sure the raw is set to JSON  !!!!!!!!!!
-// router.post("/rampup", async (req, res) => {
-//   // The request's body is available in req.body
-//   let { task, completed } = req.body;
-//   //Has to be in MYSQL syntax
-//   let sql = `
-//     INSERT INTO items (task, completed)
-//     VALUES ('${task}', ${completed})
-//   `;
-//   //Whenever we access a DB with "async" and "await", we need the "try" and "catch"
-//   try {
-//     //inserts the data
-//     let results = await db(sql);
-//     //awaiting response to MYSQL to select all data, // If the query is successful
-//     //Has to be in MYSQL syntax
-//     results = await db("SELECT * FROM items");
-//     //you should send back the full list of items
-//     //console.log(results.data);
-//     res.status(201).send(results.data);
-//   } catch (err) {
-//     //Catch errors if any encountered
-//     //Response to error, 500 status with message
-//     // console.log(err.message)
-//     res.status(500).send({ error: err.message });
-//   }
-// });
+//POST new data     -----> Works on Postman
+//!!NEED TO MAKE SURE MYSQL HAS COLUMNS BEFORE TESTING
+//!!!!!!Make sure Postman body raw is set to JSON  !!!!!!!!!!
+// Make sure your sql commands match their data type, you can check by using command
+// in MYSQL "describe inventory" 
+router.post("/rampup", async (req, res) => {
+  // The request's body is available in req.body
+  let { ord_date, vendor, team, item, size, qty, partial, full } = req.body;
+  //Has to be in MYSQL syntax
+  let sql = `
+    INSERT INTO inventory (ord_date, vendor, team, item, size, qty, partial, full)
+    VALUES ('${ord_date}', '${vendor}', '${team}', '${item}', '${size}', ${qty}, ${partial}, ${full})
+  `; 
+  //Whenever we access a DB with "async" and "await", we need the "try" and "catch"
+  try {
+    //inserts the data
+    let results = await db(sql);
+    //awaiting response to MYSQL to select all data, // If the query is successful
+    //Has to be in MYSQL syntax
+    results = await db("SELECT * FROM inventory");
+    //you should send back the full list of items
+    //console.log(results.data);
+    res.status(201).send(results.data);
+  } catch (err) {
+    //Catch errors if any encountered
+    //Response to error, 500 status with message
+    // console.log(err.message)
+    res.status(500).send({ error: err.message });
+  }
+});
 
 // //PUT data Update/Replace by ID
 // // Checks out on Postman :D
