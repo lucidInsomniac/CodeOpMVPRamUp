@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "migrate": "node model/database"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -14,26 +15,7 @@
     "morgan": "~1.9.1",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.7"
-    
   },
-
-  "migrate": "node model/database.js",
-
-
-
-
-
-
-
-
-
-
-
-
-
   
   "proxy": "http://localhost:5000"
- 
-  
-  
 }
