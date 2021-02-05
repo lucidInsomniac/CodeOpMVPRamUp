@@ -118,68 +118,70 @@ router.post("/rampup", async (req, res) => {
   }
 });
 
-// //PUT data Update/Replace by ID
-// // Checks out on Postman :D
-// router.put("/rampup/:id", async (req, res) => {
-//   //Get id from URL
-//   let id = req.params.id;
-//   let completed = req.params.completed;
+//PUT data Update/Replace by ID
+// Kind of works
+router.put("/rampup/:id", async (req, res) => {
+  //Get id from URL
+  let id = req.params.id;
+  let partial = req.params.partial;
+  let full = req.params.full
 
-//   //Whenever we access a DB with "async" and "await", we need the "try" and "catch"
-//   try {
-//     //Tells MYSQL to select all tasks from table "items" with matching id from URL
-//     //Has to be in MYSQL syntax
-//     let sql = `SELECT * FROM items WHERE id = ${id}`;
-//     //awaiting response from DB to add new task
-//     let results = await db(sql);
-//     //If DB finds a value of 1 for the array length in our data array
-//     if (results.data.length === 1) {
-//       console.log(results.data.length);
+  //Whenever we access a DB with "async" and "await", we need the "try" and "catch"
+  try {
+    //Tells MYSQL to select all tasks from table "items" with matching id from URL
+    //Has to be in MYSQL syntax
+    let sql = `SELECT * FROM inventory WHERE id = ${id}`;
+    //awaiting response from DB to add new inventory
+    let results = await db(sql);
+    //If DB finds a value of 1 for the array length in our data array
+    if (results.data.length === 1) {
+      console.log(results.data.length);
 
-//       // Create new obj from request body, this needs to match the column being modified
-//       //in your update
-//       let { task } = req.body;
-//       // Make sure modified task doesn't try to change ID
-//       //Tells MYSQL to update new task in the table "items" by setting the column
-//       // called "task" with the matching id from URL
-//       //Has to be in MYSQL syntax
+      // Create new obj from request body, this needs to match the column being modified
+      //in your update
+      let { task } = req.body;
+      // Make sure modified task doesn't try to change ID
+      //Tells MYSQL to update new task in the table "items" by setting the column
+      // called "task" with the matching id from URL
+      //Has to be in MYSQL syntax
 
-//       /*!!!! We need to change this for updateTask!!!   
-//                                   1 - On MYSQL to create new column: 
+      /*!!!! We need to change this for updateTask!!!   
+                                  1 - On MYSQL to create new column: 
                                   
-//                                     ALTER TABLE items ADD Completed BOOLEAN NOT NULL; 
-//                                   2- In VScode, we modify 'false'to 'true' , using this command for the variable "sql":
-//                                     UPDATE items SET Completed = 1 WHERE id = ${id};
+                                    ALTER TABLE items ADD Completed BOOLEAN NOT NULL; 
+                                  2- In VScode, we modify 'false'to 'true' , using this command for the variable "sql":
+                                    UPDATE items SET Completed = 1 WHERE id = ${id};
                                     
-//                                   3- To get DB to return data list with string true or false use,
-//                                       We need to explicity tell it how:
+                                  3- To get DB to return data list with string true or false use,
+                                      We need to explicity tell it how:
 
-//                                   SELECT id, task, IF(Completed, 'true', 'false') Completed FROM items;
+                                  SELECT id, task, IF(Completed, 'true', 'false') Completed FROM items;
                                     
-//                                   */
+                                  */
 
-//       sql = `               
-//         UPDATE items
-//         SET Completed = ${!completed}
-//         WHERE id = ${id}
-//       `;
+      sql = `               
+        UPDATE inventory
+        SET partial = ${!partial},
+        full = ${!!full}
+        WHERE id = ${id}
+      `;
 
-//       //awaiting response on adding the new task to the DB
-//       await db(sql);
-//       // Replace old task with modified one
-//       //Has to be in MYSQL syntax
-//       results = await db("SELECT * FROM items;");
-//       //And return the full list of items when successful
-//       res.send(results.data);
-//     } else {
-//       // else task not found; return 404 status code, does not exist in table "items"
-//       res.status(404).send({ error: "Oh no you broke me :(" });
-//     }
-//     //catches any errors with error 500 server status and message
-//   } catch (err) {
-//     res.status(500).send({ error: err.message });
-//   }
-// });
+      //awaiting response on adding the new task to the DB
+      await db(sql);
+      // Replace old task with modified one
+      //Has to be in MYSQL syntax
+      results = await db("SELECT * FROM inventory;");
+      //And return the full list of items when successful
+      res.send(results.data);
+    } else {
+      // else task not found; return 404 status code, does not exist in table "items"
+      res.status(404).send({ error: "Oh no you broke me :(" });
+    }
+    //catches any errors with error 500 server status and message
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
 
 // //DELETE data by ID
 // //Checks out on Postman :D too! YAY!
