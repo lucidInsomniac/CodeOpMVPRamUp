@@ -128,7 +128,7 @@ router.put("/rampup/:id", async (req, res) => {
 
   //Whenever we access a DB with "async" and "await", we need the "try" and "catch"
   try {
-    //Tells MYSQL to select all tasks from table "items" with matching id from URL
+    //Tells MYSQL to select all rows from table "inventory" with matching id from URL
     //Has to be in MYSQL syntax
     let sql = `SELECT * FROM inventory WHERE id = ${id}`;
     //awaiting response from DB to add new inventory
@@ -141,24 +141,6 @@ router.put("/rampup/:id", async (req, res) => {
       //in your update
       let { task } = req.body;
       // Make sure modified task doesn't try to change ID
-      //Tells MYSQL to update new task in the table "items" by setting the column
-      // called "task" with the matching id from URL
-      //Has to be in MYSQL syntax
-
-      /*!!!! We need to change this for updateTask!!!   
-                                  1 - On MYSQL to create new column: 
-                                  
-                                    ALTER TABLE items ADD Completed BOOLEAN NOT NULL; 
-                                  2- In VScode, we modify 'false'to 'true' , using this command for the variable "sql":
-                                    UPDATE items SET Completed = 1 WHERE id = ${id};
-                                    
-                                  3- To get DB to return data list with string true or false use,
-                                      We need to explicity tell it how:
-
-                                  SELECT id, task, IF(Completed, 'true', 'false') Completed FROM items;
-                                    
-                                  */
-
       sql = `               
         UPDATE inventory
         SET partial = ${!partial},
@@ -166,7 +148,7 @@ router.put("/rampup/:id", async (req, res) => {
         WHERE id = ${id}
       `;
 
-      //awaiting response on adding the new task to the DB
+      //awaiting response on adding the new data to the DB
       await db(sql);
       // Replace old task with modified one
       //Has to be in MYSQL syntax
@@ -174,7 +156,7 @@ router.put("/rampup/:id", async (req, res) => {
       //And return the full list of items when successful
       res.send(results.data);
     } else {
-      // else task not found; return 404 status code, does not exist in table "items"
+      // else task not found; return 404 status code, does not exist in table "inventory"
       res.status(404).send({ error: "Oh no you broke me :(" });
     }
     //catches any errors with error 500 server status and message
@@ -183,39 +165,38 @@ router.put("/rampup/:id", async (req, res) => {
   }
 });
 
-// //DELETE data by ID
-// //Checks out on Postman :D too! YAY!
-// router.delete("/rampup/:id", async (req, res) => {
-//   //Get id from URL
-//   let id = req.params.id;
-//   //Whenever we access a DB with "async" and "await", we need the "try" and "catch"
-//   try {
-//     //Tell MYSQL to select all from the table "items with the id matching the id from URL
-//     //Has to be in MYSQL syntax
-//     let sql = `SELECT * FROM items WHERE id = ${id}`;
-//     //awaiting response from DB to add new task
-//     let results = await db(sql);
-//     //If DB finds a value of 1 for the array length in our data array
-//     if (results.data.length === 1) {
-//       //Tells MYSQL to delete a task in the table "items" by setting the column
-//       // called "task" with the matching id from URL
-//       //Has to be in MYSQL syntax
-//       sql = `DELETE FROM items WHERE id = ${id}`;
-//       // Delete the task selected task
-//       await db(sql);
-//       //Awaiting response from MYSQL to select all tasks from table "items"
-//       //Has to be in MYSQL syntax
-//       results = await db("SELECT * FROM items");
-//       //And return the full list of items when successful
-//       res.send(results.data);
-//     } else {
-//       // else task not found; return 404 status code, does not exist in table "items"
-//       res.status(404).send({ error: "Oh no you broke me :(" });
-//     }
-//     //catches any errors with error 500 server status and message
-//   } catch (err) {
-//     res.status(500).send({ error: err.message });
-//   }
-// });
+//DELETE data by ID
+//WORKS on Postman
+router.delete("/rampup/:id", async (req, res) => {
+  //Get id from URL
+  let id = req.params.id;
+  //Whenever we access a DB with "async" and "await", we need the "try" and "catch"
+  try {
+    //Tell MYSQL to select all from the table "inventory with the id matching the id from URL
+    //Has to be in MYSQL syntax
+    let sql = `SELECT * FROM inventory WHERE id = ${id}`;
+    //awaiting response from DB to add new task
+    let results = await db(sql);
+    //If DB finds a value of 1 for the array length in our data array
+    if (results.data.length === 1) {
+
+      //Has to be in MYSQL syntax
+      sql = `DELETE FROM inventory WHERE id = ${id}`;
+      // Delete the task selected task
+      await db(sql);
+      //Awaiting response from MYSQL to select all data from table "inventory"
+      //Has to be in MYSQL syntax
+      results = await db("SELECT * FROM inventory");
+      //And return the full list of inventory when successful
+      res.send(results.data);
+    } else {
+      // else task not found; return 404 status code, does not exist in table "inventory"
+      res.status(404).send({ error: "Oh no you broke me :(" });
+    }
+    //catches any errors with error 500 server status and message
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
 
 module.exports = router;
