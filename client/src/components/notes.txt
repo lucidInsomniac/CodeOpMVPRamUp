@@ -11,4 +11,22 @@ Client-Routing:
     React-Router
 
     
+==============================================
+
+Left to do:
+
+    MYSQL: create the the 2 tables: 
+            Inventory (parent)
+            Orders (child) 
+            Update MYSQL notes 
+
+            ADD Delete for API
+            Figure out commands for UPDATE
+            Condition: Same as GET but target partial and full column
+            Test and document errors
+
+    Add event handlers for: Order 
+            Form 
+            App
+            Test data passes through each component
 
