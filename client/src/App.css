@@ -1,6 +1,9 @@
 .App {
   text-align: center;
+  justify-items: center;
+  justify-content: center;
   max-width: 800px;
+  padding: 40px 40px;
   max-height: 1024px;
   margin: 0px auto;
 

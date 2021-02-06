@@ -1,0 +1,57 @@
+.OrdersForm { 
+    max-width: 800px;
+    height: auto;
+}
+
+h2 {
+    margin-top: 20px;
+    padding: 30px;
+    border-bottom: 2px solid black;
+    
+}
+
+
+.pure-g {
+    margin-top: 80px;
+}
+
+#multi-order-date {
+    margin-left: 275px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+#multi-vendor, 
+#multi-team, #multi-item
+{
+    margin-left: 250px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+#multi-qty, 
+#multi-part-ord, 
+#multi-fullOrd 
+{
+    margin-left: 350px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+input, textarea, select {
+    text-align: center;
+}
+
+
+.submit {
+    text-align: center;
+    margin-top: 50px;
+    box-shadow: 2px 2px 2px black;
+    cursor: pointer;
+    margin-bottom: 60px;
+    
+}
+
+table {
+    padding-top: 20px;
+}

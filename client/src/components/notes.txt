@@ -1,11 +1,5 @@
 Bug tracking:
     Jira
-    Jira link to errors that have been resolved:
-        Post scaffold installation and Git to GitHub issue
-        https://donna-chin.atlassian.net/browse/CDP-3?atlOrigin=eyJpIjoiOWE4ZGQ1YWIyN2ZiNDY4NGEyMGFkZmJmMDgxNGViZGUiLCJwIjoiaiJ9
-
-        AthleteForm data not being passed down onSubmit
-        https://donna-chin.atlassian.net/browse/CDP-2?atlOrigin=eyJpIjoiNDYxY2IzNzhhNDBlNDk0MTg3NTU2MDMzNmMzY2E0MDIiLCJwIjoiaiJ9
 
 Software:
 
