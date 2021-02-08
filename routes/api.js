@@ -147,50 +147,57 @@ router.post("/rampup", async (req, res) => {
   }
 });
 
-// //PUT inventory data Update/Replace by ID
-// // Kind of works
-// router.put("/rampup/:id", async (req, res) => {
-//   //Get id from URL
-//   let inv_id = req.params.inv_id;
+//PUT inventory data Update/Replace by ID
+// Kind of works
+router.put("/rampup/:id", async (req, res) => {
+  //Get id from URL
+  let ord_id = req.params.id;
 
-//   //Whenever we access a DB with "async" and "await", we need the "try" and "catch"
-//   try {
-//     //Tells MYSQL to select all rows from table "inventory" with matching id from URL
-//     //Has to be in MYSQL syntax
-//     let sql = `SELECT * FROM orders WHERE id = ${id}`;
-//     //awaiting response from DB to add new inventory
-//     let results = await db(sql);
-//     //If DB finds a value of 1 for the array length in our data array
-//     if (results.data.length === 1) {
-//       console.log(results.data.length);
+  //Whenever we access a DB with "async" and "await", we need the "try" and "catch"
+  try {
+    //Tells MYSQL to select all rows from table "inventory" with matching id from URL
+    //Has to be in MYSQL syntax
+    let sql = `SELECT * FROM orders WHERE ord_id = ${ord_id}`;
+    //awaiting response from DB to add new inventory
+    let results = await db(sql);
+    //If DB finds a value of 1 for the array length in our data array
+    if (results.data.length === 1) {
+      console.log(results.data.length);
 
-//       // Create new obj from request body, this needs to match the column being modified
-//       //in your update
-//       let { part_ord, full_ord } = req.body;
-//       // Make sure modified task doesn't try to change ID
-//       sql = `               
-//         UPDATE inventory
-//         SET part_ord = '${part_ord}',
-//         full_ord = '${full_ord}'
-//         WHERE inv_id = ${inv_id}
-//       `;
+      // Create new obj from request body, this needs to match the column being modified
+      //in your update
+      let { ord_date, vendor, team, item, size, qty, part_ord, full_ord } = req.body;
+      // Make sure modified task doesn't try to change primary (ord_id) and foreign keys (inv_id)
+      sql = `               
+        UPDATE orders
+        SET 
+        ord_date = '${ord_date}',
+        vendor = '${vendor}',
+        team = '${team}',
+        item = '${item}',
+        size = '${size}',
+        qty = '${qty}',
+        part_ord = '${part_ord}',
+        full_ord = '${full_ord}'
+        WHERE ord_id = ${ord_id}
+      `;
 
-//       //awaiting response on adding the new data to the DB
-//       await db(sql);
-//       // Replace old task with modified one
-//       //Has to be in MYSQL syntax
-//       results = await db("SELECT * from orders where full_ord = 'Yes' ORDER BY ord_date ASC");
-//       //And return the full list of items when successful
-//       res.send(results.data);
-//     } else {
-//       // else task not found; return 404 status code, does not exist in table "inventory"
-//       res.status(404).send({ error: "Oh no you broke me :(" });
-//     }
-//     //catches any errors with error 500 server status and message
-//   } catch (err) {
-//     res.status(500).send({ error: err.message });
-//   }
-// });
+      //awaiting response on adding the new data to the DB
+      await db(sql);
+      // Replace old task with modified one
+      //Has to be in MYSQL syntax
+      results = await db("SELECT * from orders where full_ord = 'Yes' ORDER BY ord_date ASC");
+      //And return the full list of items when successful
+      res.send(results.data);
+    } else {
+      // else task not found; return 404 status code, does not exist in table "inventory"
+      res.status(404).send({ error: "Oh no you broke me :(" });
+    }
+    //catches any errors with error 500 server status and message
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
 
 //DELETE data by ID
 //Actual data and test on Postman works!
