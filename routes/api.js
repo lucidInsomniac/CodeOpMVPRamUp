@@ -192,39 +192,39 @@ router.post("/rampup", async (req, res) => {
 //   }
 // });
 
-// //DELETE data by ID
-// //WORKS on Postman
-// router.delete("/rampup/:id", async (req, res) => {
-//   //Get id from URL
-//   let inv_id = req.params.inv_id;
-//   //Whenever we access a DB with "async" and "await", we need the "try" and "catch"
-//   try {
-//     //Tell MYSQL to select all from the table "inventory with the id matching the id from URL
-//     //Has to be in MYSQL syntax
-//     let sql = `SELECT * FROM orders WHERE id = ${id}`;
-//     //awaiting response from DB to add new task
-//     let results = await db(sql);
-//     //If DB finds a value of 1 for the array length in our data array
-//     if (results.data.length === 1) {
+//DELETE data by ID
+//Actual data and test on Postman works!
+router.delete("/rampup/:id", async (req, res) => {
+  //Get id from URL
+  let ord_id = req.params.id;
+  //Whenever we access a DB with "async" and "await", we need the "try" and "catch"
+  try {
+    //Tell MYSQL to select all from the table "inventory with the id matching the id from URL
+    //Has to be in MYSQL syntax
+    let sql = `SELECT * FROM orders WHERE ord_id = ${ord_id}`;
+    //awaiting response from DB to add new task
+    let results = await db(sql);
+    //If DB finds a value of 1 for the array length in our data array
+    if (results.data.length === 1) {
 
-//       //Has to be in MYSQL syntax
-//       sql = `DELETE FROM orders WHERE id = ${id}`;
-//       // Delete the task selected task
-//       await db(sql);
-//       //Awaiting response from MYSQL to select all data from table "inventory"
-//       //Has to be in MYSQL syntax
-//       results = await db("SELECT * from orders where full_ord = 'Yes' ORDER BY ord_date ASC");
-//       //And return the full list of inventory when successful
-//       res.send(results.data);
-//     } else {
-//       // else task not found; return 404 status code, does not exist in table "inventory"
-//       res.status(404).send({ error: "Oh no you broke me :(" });
-//     }
-//     //catches any errors with error 500 server status and message
-//   } catch (err) {
-//     res.status(500).send({ error: err.message });
-//   }
-// });
+      //Has to be in MYSQL syntax
+      sql = `DELETE FROM orders WHERE ord_id = ${ord_id}`;
+      // Delete the task selected task
+      await db(sql);
+      //Awaiting response from MYSQL to select all data from table "inventory"
+      //Has to be in MYSQL syntax
+      results = await db("SELECT * from orders where full_ord = 'Yes' ORDER BY ord_date ASC");
+      //And return the full list of inventory when successful
+      res.send(results.data);
+    } else {
+      // else task not found; return 404 status code, does not exist in table "inventory"
+      res.status(404).send({ error: "Oh no you broke me :(" });
+    }
+    //catches any errors with error 500 server status and message
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
 
 
 // /***************************Routes for RECEIVING********************** */
