@@ -31,7 +31,8 @@ h2 {
 
 #multi-qty, 
 #multi-part-ord, 
-#multi-fullOrd 
+#multi-fullOrd,
+#multi-size
 {
     margin-left: 350px;
     margin-top: 10px;

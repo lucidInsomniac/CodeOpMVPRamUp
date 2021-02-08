@@ -63,7 +63,7 @@ export default function Inventory (props) {
 {/***********************For MOCKUP DISPLAY ONLY****************************** */}
 
             <div className="table container"> 
-            <table class="pure-table">
+            <table className="pure-table">
                 <thead>
                     <tr>
                         <th>Order Date</th>
@@ -77,7 +77,7 @@ export default function Inventory (props) {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="pure-table-odd">
+                    <tr className="pure-table-odd">
                         <td>01/14/19</td>
                         <td>Volleyball</td>
                         <td>BSN</td>

@@ -4,19 +4,50 @@ import './OrdersForm.css'
 //Order input
 export default function OrdersForm (props) {
 
-  //hooks for form input values: ordDate, team, item, aty, partOrd, fullOrd
+  //hooks for form input values: 
+  //ordDate
   const [ordDate, setOrdDate] = useState('');
+  //team
   const [vendor, setVendor] = useState('')
+  //item
   const [team, setTeam] = useState('');
+  //item
   const [item, setItem] = useState('');
+  //size
   const [size, setSize] = useState('');
+  //qty
   const [qty, setQty] = useState('');
-  const [partOrd, setPartOrd] = useState('');
-  const [fullOrd, setfullOrd] = useState('');
 
   //Event hanlder for event listener onSubmit when triggered
   //by submit event
   function handleSubmit(event) {
+    //prevent entire doc from reloading, only target event source
+    event.preventDefault()
+
+    //save all date in state obj to be sent to parent
+
+    const inventory = {
+
+      ordDate: ordDate,
+      vendor: vendor,
+      team: team,
+      item: item,
+      size: size,
+      qty: qty,
+    }
+      //check inventory has value
+      console.log('form', inventory)
+
+    // onSubmit, send the state obj with all the data to parent
+    props.onSubmit(inventory)
+
+    //reset all fields
+    setOrdDate("")
+    setVendor("")
+    setTeam("")
+    setItem("")
+    setSize("")
+    setQty("")
 
   }
 
@@ -24,8 +55,32 @@ export default function OrdersForm (props) {
   //Event handler for event listener onClick when triggered by
   //on-click event
   function handleChange (event) {
+    let {name, value} = event.target
 
+        switch(name) {
+            case 'ordDate':   
+                setOrdDate(value);
+                break;
+            case 'vendor':
+                setVendor(value);
+                break;
+            case 'team':
+                setTeam(value);
+                break;
+            case 'item':
+                setItem(value);
+                break;
+            case 'size':
+                setSize(value);
+                break;
+            case 'qty':
+                setQty(value);
+                break;
+            default:
+                  break;
+        }
   }
+
       //render form here
       // divs, input, className, and htmlFor formated in Pure CSS
       // Link to Documentation: https://purecss.io/forms/
@@ -126,6 +181,24 @@ export default function OrdersForm (props) {
                   </div>
 
                   <div className="pure-u-1 pure-u-md-1-3">
+                    <label 
+                            className="size"
+                            htmlFor="multi-size"
+                    >
+                      Size
+                    </label>
+                      <input
+                            id="multi-size"
+                            placeholder="Size"
+                            className="pure-u-1-8"
+                            name="size"
+                            type="text"
+                            onChange={handleChange}
+                            value={size}
+                      />
+                  </div>
+
+                  <div className="pure-u-1 pure-u-md-1-3">
                     <label  
                             className="qty"
                             htmlFor="multi-qty"
@@ -143,48 +216,7 @@ export default function OrdersForm (props) {
                       />
                   </div>
 
-                  <div className="pure-u-1 pure-u-md-1-3">
-                    <label 
-                            className="partOrd"
-                            htmlFor="multi-part-ord"
-                    >
-                      Partial Order
-                    </label>
-                      <select
-                            id="multi-part-ord"
-                            className="pure-u-1-8"
-                            name="partOrd"
-                            onChange={handleChange}
-                            value={partOrd}
-                      >
-                        <option>Select</option>
-                        <option>Yes</option>
-                        <option>No</option>
-                      </select>
-                  </div>
-
-                  <div className="pure-u-1 pure-u-md-1-3">
-                    <label 
-                            className="pure-control-group"
-                            htmlFor="multi-fullOrd"
-                    >
-                      Full Order
-                    </label>
-                      <select
-                            id="multi-fullOrd"
-                            className="pure-u-1-8"
-                            name="fullOrd"
-                            onChange={handleChange}
-                            value={fullOrd}
-                      >
-                        <option>Select</option>
-                        <option>Yes</option>
-                        <option>No</option>
-                      </select>
-                      
-                  </div>
-              </div>
-
+                </div>
                   {/*Button goes before </form> */}
                 <button className="submit"
                         type="submit"
