@@ -65,34 +65,34 @@ router.get("/rampup", async (req, res) => {
 
 
 
-// //test data orks on Postman
-// //GET inventory data by id
-// router.get("/rampup/:id", async (req, res) => {
-//   //Get id from URL
-//   let id = req.params.id;
-//   //Tells MYSQL to select all rows from items
-//   //where the id matches the req.params.id
-//   //Has to be in MYSQL syntax
-//   let sql = `
-//     SELECT *
-//     FROM orders
-//     WHERE inv_id = ${id}
-//   `;
+//Actual data and test data orks on Postman
+//GET inventory data by id
+router.get("/rampup/:id", async (req, res) => {
+  //Get id from URL
+  let ord_id = req.params.id;
+  //Tells MYSQL to select all rows from items
+  //where the id matches the req.params.id
+  //Has to be in MYSQL syntax
+  let sql = `
+    SELECT *
+    FROM orders
+    WHERE ord_id = ${ord_id}
+  `;
 
-//   //Whenever we access a DB with "async" and "await", we need the "try" and "catch"
-//   try {
-//     // We need try block because something can go wrong with
-//     //these set of codes. Previous codes will not cause errors.
+  //Whenever we access a DB with "async" and "await", we need the "try" and "catch"
+  try {
+    // We need try block because something can go wrong with
+    //these set of codes. Previous codes will not cause errors.
 
-//     //since it is async, we keep the link open to await a response for the DB
-//     // to select and return the matched id record
-//     let results = await db(sql);
-//     //returns obj and not the array for items, results.data is array, we want the index of [0]
-//     res.send(results.data[0]);
-//   } catch (err) {
-//     res.status(500).send({ error: err.message });
-//   }
-// });
+    //since it is async, we keep the link open to await a response for the DB
+    // to select and return the matched id record
+    let results = await db(sql);
+    //returns obj and not the array for items, results.data is array, we want the index of [0]
+    res.send(results.data[0]);
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
 
 //POST new  inventory data     -----> Actual Test works on Postman
 //!!NEED TO MAKE SURE MYSQL HAS COLUMNS BEFORE TESTING
