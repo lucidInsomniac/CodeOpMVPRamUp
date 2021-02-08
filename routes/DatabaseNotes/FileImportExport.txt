@@ -1,0 +1,141 @@
+-- How to export DB file:
+-- mysql -u root -p [dbname] > [path to filename.sql]
+
+-- How to import DB file 
+-- mysql -u root -p [dbname] < [path to filename.sql]
+
+-- How to create sql file:
+-- Video ref: https://youtu.be/Tw0FMyNM_88
+
+=====================================================
+
+Creating MYSQL Script files:
+
+change to desired DB with:
+=====================================================
+
+        /*change DB*/
+
+use rampup;
+
+
+
+        /*create inventory table*/
+
+
+create table inventory (
+    inv_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
+    team VARCHAR (20)
+    );
+
+select * from inventory;
++--------+------------+
+| inv_id | team       |
++--------+------------+
+|      1 | soccer     |
+|      2 | volleyball |
+|      3 | xc/t+f     |
+|      4 | sw+d       |
+|      5 | wrestling  |
+|      6 | basektball |
+|      7 | fencing    |
+|      8 | softball   |
+|      9 | baseball   |
+|     10 | tennis     |
+|     11 | golf       |
++--------+------------+
+
+      /*Add data into "inventory" table*/
+
+insert into inventory (team) VALUES 
+    ("soccer"), ("volleyball"),
+    ("xc/t+f"), ("sw+d"), ("wrestling"),
+    ("basektball"), ("fencing"), 
+    ("softball"),("baseball"),
+    ("tennis"), ("golf");
+
+
+
+
+      /*create orders table*/
+
+CREATE TABLE orders (
+    -> ord_id INT NOT NULL AUTO_INCREMENT,
+    -> ord_date VARCHAR (20), 
+    -> vendor VARCHAR ( 20),
+    -> team VARCHAR (30),
+    -> item VARCHAR (100),
+    -> size VARCHAR (5),
+    -> qty INT NOT NULL,
+    -> part_ord VARCHAR (3)NOT NULL,
+    -> full_ord VARCHAR (3) NOT NULL,
+    -> inv_id INT NOT NULL,
+    -> PRIMARY KEY (ord_id),
+    -> FOREIGN KEY (inv_id) REFERENCES inventory(inv_id)
+    -> );
+
+
+
+    /*Add data into "orders" table*/
+    //check data type
+    desc table:
+
++----------+--------------+------+-----+---------+----------------+
+| ord_id   | int          | NO   | PRI | NULL    | auto_increment |
+| ord_date | varchar(20)  | YES  |     | NULL    |                |
+| vendor   | varchar(20)  | YES  |     | NULL    |                |
+| team     | varchar(30)  | YES  |     | NULL    |                |
+| item     | varchar(100) | YES  |     | NULL    |                |
+| size     | varchar(5)   | YES  |     | NULL    |                |
+| qty      | int          | NO   |     | NULL    |                |
+| part_ord | varchar(3)   | NO   |     | NULL    |                |
+| full_ord | varchar(3)   | NO   |     | NULL    |                |
+| inv_id   | int          | NO   | MUL | NULL    |                |
++----------+--------------+------+-----+---------+--------------
+
+        /* insert into name of table*/
+
+INSERT INTO
+
+        /*Input column names*/
+
+    (ord_date,
+    vendor,
+    team,
+    item,
+    size,
+    qty,
+    part_ord,
+    full_ord,
+    inv_id
+    ) 
+
+        /*insert values*/
+
+    VALUES 
+    ("11/20/20",
+    "BSN", 
+    "basketball",
+    "game balls",
+    "regSZ", 
+    30, 
+    "Yes",
+    "No", 
+
+        /* add sub sql command here, instead of inv_id*/
+
+    (SELECT inv_id 
+    FROM inventory
+    Where inv_id = 6) 
+    );
+
+
+        /* Getting all data for  Receiving Where full = NO*/
+
+SELECT * from orders where full_ord = 'No';
+
+
+        /*Getting all data for Inventory Where full = YES*/
+
+SELECT * from orders where full_ord = 'Yes';
+

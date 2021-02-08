@@ -474,7 +474,35 @@ HOW TO UPDATE LINKED AREAS:
 https://www.mysqltutorial.org/mysql-update-join/
 
 
-8) How to delete an entry:
+
+
+8) How to join tables:
+
+Get data for inventory by sport:
+
+SELECT
+-> inv_id,
+-> ord_date,
+-> vendor,
+-> team,
+-> item,
+-> size,
+-> qty,
+-> part_ord,
+-> full_ord
+-> FROM inventory
+-> INNER JOIN
+-> orders USING (inv_id)
+-> ORDER BY 
+-> inv_id
+
+
+
+
+
+
+
+9) How to delete an entry:
 
     View table to see which entry to deleted:
 
