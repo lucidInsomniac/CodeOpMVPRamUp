@@ -1,6 +1,6 @@
 //We need to import 4 things: useMemo, useTable, mock data, and columns
 //Ref Video: https://youtu.be/hson9BXU9F8
-import React, { cloneElement, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { useTable } from 'react-table'
 import MOCK_DATA from './MOCK_DATA.json'
 import { COLUMNNS } from './Columns'

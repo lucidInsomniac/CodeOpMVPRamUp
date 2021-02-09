@@ -30,7 +30,15 @@ export const COLUMNNS= [
     {   
         Header: "QTY",
         accessor: "qty"
-    }
+    },
+    // {   
+    //     Header: "Partial Order",
+    //     accessor: "part_ord"
+    // },
+    // {   
+    //     Header: "Full Order",
+    //     accessor: "full_ord"
+    // }
 ]
 
 //After this is setup, we need to create a table instance, using

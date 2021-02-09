@@ -1,11 +1,12 @@
 // this will be the dashboard view
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 //import ALL components for React Router SideBar Menu
 import Table from './components/UserComponents/Recv/Table'
 import OrdersForm from './components/UserComponents/Recv/OrdersForm'
 import Inventory from './components/UserComponents/Inventory/Inventory'
 
 import './App.css';
+import Recv from './components/UserComponents/Recv/Recv';
 
 // This displays all the components, react-router to coordinate
 export default function App() {
@@ -26,23 +27,23 @@ export default function App() {
   
     //useEffect to GET data from DB
 
-      // //useEffect hook to tell react to fetch automatically and get data from server
-  // useEffect(() => {
-  //   fetch("/api/rampup") //this connects to the server api.js
-  //   //our request
-  //   .then(response => response.json())
-  //   //this is the response returned with data array
-  //   .then(inventories => {
-  //     console.log('parent', inventories)
-  //     //upon success
-  //     setInventories(inventories)
-  //   })
-  //   //catch error
-  //   .catch(err => {
-  //     //if error, show error
-  //     console.log( "ERROR:", err.message);
-  //   });
-  // }, []); //gets saved in an empty array
+      //useEffect hook to tell react to fetch automatically and get data from server
+  useEffect(() => {
+    fetch("/api/rampup") //this connects to the server api.js
+    //our request
+    .then(response => response.json())
+    //this is the response returned with data array
+    .then(inventories => {
+      console.log('parent', inventories)
+      //upon success
+      setInventories(inventories)
+    })
+    //catch error
+    .catch(err => {
+      //if error, show error
+      console.log( "ERROR:", err.message);
+    });
+  }, []); //gets saved in an empty array
     
 
     //function to GET orders only if full order = NO
@@ -104,7 +105,7 @@ export default function App() {
           {/*collection of all full received existing and new items, and displays all items 
               Display only if Full Order = YES
           */}
-          <Inventory />
+          <Inventory inventories={inventories} />
       </nav>
     </div>
   );

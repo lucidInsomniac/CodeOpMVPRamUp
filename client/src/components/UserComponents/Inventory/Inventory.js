@@ -3,10 +3,16 @@ import React from 'react'
 
 
 export default function Inventory (props) {
+    console.log( props)
+    
     return (
+
         <div className="Inventory">
             <h2>Inventory</h2>
-
+           
+        </div>
+    )
+}
 
 {/***********This page will render all data from MYSQL database****************
  * 
@@ -60,7 +66,7 @@ export default function Inventory (props) {
 
 
 
-{/***********************For MOCKUP DISPLAY ONLY****************************** */}
+{/***********************For MOCKUP DISPLAY ONLY****************************** 
 
             <div className="table container"> 
             <table className="pure-table">
@@ -94,3 +100,5 @@ export default function Inventory (props) {
         </div>
     )
 }
+
+*/}
