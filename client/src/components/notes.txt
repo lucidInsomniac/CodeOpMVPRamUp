@@ -31,3 +31,37 @@ Left to do:
             Add React-router
             Test data passes through each component
 
+===========================================================================
+
+
+REACT Router: if route matches url path, it renders
+
+<Route path ="/about">
+    <AboutView /> 
+</Route>
+
+if multiple: goes in sequential order
+
+use Switch
+
+<Switch>
+    <Route path="/"exact>
+        <HomeView />
+    </Route>
+
+    <Route path="/about">
+        <AboutView />
+    </Route>
+
+    <Error404View />
+</Switch>
+
+
+
+Nav:
+
+<nav> 
+    <ul>
+        <li> <NavLink to ="/" activeClassName="selected"> Home </NavLink></li>
+        
+

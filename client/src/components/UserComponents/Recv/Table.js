@@ -88,7 +88,7 @@ export default function BasicTable () {
                         })
                     }
 
-                        <tr>
+                        {/* <tr>
                             <td>
                                 <select>
                                     <option>Select</option>
@@ -104,7 +104,7 @@ export default function BasicTable () {
                                 </select>
                             </td>
                               
-                        </tr>
+                        </tr> */}
                        
                 </tbody>
                  

@@ -4,9 +4,8 @@ import React, {useState, useEffect} from 'react'
 import Table from './components/UserComponents/Recv/Table'
 import OrdersForm from './components/UserComponents/Recv/OrdersForm'
 import Inventory from './components/UserComponents/Inventory/Inventory'
-
 import './App.css';
-import Recv from './components/UserComponents/Recv/Recv';
+
 
 // This displays all the components, react-router to coordinate
 export default function App() {

@@ -18,6 +18,9 @@
 .env.test.local
 .env.production.local
 .env
+/home/donnachin/Desktop/Git/Cloned/MVP-Ramp-Up-/client/src/components/LaterFeats
+/home/donnachin/Desktop/Git/Cloned/MVP-Ramp-Up-/client/src/components/notes.txt
+
 
 npm-debug.log*
 yarn-debug.log*
