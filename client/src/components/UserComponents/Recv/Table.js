@@ -18,7 +18,7 @@ export default function Table ( props) {   //this would be props for the compone
                     Start with guard clause in case no data inserted .
                     You need to define columns as a separate entity as const*/}
 
-                    <tr>{ props.orders[0] && columns.map( (heading) => <th>{ heading }</th>)} </tr>
+                    <tr>{ props.orders[0] && columns.map( (heading) =><th>{ heading }</th>)}</tr>
                 </thead>
 
                 <tbody>
