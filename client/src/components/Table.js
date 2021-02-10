@@ -1,5 +1,5 @@
 import React from 'react'
-
+//ref video: https://youtu.be/d1r0aK5awWk
 
 
 export default function Table ( props) {   //this would be props for the component

@@ -1,9 +1,9 @@
 // this will be the dashboard view
 import React, {useState, useEffect} from 'react'
 //import ALL components for React Router SideBar Menu
-import Table from './components/UserComponents/Recv/Table'
-import OrdersForm from './components/UserComponents/Recv/OrdersForm'
-import Inventory from './components/UserComponents/Inventory/Inventory'
+import Table from './components/Table'
+import OrdersForm from './components/OrdersForm'
+import Inventory from './components/Inventory'
 import './App.css';
 
 
@@ -14,6 +14,8 @@ export default function App() {
   //hook for collection of inventory from OrdersForm
   const [orders, setOrders] = useState([]);
   const [inventories, setInventories] = useState([]);
+  const [allOrders, setAllOrders] = useState([]);
+  const [ query, setQuery] = useState("")
 
 
   //Test Function for Mock Display ONLY
@@ -28,7 +30,31 @@ export default function App() {
   /**************GET Data********************************** */
 
     //useEffect to GET all data from DB
- useEffect(() => {
+    //useEffect  to Get INVENTORY ONLY IF FULL ORDER = NO
+  useEffect(() => {
+    //FETCH DONE
+    fetch("/alldata") //this connects to the server api.js
+      // our promise for fetch, instead of using "async", "wait", and "try"
+      //This is the request
+      .then(response => response.json())
+      //this is the response returned with actual data
+      .then(allOrders => {
+        console.log(allOrders);
+        // upon success, update tasks
+        setAllOrders(allOrders);
+        //check
+        console.log( 'fetch', allOrders)
+      })
+      //catches error
+      .catch(err => {
+        // upon failure, show error message
+        console.log("ERROR:", err.message);
+      });
+  }, []); //gets saved in the state
+
+
+  //useEffect  to Get INVENTORY ONLY IF FULL ORDER = NO
+  useEffect(() => {
     //FETCH DONE
     fetch("/receiving") //this connects to the server api.js
       // our promise for fetch, instead of using "async", "wait", and "try"
@@ -49,6 +75,7 @@ export default function App() {
       });
   }, []); //gets saved in the state
 
+  //useEffect  to Get INVENTORY ONLY IF FULL ORDER = YES
   useEffect(() => {
     //FETCH DONE
     fetch("/inventory") //this connects to the server api.js
@@ -71,47 +98,7 @@ export default function App() {
   }, []); //gets saved in the state
 
 
-//   //   //function to GET Reciving only if full order = NO
-//   // //useEffect hook to tell react to fetch automatically and get data from server
-//   // useEffect(() => {
-//   //   fetch("/orders") //this connects to the server api.js
-//   //   //our request
-//   //   .then(response => response.json())
-//   //   //this is the response returned with data array
-//   //   .then(orders => {
-//   //     console.log('parent', orders)
-//   //     //upon success
-//   //     setOrders(orders)
-//   //   })
-//   //   //catch error
-//   //   .catch(err => {
-//   //     //if error, show error
-//   //     console.log( "ERROR:", err.message);
-//   //   });
-//   // }, []); //gets saved in an empty array
-
-
-//   // //function to GET Inventory, only if full order = YES
-//   // //useEffect hook to tell react to fetch automatically and get data from server
-//   // useEffect(() => {
-//   //   fetch("/inventory") //this connects to the server api.js
-//   //   //our request
-//   //   .then(response => response.json())
-//   //   //this is the response returned with data array
-//   //   .then(inventories => {
-//   //     console.log('parent', inventories)
-//   //     //upon success
-//   //     setInventories(inventories)
-//   //   })
-//   //   //catch error
-//   //   .catch(err => {
-//   //     //if error, show error
-//   //     console.log( "ERROR:", err.message);
-//   //   });
-//   // }, []); //gets saved in an empty array
-
-
-//   /**************POST Data********************************** */
+  /*******************POST Data********************************** */
 
 //     //function to POST orders
 //     function addOrder (order) {
@@ -162,29 +149,47 @@ export default function App() {
 
     //function to DELETE inventory
 
+  
+  
     /********************************************************** */
+
+
+
+    //Search Bar
+    function search (rows) {
+      return rows.filter(row => row.team.toLowerCase().indexOf(query) >-1)
+    }
+
+
+
+
 
   //render display
   return (
     <div className="App">
       <h1>Dashboard</h1>
+
+      <div className="searchBar">
+        {/* The search bar goes here */}
+          <input type="text"
+                 value={ query }
+                 onChange={ (e) => setQuery(e.target.value) }
+          />
+      </div>
+
       <nav>
-
-          
-
-
           {/*Enter orders here */}
-          <OrdersForm onSubmit={ newOrder => addOrder(newOrder)} />
+          {/* <OrdersForm onSubmit={ newOrder => addOrder(newOrder)} /> */}
 
-          
+
             {/*This component displays all unreceived and partial entered from the form.
                 Display only if Partial Order= YES or not selected
-            */}<Table orders={orders} />
+            */}<Table orders={search(orders)} />
        
 
           {/*collection of all full received existing and new items, and displays all items
               Display only if Full Order = YES
-          */}<Inventory inventories={inventories} />
+          */}<Inventory inventories={search(inventories)} />
           
 
 
