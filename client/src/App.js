@@ -41,6 +41,8 @@ export default function App() {
         console.log(orders);
         // upon success, update tasks
         setOrders(orders);
+        //check
+        console.log( 'fetch', orders)
       })
       //catches error
       .catch(err => {
@@ -151,7 +153,7 @@ export default function App() {
 
           <Inventory  />
 
-          
+
           {/*Enter orders here */}
           <OrdersForm onSubmit={ newOrder => addOrder(newOrder)} />
 
