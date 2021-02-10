@@ -65,3 +65,58 @@ Nav:
         <li> <NavLink to ="/" activeClassName="selected"> Home </NavLink></li>
         
 
+
+Sample
+
+in index.js for Client
+
+
+ReactDom.render(
+    <React.StrictMode>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </React.StrictMode>
+)
+
+
+in App.js
+
+<h1> React App</h1>
+
+<NavBar/>
+<Routes>
+
+
+
+in Routes.js: each page has a separate js file
+
+function Routes(props) {
+    return(
+        <Swtich>
+
+            <Route path="/"exact>
+                <HomeView />
+            </Route>
+
+            <Route path="/about" >
+                <AboutView  userCount={ props.users.length/>
+            </Rotue>
+
+        </Switch>
+in Navbar.js
+
+
+
+import { Link } from 'react-router-dom'
+
+function Navbar ( {
+    return (
+        <nav className="Navbar">
+            <ul>
+                <li></li>
+
+            </ul>
+        </nav>
+    )
+})

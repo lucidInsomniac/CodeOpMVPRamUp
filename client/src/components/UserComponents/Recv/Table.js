@@ -6,7 +6,8 @@ import MOCK_DATA from './MOCK_DATA.json'
 import { COLUMNNS } from './Columns'
 
 
-export default function BasicTable () {
+export default function Table () {
+
     //we create a state obj by passing the imported data into an emtpy array
     const columns = useMemo(() => COLUMNNS, [])
     //useMemo ensures MOCK_DATA isn't recreated on every render, waste too much energy and space

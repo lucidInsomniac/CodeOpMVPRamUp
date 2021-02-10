@@ -1,6 +1,7 @@
 //Define columns we want to display in table
 //We export const COLUMNS, and array of objs
 //For table we will specify 7 columns, with each rep as obj in COLUMNS
+
 export const COLUMNNS= [
     {   //we specify column name with "Header"
         Header: "Id",

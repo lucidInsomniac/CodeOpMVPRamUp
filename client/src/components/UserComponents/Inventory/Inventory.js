@@ -9,12 +9,13 @@ export default function Inventory (props) {
 
         <div className="Inventory">
             <h2>Inventory</h2>
+            
            
         </div>
     )
 }
 
-{/***********This page will render all data from MYSQL database****************
+/***********This page will render all data from MYSQL database****************
  * 
  *           Condition: GET ALL Only if Full Order = Yes
  * 
@@ -101,4 +102,4 @@ export default function Inventory (props) {
     )
 }
 
-*/}
+*/

@@ -17,6 +17,10 @@ export default function OrdersForm (props) {
   const [size, setSize] = useState('');
   //qty
   const [qty, setQty] = useState('');
+  //part order
+  const [part_ord, setPartOrd] = useState('');
+  //full order
+  const [full_ord, setFullOrd] = useState('');
 
   //Event hanlder for event listener onSubmit when triggered
   //by submit event
@@ -26,7 +30,7 @@ export default function OrdersForm (props) {
 
     //save all date in state obj to be sent to parent
 
-    const inventory = {
+    const order = {
 
       ordDate: ordDate,
       vendor: vendor,
@@ -34,12 +38,14 @@ export default function OrdersForm (props) {
       item: item,
       size: size,
       qty: qty,
+      part_ord: part_ord,
+      full_ord: full_ord
     }
       //check inventory has value
-      console.log('form', inventory)
+      console.log('form', order)
 
     // onSubmit, send the state obj with all the data to parent
-    props.onSubmit(inventory)
+    props.onSubmit(order)
 
     //reset all fields
     setOrdDate("")
@@ -48,6 +54,8 @@ export default function OrdersForm (props) {
     setItem("")
     setSize("")
     setQty("")
+    setPartOrd("")
+    setFullOrd("")
 
   }
 
@@ -75,6 +83,12 @@ export default function OrdersForm (props) {
                 break;
             case 'qty':
                 setQty(value);
+                break;
+            case 'part_ord':
+                setPartOrd(value);
+                break;
+            case 'full_ord':
+                setFullOrd(value);
                 break;
             default:
                   break;
@@ -214,6 +228,50 @@ export default function OrdersForm (props) {
                             onChange={handleChange}
                             value={qty}
                       />
+
+                  <div className="pure-u-1 pure-u-md-1-3">
+                    <label  
+                            className="part-ord"
+                            htmlFor="multi-part-ord"
+                    >
+                      Partial Order
+                    </label>
+                      <select
+                              id="multi-part-ord"
+                              type="select"
+                              name="part_ord"
+                              className="pure-u-1-8"
+                              onChange={handleChange}
+                              value={part_ord}
+
+                      >
+                        <option>Select </option>
+                        <option>Yes</option>
+                        <option>No</option>
+                      </select>
+                  </div>
+                  </div>
+
+                  <div className="pure-u-1 pure-u-md-1-3">
+                    <label  
+                            className="full-ord"
+                            htmlFor="multi-full-ord"
+                    >
+                      Full Order
+                    </label>
+                    <select
+                              id="multi-full-ord"
+                              type="select"
+                              name="full_ord"
+                              className="pure-u-1-8"
+                              onChange={handleChange}
+                              value={full_ord}
+
+                      >
+                        <option>Select </option>
+                        <option>Yes</option>
+                        <option>No</option>
+                      </select>
                   </div>
 
                 </div>
