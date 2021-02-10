@@ -13,7 +13,7 @@ export default function App() {
 
   //hook for collection of inventory from OrdersForm
   const [orders, setOrders] = useState([]);
-  // const [inventories, setInventories] = useState([]);
+  const [inventories, setInventories] = useState([]);
 
 
   //Test Function for Mock Display ONLY
@@ -28,11 +28,9 @@ export default function App() {
   /**************GET Data********************************** */
 
     //useEffect to GET all data from DB
-
-      //useEffect hook to tell react to fetch automatically and get data from server
  useEffect(() => {
     //FETCH DONE
-    fetch("/allData") //this connects to the server api.js
+    fetch("/receiving") //this connects to the server api.js
       // our promise for fetch, instead of using "async", "wait", and "try"
       //This is the request
       .then(response => response.json())
@@ -43,6 +41,27 @@ export default function App() {
         setOrders(orders);
         //check
         console.log( 'fetch', orders)
+      })
+      //catches error
+      .catch(err => {
+        // upon failure, show error message
+        console.log("ERROR:", err.message);
+      });
+  }, []); //gets saved in the state
+
+  useEffect(() => {
+    //FETCH DONE
+    fetch("/inventory") //this connects to the server api.js
+      // our promise for fetch, instead of using "async", "wait", and "try"
+      //This is the request
+      .then(response => response.json())
+      //this is the response returned with actual data
+      .then(inventories => {
+        console.log(inventories);
+        // upon success, update tasks
+        setInventories(inventories);
+        //check
+        console.log( 'fetch', inventories)
       })
       //catches error
       .catch(err => {
@@ -151,22 +170,21 @@ export default function App() {
       <h1>Dashboard</h1>
       <nav>
 
-          <Inventory  />
+          
 
 
           {/*Enter orders here */}
           <OrdersForm onSubmit={ newOrder => addOrder(newOrder)} />
 
-          <Table orders={orders} />
-
+          
             {/*This component displays all unreceived and partial entered from the form.
                 Display only if Partial Order= YES or not selected
-            */}
+            */}<Table orders={orders} />
        
 
           {/*collection of all full received existing and new items, and displays all items
               Display only if Full Order = YES
-          */}
+          */}<Inventory inventories={inventories} />
           
 
 

@@ -2,15 +2,41 @@
 import React from 'react'
 
 
-export default function Inventory (props) {
-    console.log( props)
+
+export default function Inventory (props) {   //this would be props for the component
+    //check data
+    console.log('Table', props)
+    console.log('Table', props.inventories);
+    //pulls column name as keys from DB and displays it
+    const columns= props.inventories[0] && Object.keys(props.inventories[0])
     
     return (
-
         <div className="Inventory">
-            <h2>Inventory</h2>
-            
-           
+            <table cellPadding={10} cellSpacing={2}>
+
+                <thead>
+                    {/* can dynamically add data into table.
+                    Start with guard clause in case no data inserted .
+                    You need to define columns as a separate entity as const*/}
+
+                    <tr>{ props.inventories[0] && columns.map( (heading) =><th>{ heading }</th>)}</tr>
+                </thead>
+
+                <tbody>
+                    {/* map data inside body, it goes over each column using map func*/}
+                { props.inventories.map( (row) => (
+                    <tr key={row.id}> 
+                        {  
+                            // we pass row and incl column prop to access data in that cell
+                        columns.map( (column) =>  (
+                            <td>{row[column]}</td>
+                        ))}
+                    </tr>
+                ))}
+
+                </tbody>
+
+            </table>
         </div>
     )
 }

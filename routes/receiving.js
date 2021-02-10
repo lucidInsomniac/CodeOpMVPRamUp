@@ -25,7 +25,7 @@ router.get("/", async (req, res) => {
       //db data must be known, we tell MYSQL to select from the table called "inventory", since we are
       //already in the DB rampup
       //Has to be in MYSQL syntax
-      let results = await db("SELECT * from orders where full_ord = 'No' ORDER BY ord_date ASC;");
+      let results = await db("SELECT ord_id, ord_date, vendor,team, item, size, qty, part_ord, full_ord from orders where full_ord = 'No' ORDER BY ord_date ASC;");
       //check
       console.log("RESULTS", results);
       //you should send back the full list of items with status
@@ -112,7 +112,7 @@ router.get("/", async (req, res) => {
       let results = await db(sql);
       //awaiting response to MYSQL to select all data, // If the query is successful
       //Has to be in MYSQL syntax
-      results = await db("SELECT * from orders where full_ord = 'No' ORDER BY ord_date ASC;");
+      results = await db("SELECT ord_id, ord_date, vendor,team, item, size, qty, part_ord, full_ord from orders where full_ord = 'No' ORDER BY ord_date ASC;");
       //you should send back the full list of items
       //console.log(results.data);
       res.status(201).send(results.data);
@@ -163,7 +163,7 @@ router.get("/", async (req, res) => {
         await db(sql);
         // Replace old task with modified one
         //Has to be in MYSQL syntax
-        results = await db("SELECT * from orders where full_ord = 'No' ORDER BY ord_date ASC");
+        results = await db("SELECT ord_id, ord_date, vendor,team, item, size, qty, part_ord, full_ord from orders where full_ord = 'No' ORDER BY ord_date ASC");
         //And return the full list of items when successful
         res.send(results.data);
       } else {
@@ -197,7 +197,7 @@ router.get("/", async (req, res) => {
         await db(sql);
         //Awaiting response from MYSQL to select all data from table "inventory"
         //Has to be in MYSQL syntax
-        results = await db("SELECT * from orders where full_ord = 'No' ORDER BY ord_date ASC");
+        results = await db("SELECT ord_id, ord_date, vendor,team, item, size, qty, part_ord, full_ord from orders where full_ord = 'No' ORDER BY ord_date ASC");
         //And return the full list of inventory when successful
         res.send(results.data);
       } else {
