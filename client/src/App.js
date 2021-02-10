@@ -11,25 +11,25 @@ import './App.css';
 // This displays all the components, react-router to coordinate
 export default function App() {
 
-  //hook for collection of inventory from OrdersForm
+  //hook for collection of inventory from OrdersForm, saved as array
   const [orders, setOrders] = useState([]);
+  //hook for collection completed orders, saved as array
   const [inventories, setInventories] = useState([]);
+  //hook for all existing and new orders, saved as array
   const [allOrders, setAllOrders] = useState([]);
+  //hook for search bar query function, saved as string
   const [ query, setQuery] = useState("")
 
-
-  //Test Function for Mock Display ONLY
-  function addOrder(newOrder) {
-      console.log('parent-newOrd', newOrder)
-      setOrders((state) => [...state, newOrder]);
-    }
-    console.log('parent-orders', orders)
-
+  // //Test Function for Mock Display ONLY
+  // function addOrder(newOrder) {
+  //     console.log('parent-newOrd', newOrder)
+  //     setOrders((state) => [...state, newOrder]);
+  //   }
+  //   console.log('parent-orders', orders)
 
 
   /**************GET Data********************************** */
 
-    //useEffect to GET all data from DB
     //useEffect  to Get INVENTORY ONLY IF FULL ORDER = NO
   useEffect(() => {
     //FETCH DONE
@@ -153,15 +153,35 @@ export default function App() {
   
     /********************************************************** */
 
-
-
-    //Search Bar
+    //Search Bar Filter functions, searches through all columns
     function search (rows) {
-      return rows.filter(row => row.team.toLowerCase().indexOf(query) >-1)
+      //Short way: extract keys of columns from first row
+      const columns = rows[0] && Object.keys(rows[0]);
+      //filter by column for each row
+      return rows.filter( (row) =>
+        //We use ".toLowerCase" in the row[column] and with "query" so it will search
+        //through all data in lowercase without having to worry to case sensitivity
+        columns.some( (column) => row[column].toString().toLowerCase().indexOf(query.toLowerCase()) > -1)
+        //Will give error if use ".toLowerCase()" because not all columns are strings, some are integers
+        //We solve this by adding ".toString()"
+      );
     }
 
-
-
+      //Long way
+      // //Filter by row, and separate by "||" comparison operator
+      // return rows.filter( (row) => 
+      //   //Filter by Date
+      //   row.ord_date.indexOf(query) >-1 ||
+      //   //Filter by Vendor
+      //   row.vendor.toLowerCase().indexOf(query) >-1 ||
+      //   //Filter by Team
+      //   row.team.toLowerCase().indexOf(query) >-1 ||
+      //   //Filter by Item
+      //   row.item.toLowerCase().indexOf(query) > -1 ||
+      //   //Filter by Size
+      //   row.size.toLowerCase().indexOf(query) > -1 
+      // );
+    // }
 
 
   //render display
@@ -170,11 +190,16 @@ export default function App() {
       <h1>Dashboard</h1>
 
       <div className="searchBar">
+        <label htmlFor="search-bar" />
         {/* The search bar goes here */}
           <input type="text"
+                 name="query"
+                 placeholder="Seach..."
+                 id="searc-bar"
                  value={ query }
-                 onChange={ (e) => setQuery(e.target.value) }
+                 onChange= {(e) => setQuery(e.target.value)}
           />
+
       </div>
 
       <nav>
@@ -190,8 +215,6 @@ export default function App() {
           {/*collection of all full received existing and new items, and displays all items
               Display only if Full Order = YES
           */}<Inventory inventories={search(inventories)} />
-          
-
 
       </nav>
     </div>
