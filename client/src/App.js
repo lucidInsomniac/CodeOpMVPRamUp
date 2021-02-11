@@ -190,7 +190,8 @@ export default function App() {
   return (
     <div className="App">
       <h1>Dashboard</h1>
-      {/* <SideBar /> */}
+      <SideBar />
+
       <div className="searchBar">
         <label htmlFor="search-bar" />
         {/* The search bar goes here */}
