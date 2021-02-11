@@ -20,17 +20,17 @@ export default function FullOrders (props) {   //this would be props for the com
                     Start with guard clause in case no data inserted .
                     You need to define columns as a separate entity as const*/}
 
-                    <tr>{ props.inventories[0] && columns.map( (heading) =><th>{ heading }</th>)}</tr>
+                    <tr>{ props.inventories[0] && columns.map( (heading, index) =><th key={index}> {heading}</th>)}</tr>
                 </thead>
 
                 <tbody>
                     {/* map data inside body, it goes over each column using map func*/}
-                { props.inventories.map( (row) => (
-                    <tr key={row.id}> 
+                { props.inventories.map( (row, index) => (
+                    <tr key={index}> 
                         {  
                             // we pass row and incl column prop to access data in that cell
-                        columns.map( (column) =>  (
-                            <td>{row[column]}</td>
+                        columns.map( (column, index) =>  (
+                            <td key={index}>{row[column]}</td>
                         ))}
                     </tr>
                 ))}

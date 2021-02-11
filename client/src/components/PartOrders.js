@@ -18,17 +18,18 @@ export default function PartOrders( props) {   //this would be props for the com
                     Start with guard clause in case no data inserted .
                     You need to define columns as a separate entity as const*/}
 
-                    <tr>{ props.orders[0] && columns.map( (heading) =><th>{ heading }</th>)}</tr>
+                    <tr>{ props.orders[0] && columns.map( (heading, index) =><th key={index}>{ heading }</th>)}</tr>
                 </thead>
 
                 <tbody>
-                    {/* map data inside body, it goes over each column using map func*/}
-                { props.orders.map( (row) => (
-                    <tr key={row.id}> 
+                    {/* map data inside body, it goes over each column using map func
+                    key needs to be unique can use index and pass as param*/}
+                { props.orders.map( (row, index) => (
+                    <tr key={index}> 
                         {  
                             // we pass row and incl column prop to access data in that cell
-                        columns.map( (column) =>  (
-                            <td>{row[column]}</td>
+                        columns.map( (column, index) =>  (
+                            <td key={index}>{row[column]}</td>
                         ))}
                     </tr>
                 ))}

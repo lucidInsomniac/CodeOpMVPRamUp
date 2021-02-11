@@ -8,7 +8,7 @@ export default function SideBar () {
     return (
 
         <div className="SideBar">
-            <ul>
+            <ul className="SidebarList">
                 {/* Sidebar is an array, so we need to map it out to 
             access each element*/}
             { SidebarData.map((val, key) => {
