@@ -16,10 +16,17 @@ export default function SideBar () {
                 return (
                      //create as list item for SideBar
                     //insert div in betwen <li>
-                    <li key={key} onClick={() => (window.location.pathname = val.link)}>
-                        (" ")
-                        <div>{val.icon}</div> (" ")
-                        <div>
+                    <li key={key} 
+                        className="row"
+                        onClick={() => (
+                        window.location.pathname = val.link
+                        )}
+                    >
+                        <div id="icon">
+                            {val.icon}
+                        </div> 
+
+                        <div id="title">
                             {val.title}
                         </div>
                     </li>

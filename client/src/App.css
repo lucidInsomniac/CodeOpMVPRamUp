@@ -33,3 +33,47 @@ body {
 input{
   text-align: left;
 }
+
+/*container for rows*/
+.SidebarList {
+  /*doesn't need to be 100% of height, just until last item on row*/
+  height: auto;
+  padding: 0;
+  width: 100%;
+
+}
+
+/*access row inside Sidebar*/
+.SidebarList .row {
+  width: 100%;
+  height: 50px;
+  list-style-type: none;
+  margin: 0;
+  /*flex display for all rows*/
+  display: flex;
+  /*flex style for indiv row */
+  flex-direction: row;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+/*hover effect when hovering over each row in sidebar menu*/
+.SidebarList .row:hover {
+  cursor: pointer;
+  background-color: #293846;
+}
+
+/*icon from val.icon in SideBar.js */
+.row #icon {
+  /*icon div to be 30% of the screen, instead of the list container*/
+  flex: 30%;
+  display: grid;
+  place-items: center;
+}
+
+.row #title {
+  flex: 70%;
+}
