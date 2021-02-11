@@ -1,12 +1,12 @@
 .OrdersForm { 
     max-width: 800px;
-    height: auto;
+    height: 100vh;
 }
 
 h2 {
     margin-top: 20px;
     padding: 30px;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid white;
     
 }
 

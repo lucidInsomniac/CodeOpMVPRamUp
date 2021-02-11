@@ -2,15 +2,15 @@ import React from 'react'
 //ref video: https://youtu.be/d1r0aK5awWk
 
 
-export default function Table ( props) {   //this would be props for the component
+export default function PartOrders( props) {   //this would be props for the component
     //check data
-    console.log('Table', props)
-    console.log('Table', props.orders);
+    console.log('PartOrders', props)
+    console.log('PartOrders', props.orders);
     //pulls column name as keys from DB and displays it
     const columns= props.orders[0] && Object.keys(props.orders[0])
     
     return (
-        <div className="Table">
+        <div className="PartOrders">
             <table cellPadding={10} cellSpacing={2}>
 
                 <thead>

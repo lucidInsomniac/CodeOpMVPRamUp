@@ -1,10 +1,12 @@
 // this will be the dashboard view
 import React, {useState, useEffect} from 'react'
 //import ALL components for React Router SideBar Menu
-import Table from './components/Table'
+import PartOrders from './components/PartOrders'
 import OrdersForm from './components/OrdersForm'
-import Inventory from './components/Inventory'
+import FullOrders from './components/FullOrders'
+import SideBar from './components/SideBar'
 import './App.css';
+
 
 
 
@@ -188,7 +190,7 @@ export default function App() {
   return (
     <div className="App">
       <h1>Dashboard</h1>
-
+      {/* <SideBar /> */}
       <div className="searchBar">
         <label htmlFor="search-bar" />
         {/* The search bar goes here */}
@@ -209,12 +211,12 @@ export default function App() {
 
             {/*This component displays all unreceived and partial entered from the form.
                 Display only if Partial Order= YES or not selected
-            */}<Table orders={search(orders)} />
+            */}<PartOrders orders={search(orders)} />
        
 
           {/*collection of all full received existing and new items, and displays all items
               Display only if Full Order = YES
-          */}<Inventory inventories={search(inventories)} />
+          */}<FullOrders inventories={search(inventories)} />
 
       </nav>
     </div>

@@ -1,11 +1,12 @@
 import REACT from 'react'
-import { defaultGroupByFn } from 'react-table'
+import '../App.css'
 
 export default function SideBar () {
 
     return (
 
         <div className="SideBar">
+            Sidebar
 
         </div>
     )

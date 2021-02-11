@@ -3,7 +3,7 @@ import React from 'react'
 
 
 
-export default function Inventory (props) {   //this would be props for the component
+export default function FullOrders (props) {   //this would be props for the component
     //check data
     console.log('Table', props)
     console.log('Table', props.inventories);
@@ -11,7 +11,8 @@ export default function Inventory (props) {   //this would be props for the comp
     const columns= props.inventories[0] && Object.keys(props.inventories[0])
     
     return (
-        <div className="Inventory">
+        <div className="FullOrders">
+            <h2>Completed Orders</h2>
             <table cellPadding={10} cellSpacing={2}>
 
                 <thead>
