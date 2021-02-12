@@ -4,6 +4,7 @@
   width: 250px;
   color: white;
   background-color: #2F4050;
+ 
 }
 
 /* container for rows */
@@ -12,6 +13,7 @@
   height: auto;
   padding: 0;
   width: 100%;
+  
 
 }
 
@@ -35,7 +37,7 @@
 
 
 /*hover effect when hovering over each row in sidebar menu*/
-.SidebarList .row:hover {
+.SidebarList .row:hover, .menu-bar-icon:hover, .close-icon:hover {
   cursor: pointer;
   background-color: #293846;
 }
@@ -43,6 +45,18 @@
 .SidebarList #active {
   background-color: #293846
 }
+
+/*Gets rid of underline in the sidebar rows w/ icon titles*/
+.SidebarList a {
+  text-decoration: none;
+}
+
+/*menu bar icon and close icon*/
+.menu-bar-icon, .close-icon {
+ color: white;
+}
+
+
 
 /*icon from val.icon in SideBar.js */
 .row #icon {

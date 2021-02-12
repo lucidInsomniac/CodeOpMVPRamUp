@@ -2,7 +2,7 @@
 import React, {useState, useEffect} from 'react'
 //import ALL components for React Router SideBar Menu
 import PartOrders from './components/PartOrders'
-import OrdersForm from './components/OrdersForm'
+// import OrdersForm from './components/OrdersForm'
 import FullOrders from './components/FullOrders'
 import SideBar from './components/SideBar'
 import About from './components/About'
@@ -212,7 +212,7 @@ export default function App() {
                 />
 
             </div>
-
+        
           <nav>
               <About />
               {/*Enter orders here */}
