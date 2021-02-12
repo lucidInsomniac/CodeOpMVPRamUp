@@ -18,6 +18,7 @@ import CloseIcon from '@material-ui/icons/Close';
 
 
 
+
 //We only need to export a component that contains an array
 //of objects instead of a function
 // install in CLIENT folder with command: yarn add @material-ui/core

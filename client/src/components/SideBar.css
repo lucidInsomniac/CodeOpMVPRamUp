@@ -32,10 +32,16 @@
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+
+
 /*hover effect when hovering over each row in sidebar menu*/
 .SidebarList .row:hover {
   cursor: pointer;
   background-color: #293846;
+}
+
+.SidebarList #active {
+  background-color: #293846
 }
 
 /*icon from val.icon in SideBar.js */

@@ -24,9 +24,11 @@ export default function SideBar () {
                     //insert div in betwen <li>
                     <li key={key} 
                         className="row"
-                        //When row selected, 
+                        //When row selected, stays highlighted
+                        id={window.location.pathname == val.path ? "active" : ""}
+                        //takes you to path link
                         onClick={() => (
-                        window.location.pathname = val.link
+                        window.location.pathname = val.path
                         )}
                     >
                         <div id="icon">
