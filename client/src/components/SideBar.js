@@ -1,9 +1,15 @@
-import REACT from 'react'
-import '../App.css'
+import React, {useState}from 'react'
+import './SideBar.css'
+
 //import const SidebarData 
 import { SidebarData } from './SidebarData'
+import { Link } from 'react-router-dom'
+
 
 export default function SideBar () {
+
+    const [sidebar, setSideBar] = useState(false)
+    const showSideBar = () => setSideBar(!sidebar)
 
     return (
 
@@ -18,6 +24,7 @@ export default function SideBar () {
                     //insert div in betwen <li>
                     <li key={key} 
                         className="row"
+                        //When row selected, 
                         onClick={() => (
                         window.location.pathname = val.link
                         )}

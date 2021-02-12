@@ -11,6 +11,11 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 import TocIcon from '@material-ui/icons/Toc';
 //Icon for Full Orders
 import ViewListIcon from '@material-ui/icons/ViewList';
+//Icon for Menu
+import MenuIcon from '@material-ui/icons/Menu';
+//Icon for Close
+import CloseIcon from '@material-ui/icons/Close';
+
 
 
 //We only need to export a component that contains an array
@@ -18,29 +23,43 @@ import ViewListIcon from '@material-ui/icons/ViewList';
 // install in CLIENT folder with command: yarn add @material-ui/core
 // and install CLIENT folder: yarn add @material-ui/icons
 export const SidebarData = [
+    {   //Menu
+        title: "",
+        path: "#",
+        icon: <MenuIcon />
+    },
+    {
+        //Close menu
+        title: "",
+        path: "#",
+        icon: <CloseIcon />
+    },
     {   //Dashboard view
         title: "Home",
-        icon: <HomeIcon />,
-        link: "/home"
+        path: "/home",
+        icon: <HomeIcon />
     },
     {   //About
         title: "About",
-        icon: <InfoIcon />,
-        link: "/about"
+        path: "/about",
+        icon: <InfoIcon />
     },
     {   //Inventory
         title: "Inventory",
-        icon: <ListAltIcon />,
-        link: "/inventory"
+        path: "/inventory",
+        icon: <ListAltIcon />
     },
     {   //Partial Orders
         title: "Partial Orders",
-        icon: <TocIcon />,
-        link: "/part_orders"
+        path: "/part_orders",
+        icon: <TocIcon />
+        
     },
     {   //Full Orders
         title: "Full Orders",
-        icon: <ViewListIcon/>,
-        link: "/full_orders"
-    },
+        path: "/full_orders",
+        icon: <ViewListIcon/>
+        
+    }
+    
 ]

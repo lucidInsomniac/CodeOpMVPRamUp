@@ -5,7 +5,10 @@ import PartOrders from './components/PartOrders'
 import OrdersForm from './components/OrdersForm'
 import FullOrders from './components/FullOrders'
 import SideBar from './components/SideBar'
+import About from './components/About'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import './App.css';
+import Inventory from './components/Inventory'
 
 
 
@@ -32,7 +35,7 @@ export default function App() {
 
   /**************GET Data********************************** */
 
-    //useEffect  to Get INVENTORY ONLY IF FULL ORDER = NO
+    //useEffect  to Get ALL existing and new orders
   useEffect(() => {
     //FETCH DONE
     fetch("/alldata") //this connects to the server api.js
@@ -188,39 +191,50 @@ export default function App() {
 
   //render display
   return (
-    <div className="App">
-      <h1>Dashboard</h1>
-      <SideBar />
+    
+        <div className="App">
+          <h1>Dashboard</h1>
+          <Router>
+              <SideBar />
+              <Switch>
+                <Route path="/" />
+              </Switch>
+          </Router>
+            <div className="searchBar">
+              <label htmlFor="search-bar" />
+              {/* The search bar goes here */}
+                <input type="text"
+                      name="query"
+                      placeholder="Search..."
+                      id="search-bar"
+                      value={ query }
+                      onChange= {(e) => setQuery(e.target.value)}
+                />
 
-      <div className="searchBar">
-        <label htmlFor="search-bar" />
-        {/* The search bar goes here */}
-          <input type="text"
-                 name="query"
-                 placeholder="Seach..."
-                 id="searc-bar"
-                 value={ query }
-                 onChange= {(e) => setQuery(e.target.value)}
-          />
+            </div>
 
-      </div>
-
-      <nav>
-          {/*Enter orders here */}
-          {/* <OrdersForm onSubmit={ newOrder => addOrder(newOrder)} /> */}
+          <nav>
+              <About />
+              {/*Enter orders here */}
+              {/* <OrdersForm onSubmit={ newOrder => addOrder(newOrder)} /> */}
 
 
-            {/*This component displays all unreceived and partial entered from the form.
-                Display only if Partial Order= YES or not selected
-            */}<PartOrders orders={search(orders)} />
-       
+                {/*This component displays all unreceived and partial entered from the form.
+                    Display only if Partial Order= YES or not selected
+                */}
+                <PartOrders orders={search(orders)} />
+          
 
-          {/*collection of all full received existing and new items, and displays all items
-              Display only if Full Order = YES
-          */}<FullOrders inventories={search(inventories)} />
-
-      </nav>
-    </div>
+              {/*collection of all full received existing and new items, and displays all items
+                  Display only if Full Order = YES
+              */}
+              <FullOrders inventories={search(inventories)} />
+              
+              {/* Displays all existing and new orders */}
+              <Inventory allOrders={search(allOrders)}/>
+          </nav>
+        </div>
+   
   );
 }
 
