@@ -13,12 +13,6 @@ import TocIcon from '@material-ui/icons/Toc';
 import ViewListIcon from '@material-ui/icons/ViewList';
 //Icon for Orders Input
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
-// //Icon for Menu
-// import MenuIcon from '@material-ui/icons/Menu';
-// //Icon for Close
-// import CloseIcon from '@material-ui/icons/Close';
-
-
 
 
 //We only need to export a component that contains an array

@@ -19,13 +19,14 @@ export default function SideBar() {
 
         <div className="SideBar">
             <ul className="SidebarList">
-            {/*Cool feature of <Link> has ability to know when active */}
+                {/*menu icon to click and expand menu items*/}
                 <Link to ="#" 
                       className="menu-bar-icon"
                 >
                     <MenuIcon />
                 </Link>
-
+                
+                {/*X icon to click and close menu container*/}
                 <Link to ="#" 
                       className="close-icon"
                 >

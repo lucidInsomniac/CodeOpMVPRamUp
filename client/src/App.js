@@ -1,4 +1,4 @@
-// // this will be the dashboard view
+// this will be the dashboard view
 import React, { useState, useEffect} from 'react' 
 import SideBar from './components/SideBar'
 import Routes from './components/Routes'
@@ -26,7 +26,7 @@ export default function App() {
 //   //   console.log('parent-orders', orders)
 
 
-  // /**************GET Data********************************** */
+/**************GET Data********************************** */
 
     //useEffect  to Get ALL existing and new orders
   useEffect(() => {
@@ -221,28 +221,6 @@ export default function App() {
 
 
 
-
-/* <nav>
-              <About /> */
-              /*Enter orders here */
-              /* <OrdersForm onSubmit={ newOrder => addOrder(newOrder)} /> */
-
-
-                /*This component displays all unreceived and partial entered from the form.
-                    Display only if Partial Order= YES or not selected
-                */
-                /* <PartOrders orders={search(orders)} /> */
-          
-
-              /*collection of all full received existing and new items, and displays all items
-                  Display only if Full Order = YES
-              */
-              /* <FullOrders inventories={search(inventories)} /> */
-              
-              /* Displays all existing and new orders */
-              /* <Inventory allOrders={search(allOrders)}/>
-          </nav> */
-   /* </div> */
 
   /***********************LATER FEATURE****************** */
 

@@ -9,6 +9,9 @@
   color: white;
   text-shadow: 2px 2px 2px black;
   background-color: indigo;
+  /*This was the main reason why sidebar, searchbar and content from routes
+  did not render. Need to be on flex to allow items to be on same line,separated
+  lines require a <div>*/
   display:flex;
 }
 
@@ -26,8 +29,15 @@ h1 {
   height: 10px;
   margin-top: 30px;
   padding: 10px;
+  font-size: 20px;
+
 }
 
+/*will throw error in body html inpsection without overflow params*/
 body {
   overflow-wrap: normal;
+}
+
+.Home, .About, .OrdersForm, .PartOrders, .FullOrders, .Inventory {
+  font-size: 20px;
 }
