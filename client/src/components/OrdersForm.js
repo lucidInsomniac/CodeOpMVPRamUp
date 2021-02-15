@@ -29,7 +29,6 @@ export default function OrdersForm (props) {
     event.preventDefault()
 
     //save all date in state obj to be sent to parent
-
     const order = {
 
       ordDate: ordDate,

@@ -18,12 +18,12 @@ export default function App() {
   //hook for search bar query function, saved as string
   const [ query, setQuery] = useState("")
 
-//   // //Test Function for Mock Display ONLY
-//   // function addOrder(newOrder) {
-//   //     console.log('parent-newOrd', newOrder)
-//   //     setOrders((state) => [...state, newOrder]);
-//   //   }
-//   //   console.log('parent-orders', orders)
+  //Test Function for Mock Display ONLY
+  // function addOrder(newOrder) {
+  //     console.log('parent-newOrd', newOrder)
+  //     setOrders((state) => [...state, newOrder]);
+  //   }
+  //   console.log('parent-orders', orders)
 
 
 /**************GET Data********************************** */

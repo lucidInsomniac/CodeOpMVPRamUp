@@ -48,7 +48,7 @@ export default function SideBar() {
                                 //When row selected, stays highlighted
                                 id={window.location.pathname == val.path ? "active" : ""}
                                 onClick={() => (
-                                window.location.pathname = val.path
+                                    window.location.pathname = val.path
                                 )}
                             >
                                 <Link 
@@ -66,10 +66,7 @@ export default function SideBar() {
                             </li>
                         )
                     })}
-                
             </ul>
-
         </div>
     )
-
 }

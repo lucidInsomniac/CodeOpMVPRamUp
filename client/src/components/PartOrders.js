@@ -33,6 +33,10 @@ export default function PartOrders( props) {
                         columns.map( (column, index) =>  (
                             <td key={index}>{row[column]}</td>
                         ))}
+                            <td>
+                                <button className="Edit">Edit</button>
+                                <button className="Delete">Delete</button>
+                            </td>
                     </tr>
                 ))}
 

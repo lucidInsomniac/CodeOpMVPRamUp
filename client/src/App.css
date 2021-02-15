@@ -24,13 +24,11 @@ h1 {
 
 /*Text for "Search..." aligns on left*/
 #search-bar{
-
   text-align: left;
   height: 10px;
   margin-top: 30px;
   padding: 10px;
   font-size: 20px;
-
 }
 
 /*will throw error in body html inpsection without overflow params*/
@@ -38,6 +36,13 @@ body {
   overflow-wrap: normal;
 }
 
-.Home, .About, .OrdersForm, .PartOrders, .FullOrders, .Inventory {
+/*font size for all pages to stay uniform*/
+.Home, 
+.About, 
+.OrdersForm, 
+.PartOrders, 
+.FullOrders, 
+.Inventory 
+{
   font-size: 20px;
 }
