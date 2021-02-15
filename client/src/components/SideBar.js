@@ -1,3 +1,4 @@
+// this will be the dashboard view
 import React from 'react'
 import './SideBar.css'
 
@@ -11,7 +12,9 @@ import CloseIcon from '@material-ui/icons/Close';
 
 
 
-export default function SideBar () {
+
+// This displays all the components, react-router to coordinate
+export default function SideBar() {
 
     return (
 
@@ -28,6 +31,7 @@ export default function SideBar () {
                       className="close-icon"
                 >
                     <CloseIcon />
+                </Link> 
 
                     {/* Sidebar is an array, so we need to map it out to 
                     access each element*/}
@@ -43,24 +47,29 @@ export default function SideBar () {
                                 className="row"
                                 //When row selected, stays highlighted
                                 id={window.location.pathname === val.path ? "active" : ""}
-                                //takes you to path link
-                                onClick={() => (
-                                window.location.pathname = val.path
-                                )}
+                                // //takes you to path link, does same as <Link>
+                                // onClick={() => (
+                                // window.location.pathname = val.path
+                                // )}
                             >
-                                <div id="icon">
-                                    {val.icon}
-                                </div> 
+                                <Link 
+                                    className="row"
+                                    to ={val.path} exact>
 
-                                <div id="title">
-                                    {val.title}
-                                </div>
+                                    <div id="icon">
+                                        {val.icon}
+                                    </div> 
+
+                                    <div id="title">
+                                        {val.title}
+                                    </div>
+                                </Link>
                             </li>
-                            
                         )
                     })}
-                </Link> 
+                
             </ul>
+
         </div>
     )
 

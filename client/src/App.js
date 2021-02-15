@@ -1,19 +1,12 @@
-// this will be the dashboard view
-import React, {useState, useEffect} from 'react'
-//import ALL components for React Router SideBar Menu
-import PartOrders from './components/PartOrders'
-// import OrdersForm from './components/OrdersForm'
-import FullOrders from './components/FullOrders'
+// // this will be the dashboard view
+import React, { useState, useEffect} from 'react' 
 import SideBar from './components/SideBar'
-import About from './components/About'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import './App.css';
-import Inventory from './components/Inventory'
+import Routes from './components/Routes'
+import {BrowserRouter as Router} from 'react-router-dom'
+import './App.css'
 
 
-
-
-// This displays all the components, react-router to coordinate
+// // This displays all the components, react-router to coordinate
 export default function App() {
 
   //hook for collection of inventory from OrdersForm, saved as array
@@ -25,15 +18,15 @@ export default function App() {
   //hook for search bar query function, saved as string
   const [ query, setQuery] = useState("")
 
-  // //Test Function for Mock Display ONLY
-  // function addOrder(newOrder) {
-  //     console.log('parent-newOrd', newOrder)
-  //     setOrders((state) => [...state, newOrder]);
-  //   }
-  //   console.log('parent-orders', orders)
+//   // //Test Function for Mock Display ONLY
+//   // function addOrder(newOrder) {
+//   //     console.log('parent-newOrd', newOrder)
+//   //     setOrders((state) => [...state, newOrder]);
+//   //   }
+//   //   console.log('parent-orders', orders)
 
 
-  /**************GET Data********************************** */
+  // /**************GET Data********************************** */
 
     //useEffect  to Get ALL existing and new orders
   useEffect(() => {
@@ -191,50 +184,38 @@ export default function App() {
 
   //render display
   return (
-    
-        <div className="App">
-          <h1>Dashboard</h1>
-          <Router>
-              <SideBar />
-              <Switch>
-                <Route path="/" />
-              </Switch>
-          </Router>
-            <div className="searchBar">
+        <Router>
+          <div className="App" id="outer-cointainer">
+            <div className="SideBar">
+            <SideBar 
+                    
+                  orders={search(orders)}
+                  inventories={search(inventories)}
+                  allOrders={search(allOrders)}
+              />
+              </div>
+              <div className="body" id="wrapper">
               <label htmlFor="search-bar" />
-              {/* The search bar goes here */}
-                <input type="text"
+                {/* The search bar goes here */}
+                  <input type="text"
                       name="query"
-                      placeholder="Search..."
+                       placeholder="Search..."
                       id="search-bar"
                       value={ query }
                       onChange= {(e) => setQuery(e.target.value)}
-                />
+                  />
+                {/* </div>
+                <div> */}
+                  <Routes 
+                      orders={search(orders)}
+                      inventories={search(inventories)}
+                      allOrders={search(allOrders)}
+                  />
+                  </div>
 
-            </div>
-        
-          <nav>
-              <About />
-              {/*Enter orders here */}
-              {/* <OrdersForm onSubmit={ newOrder => addOrder(newOrder)} /> */}
-
-
-                {/*This component displays all unreceived and partial entered from the form.
-                    Display only if Partial Order= YES or not selected
-                */}
-                <PartOrders orders={search(orders)} />
-          
-
-              {/*collection of all full received existing and new items, and displays all items
-                  Display only if Full Order = YES
-              */}
-              <FullOrders inventories={search(inventories)} />
-              
-              {/* Displays all existing and new orders */}
-              <Inventory allOrders={search(allOrders)}/>
-          </nav>
-        </div>
-   
+                
+          </div>   
+        </Router>
   );
 }
 
@@ -243,7 +224,27 @@ export default function App() {
 
 
 
+/* <nav>
+              <About /> */
+              /*Enter orders here */
+              /* <OrdersForm onSubmit={ newOrder => addOrder(newOrder)} /> */
 
+
+                /*This component displays all unreceived and partial entered from the form.
+                    Display only if Partial Order= YES or not selected
+                */
+                /* <PartOrders orders={search(orders)} /> */
+          
+
+              /*collection of all full received existing and new items, and displays all items
+                  Display only if Full Order = YES
+              */
+              /* <FullOrders inventories={search(inventories)} /> */
+              
+              /* Displays all existing and new orders */
+              /* <Inventory allOrders={search(allOrders)}/>
+          </nav> */
+   /* </div> */
 
   /***********************LATER FEATURE****************** */
 

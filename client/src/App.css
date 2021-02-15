@@ -1,4 +1,4 @@
-.App, .Table, .OrdersForm, .Inventory {
+.App {
   text-align: center;
   justify-items: center;
   justify-content: center;
@@ -9,6 +9,7 @@
   color: white;
   text-shadow: 2px 2px 2px black;
   background-color: indigo;
+  display:flex;
 }
 
 h1 {
@@ -18,13 +19,13 @@ h1 {
   
 }
 
-body {
-  margin: 0;
-  padding: 0;
+/*Text for "Search..." aligns on left*/
+#search-bar{
+  text-align: left;
+  height: 10px;
+  margin: 10px 10px;
 }
 
-
-/*Text for "Search..." aligns on left*/
-input{
-  text-align: left;
+body {
+  overflow-wrap: normal;
 }

@@ -6,6 +6,7 @@ export default function Inventory (props) {
     console.log('Inventory', props)
     console.log('Inventory', props.allOrders);
     //pulls column name as keys from DB and displays it
+    // const columns= ["Order Date", "Vendor", "Team","Item", "Size", "QTY", "Partial Order", "Full Order", "Actions"]
     const columns= props.allOrders[0] && Object.keys(props.allOrders[0])
     return (
          
@@ -31,9 +32,13 @@ export default function Inventory (props) {
                         columns.map( (column, index) =>  (
                             <td key={index}>{row[column]}</td>
                         ))}
+                            <td>
+                                <button className="Edit">Edit</button>
+                                <button className="Delete">Delete</button>
+                            </td>
                     </tr>
                 ))}
-
+                    
                 </tbody>
 
             </table>

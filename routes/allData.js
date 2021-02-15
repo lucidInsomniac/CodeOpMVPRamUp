@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
       //db data must be known, we tell MYSQL to select from the table called "inventory", since we are
       //already in the DB rampup
       //Has to be in MYSQL syntax
-      let results = await db("SELECT * from orders;");
+      let results = await db("SELECT ord_id, ord_date, vendor,team, item, size, qty, part_ord, full_ord from orders ORDER BY ord_date ASC;");
   
       if (results.data.length) {
         //check

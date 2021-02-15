@@ -26,61 +26,36 @@ import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 // install in CLIENT folder with command: yarn add @material-ui/core
 // and install CLIENT folder: yarn add @material-ui/icons
 export const SidebarData = [
-    // {   //Menu
-    //     title: "",
-    //     path: "#",
-    //     icon: <MenuIcon />
-    // },
-    // {
-    //     //Close menu
-    //     title: "",
-    //     path: "#",
-    //     icon: <CloseIcon />
-    // },
+
     {   //Dashboard view
         title: "Home",
-        path: "/",
-        icon: <HomeIcon />,
-        exact: true,
-        sidebar: () => <div className="Home"></div>,
-        main: () => <h1> Welcome to Your Dashboard!</h1>
+        path: "/home",
+        icon: <HomeIcon />
     },
     {   //About
         title: "About",
         path: "/about",
-        icon: <InfoIcon />,
-        sidebar: () => <div className="About"></div>,
-        main: () => <h2>About</h2>
+        icon: <InfoIcon />
     },
     {   //Orders Input
         title: "Orders Input",
         path: "/orders_input",
-        icon: <LocalShippingIcon />,
-        sidebar: () => <div className="OrdersForm"></div>,
-        main: () => <h2> Add New Orders Here</h2>
-    },
-    {   //Inventory
-        title: "Inventory",
-        path: "/inventory",
-        icon: <ListAltIcon />,
-        sidebar: () => <div className="Inventory"></div>,
-        main: () => <h2>Inventory</h2>
+        icon: <LocalShippingIcon />  
     },
     {   //Partial Orders
         title: "Partial Orders",
         path: "/part_orders",
-        icon: <TocIcon />,
-        sidebar: () => <div className="PartOrders"></div>,
-        main: () =>  <h2>Partial Orders</h2>
-        
+        icon: <TocIcon />
     },
     {   //Full Orders
         title: "Full Orders",
         path: "/full_orders",
         icon: <ViewListIcon/>,
-        sidebar: () => <div className="FullOrders"></div>,
-        main: () => <h2>Completed Orders</h2>
-        
+    },
+    {   //Inventory
+        title: "Inventory",
+        path: "/inventory",
+        icon: <ListAltIcon />
     }
     
 ]
