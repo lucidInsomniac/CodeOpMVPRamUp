@@ -12,10 +12,9 @@ import CloseIcon from '@material-ui/icons/Close';
 
 
 
-
 // This displays all the components, react-router to coordinate
 export default function SideBar() {
-
+   
     return (
 
         <div className="SideBar">
@@ -46,11 +45,10 @@ export default function SideBar() {
                             <li key={key} 
                                 className="row"
                                 //When row selected, stays highlighted
-                                id={window.location.pathname === val.path ? "active" : ""}
-                                // //takes you to path link, does same as <Link>
-                                // onClick={() => (
-                                // window.location.pathname = val.path
-                                // )}
+                                id={window.location.pathname == val.path ? "active" : ""}
+                                onClick={() => (
+                                window.location.pathname = val.path
+                                )}
                             >
                                 <Link 
                                     className="row"

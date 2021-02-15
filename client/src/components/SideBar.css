@@ -1,15 +1,20 @@
+/*Ref Video: https://youtu.be/5R9jFHlG6ik
+and 
+https://youtu.be/mN3P_rv8ad4*/
+
 
 .SideBar {
-  height: 100%;
+  height: 100vh;
   width: 25%;
   color: white;
   background-color: #2F4050;
   padding:0;
   margin:0;
   position:fixed;
-  left: -100%; /*0 is to expand when menu displayed,*/
+  left: 0; /*0 is to expand when menu displayed,*/
  /*-100% is to close menu ,*/
 }
+
 
 /* container for rows */
 .SidebarList {
@@ -27,12 +32,15 @@
   height: 50px;
   list-style-type: none;
   margin: 0;
-  /*flex display for all rows*/
+  padding-top: 5%;
+  padding-bottom: 5%;
+  /*flex display for all rows so icon and title are on same line*/
   display: flex;
   /*flex style for indiv row */
   flex-direction: row;
   color: white;
   justify-content: center;
+  border-bottom: solid 1px black;
   align-items: center;
   font-weight: bold;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -60,16 +68,20 @@
  color: white;
 }
 
+.menu-bar-icon {
+  /*spacing between menu and close icon*/
+  margin-right: 70%;
 
+}
 
 /*icon from val.icon in SideBar.js */
 .row #icon {
   /*icon div to be 30% of the screen, instead of the list container*/
-  flex: 30%;
+  flex: 50%;
   display: grid;
   place-items: center;
 }
 
 .row #title {
-  flex: 70%;
+  flex: 90%;
 }

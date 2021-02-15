@@ -73,6 +73,7 @@ export default function App() {
       });
   }, []); //gets saved in the state
 
+  
   //useEffect  to Get INVENTORY ONLY IF FULL ORDER = YES
   useEffect(() => {
     //FETCH DONE
@@ -186,34 +187,31 @@ export default function App() {
   return (
         <Router>
           <div className="App" id="outer-cointainer">
-            <div className="SideBar">
-            <SideBar 
-                    
-                  orders={search(orders)}
-                  inventories={search(inventories)}
-                  allOrders={search(allOrders)}
-              />
-              </div>
-              <div className="body" id="wrapper">
-              <label htmlFor="search-bar" />
-                {/* The search bar goes here */}
-                  <input type="text"
-                      name="query"
-                       placeholder="Search..."
-                      id="search-bar"
-                      value={ query }
-                      onChange= {(e) => setQuery(e.target.value)}
-                  />
-                {/* </div>
-                <div> */}
-                  <Routes 
+              <div className="SideBar">
+                  <SideBar 
                       orders={search(orders)}
                       inventories={search(inventories)}
                       allOrders={search(allOrders)}
                   />
-                  </div>
+              </div>
 
-                
+              <div className="body" id="wrapper">
+                    <label htmlFor="search-bar" />
+                    {/* The search bar goes here */}
+                        <input type="text"
+                            name="query"
+                            placeholder="Search..."
+                            id="search-bar"
+                            value={ query }
+                            onChange= {(e) => setQuery(e.target.value)}
+                        />
+
+                    <Routes 
+                        orders={search(orders)}
+                        inventories={search(inventories)}
+                        allOrders={search(allOrders)}
+                    />
+              </div>
           </div>   
         </Router>
   );
