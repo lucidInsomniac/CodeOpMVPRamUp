@@ -62,7 +62,9 @@ main {
     /*use pre-determined bg color*/
     background-color: var(--bg-primary);
     transition: width 600ms ease;
-    overflow: scroll;
+    /*Hides scrollbar on sidebar right panel, instead of using "scroll as
+     suggested in video. It looks nice on firefox but ugly on chrome browser*/
+    overflow:hidden; 
 }
 
 /*This references <ul class="navbar-nav">
