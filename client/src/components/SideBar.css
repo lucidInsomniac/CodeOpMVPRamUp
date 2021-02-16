@@ -1,87 +1,246 @@
+/*Video ref worked best for pure CSS only sidebar, without conditional rendering in js : https://youtu.be/biOMz4puGt8*/
+
+/*reusable css for root*/
+:root {
+  font-size: 16px;
+  --text-primary: #b6b6b6;
+  --text-secondary: #ececec;
+  --bg-primary: #23232e;
+  --bg-secondary: #141418;
+  --transition-speed: 600ms;
+}
+
+/*help eliminate margin or padding*/
+body {
+  color: black;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+
+}
+
+/*This is a psuedo element that we are targeting
+to get rid of any ugly default scrollbars*/
+body::-webkit-scrollbar {
+    width: 0.25rem;
+}
+
+/*psuedo element to change background tracking*/
+body::-webkit-scrollbar-track {
+    background: #1e1e24;
+}
+
+/*pseudo element for thumb track on scroll bar*/
+body::-webkit-slider-thumb {
+    background: #6649b8;
+}
+
+/*set up sidebar on the left so not to overlap main content*/
+main {
+    margin-left: 5rem;
+    /*rem = relative size to font size on root, 
+    in our case font size is 16px, 
+    so 5rem x 16px = 80px for margin-left. This helps to keep
+    everything proportional based on the font size*/
+    padding: 1rem;
+
+}
+
+
+/*start building navbar by filling space out on left*/
+.navbar {
+    /*Set width the same length as main{margin-left:5rem} */
+    width: 5rem; 
+    /*vh is vertical height unit that is 
+    a relative size to the view port. It is equal to 100% of the height
+    and resize as browser window size changes
+    */
+    height: 100vh;
+    /*Keeps navbar positioned in the same place, no matter 
+    the movement of the scroll*/
+    position: fixed;
+    /*use pre-determined bg color*/
+    background-color: var(--bg-primary);
+    transition: width 600ms ease;
+    overflow: scroll;
+}
+
+/*This references <ul class="navbar-nav">
+and will be our flex container to hold our menu items*/
+.navbar-nav {
+    /*removes bullet points for listed items*/
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    /*By default, flex will show as a row*/
+    display: flex;
+    /*To create a top down display, we use column
+    for flex direction*/
+    flex-direction: column;
+    /*items will center here*/
+    align-items: center;
+    height: 100%;;
+}
+
+.nav-item {
+    width: 100%;
+}
+
+/*Logout or Settings icon on very bottom by setting margin-top to auto*/
+/*last-child targets last item in list, this is a psuedo element*/
+.nav-item:last-child {
+    /*This sets wide gap between last item and closest */
+    margin-top: auto;
+}
+
+/*This applies to all the items inside the <li>*/
+.nav-link {
+    /*We treat each listed item as a row with flex display*/
+    display: flex;
+    /*x-axis runs vertical so we align items to center, where it
+    will be on the y-axis*/
+    align-items: center;
+    /*give height the same length as width and relation to font*/
+    /*This gives the icon and text link a square shape*/
+    height: 5rem;
+    /*use default fount color*/
+    color: var(--text-primary);
+    /*text inside the link shows only when user hovers*/
+    text-decoration: none;
+    filter: grayscale(100%) opacity(0.7);
+    transition: var(--transition-speed);
+}
+
+
+.nav-link:hover {
+    filter: grayscale(0%) opacity(1);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+}
+
+/*when user is not hovering, link shows only icon*/
+.link-title {
+    /*do not display text*/
+    display:none;
+    margin-left: 1rem;
+}
+
+/*fine tune margins*/
+/*This applies to the icon <div>*/
+.nav-link div {
+    width: 2rem;
+    min-width: 2rem;
+    margin: 0 1.5rem;
+}
+
+#nav-icon:hover {
+    color: goldenrod;
+}
+
+
+
+/*animates icon when user hovers over icon, with :hover pseudo selector*/
+.navbar:hover {
+    /*set desired width*/
+    width: 16rem;
+}
+
+
+/*when user hovers over navbar, want text to display block so 
+we can see it vs icons smooshed together*/
+.navbar:hover .link-title {
+    display: block;
+}
+
+
+
+
+
+/**************************** ORIGINAL CSS ************************/
+/*These styles complicated the process too much*/
+
+
 /*Ref Video: https://youtu.be/5R9jFHlG6ik
 and 
 https://youtu.be/mN3P_rv8ad4*/
 
 /*Need to figure how to get menu to open and close*/
-.SideBar {
+/* .SideBar {
   height: 100vh;
   width: 15%;
   color: white;
   background-color: #2F4050;
   padding:0;
   margin:0;
-  position:fixed;
-  left: 0; /*0 is to expand when menu displayed,*/
- /*-100% is to close menu ,*/
-}
+  position:fixed; */
+  /* left: 0; 0 is to expand when menu displayed,
+ -100% is to close menu ,
+} */
 
 
 /* container for rows */
-.SidebarList {
+/* .SidebarList { */
   /*doesn't need to be 100% of height, just until last item on row*/
-  height: auto;
+  /* height: auto;
   padding: 0;
   width: 100%;
-  
-
-}
+} */
 
 /*access row inside Sidebar*/
-.SidebarList .row {
+/* .SidebarList .row {
   width: 100%;
   height: 50px;
   list-style-type: none;
   margin: 0;
   padding-top: 5%;
-  padding-bottom: 5%;
+  padding-bottom: 5%; */
   /*flex display for all rows so icon and title are on same line*/
-  display: flex;
+  /* display: flex; */
   /*flex style for indiv row */
-  flex-direction: row;
+  /* flex-direction: row;
   color: white;
   justify-content: center;
   border-bottom: solid 1px black;
   align-items: center;
   font-weight: bold;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
+} */
 
 
 
 /*hover effect when hovering over each row in sidebar menu*/
-.SidebarList .row:hover, .menu-bar-icon:hover, .close-icon:hover {
+/* .SidebarList .row:hover, .menu-bar-icon:hover, .close-icon:hover {
   cursor: pointer;
   background-color: #293846;
 }
 
 .SidebarList #active {
   background-color: #293846
-}
+} */
 
 /*Gets rid of underline in the sidebar rows w/ icon titles*/
-.SidebarList a {
+/* .SidebarList a {
   text-decoration: none;
-}
+} */
 
 /*menu bar icon and close icon*/
-.menu-bar-icon, .close-icon {
+/* .menu-bar-icon, .close-icon {
  color: white;
-}
+} */
 
-.menu-bar-icon {
+/* .menu-bar-icon { */
   /*spacing between menu and close icon*/
-  margin-right: 70%;
-
-}
+  /* margin-right: 70%;
+} */
 
 /*icon from val.icon in SideBar.js */
-.row #icon {
+/* .row #icon { */
   /*icon div to be 30% of the screen, instead of the list container*/
-  flex: 50%;
+  /* flex: 50%;
   display: grid;
   place-items: center;
-}
+} */
 
-.row #title {
+/* .row #title {
   flex: 90%;
-}
+} */

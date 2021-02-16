@@ -6,9 +6,9 @@ import './SideBar.css'
 import { SidebarData } from './SidebarData'
 import { Link } from 'react-router-dom'
 // //Icon for Menu
-import MenuIcon from '@material-ui/icons/Menu';
+// import MenuIcon from '@material-ui/icons/Menu';
 // //Icon for Close
-import CloseIcon from '@material-ui/icons/Close';
+// import CloseIcon from '@material-ui/icons/Close';
 
 
 
@@ -17,22 +17,8 @@ export default function SideBar() {
    
     return (
 
-        <div className="SideBar">
-            <ul className="SidebarList">
-                {/*menu icon to click and expand menu items*/}
-                <Link to ="#" 
-                      className="menu-bar-icon"
-                >
-                    <MenuIcon />
-                </Link>
-                
-                {/*X icon to click and close menu container*/}
-                <Link to ="#" 
-                      className="close-icon"
-                >
-                    <CloseIcon />
-                </Link> 
-
+        <nav className="navbar">
+            <ul className="navbar-nav">
                     {/* Sidebar is an array, so we need to map it out to 
                     access each element*/}
                     { SidebarData.map((val, key) => {
@@ -44,7 +30,7 @@ export default function SideBar() {
                             
                             
                             <li key={key} 
-                                className="row"
+                                className="nav-item"
                                 //When row selected, stays highlighted
                                 id={window.location.pathname === val.path ? "active" : ""}
                                 onClick={() => (
@@ -52,21 +38,21 @@ export default function SideBar() {
                                 )}
                             >
                                 <Link 
-                                    className="row"
+                                    className="nav-link"
                                     to ={val.path} exact>
 
-                                    <div id="icon">
+                                    <div id="nav-icon">
                                         {val.icon}
                                     </div> 
 
-                                    <div id="title">
+                                    <span id="line-title">
                                         {val.title}
-                                    </div>
+                                    </span>
                                 </Link>
                             </li>
                         )
                     })}
             </ul>
-        </div>
+        </nav>
     )
 }

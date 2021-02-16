@@ -1,7 +1,9 @@
 //Sidebar data rendering: Title, icon, and link
 //Link to Material UI Icon: https://material-ui.com/components/material-icons/
 import React from 'react'
-//Icon for dashboard
+// //Icon for Menu
+import MenuIcon from '@material-ui/icons/Menu';
+//Icon for home
 import HomeIcon from '@material-ui/icons/Home';
 //Icon for About
 import InfoIcon from '@material-ui/icons/Info';
@@ -13,7 +15,8 @@ import TocIcon from '@material-ui/icons/Toc';
 import ViewListIcon from '@material-ui/icons/ViewList';
 //Icon for Orders Input
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
-
+//Icon for settings
+import SettingsIcon from '@material-ui/icons/Settings';
 
 //We only need to export a component that contains an array
 //of objects instead of a function
@@ -21,6 +24,11 @@ import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 // and install CLIENT folder: yarn add @material-ui/icons
 export const SidebarData = [
 
+    {   //Dashboard view
+        title: "Menu",
+        path: "#",
+        icon: <MenuIcon />
+    },
     {   //Dashboard view
         title: "Home",
         path: "/home",
@@ -50,6 +58,12 @@ export const SidebarData = [
         title: "Inventory",
         path: "/inventory",
         icon: <ListAltIcon />
+    },
+    {
+        //Settings 
+        title: "Settings",
+        path: "#",
+        icon: <SettingsIcon />
     }
     
 ]

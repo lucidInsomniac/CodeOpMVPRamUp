@@ -45,4 +45,9 @@ body {
 .Inventory 
 {
   font-size: 20px;
+  text-align: center;
+  justify-items: center;
+  justify-content: center;
+
+
 }
