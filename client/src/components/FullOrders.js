@@ -48,7 +48,7 @@ export default function FullOrders (props) {   //this would be props for the com
 }
 
 
-{/***********************For MOCKUP DISPLAY ONLY****************************** 
+/***********************For MOCKUP DISPLAY ONLY****************************** 
 
             <div className="table container"> 
             <table className="pure-table">
@@ -83,4 +83,4 @@ export default function FullOrders (props) {   //this would be props for the com
     )
 }
 
-*/}
+*/

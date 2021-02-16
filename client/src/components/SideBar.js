@@ -46,7 +46,7 @@ export default function SideBar() {
                             <li key={key} 
                                 className="row"
                                 //When row selected, stays highlighted
-                                id={window.location.pathname == val.path ? "active" : ""}
+                                id={window.location.pathname === val.path ? "active" : ""}
                                 onClick={() => (
                                     window.location.pathname = val.path
                                 )}

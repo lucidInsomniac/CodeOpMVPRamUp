@@ -12,7 +12,7 @@
   /*This was the main reason why sidebar, searchbar and content from routes
   did not render. Need to be on flex to allow items to be on same line,separated
   lines require a <div>*/
-  display:flex;
+  /* display:flex; */
 }
 
 h1 {
