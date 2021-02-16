@@ -61,6 +61,7 @@ main {
     position: fixed;
     /*use pre-determined bg color*/
     background-color: var(--bg-primary);
+    /*how fast sidebar opens and closes*/
     transition: width 600ms ease;
     /*Hides scrollbar on sidebar right panel, instead of using "scroll as
      suggested in video. It looks nice on firefox but ugly on chrome browser*/
@@ -110,10 +111,11 @@ and will be our flex container to hold our menu items*/
     /*text inside the link shows only when user hovers*/
     text-decoration: none;
     filter: grayscale(100%) opacity(0.7);
+    /*matches how fast entire sidebar opens and closes*/
     transition: var(--transition-speed);
 }
 
-
+/*highlights when user hovers over menu items/rows*/
 .nav-link:hover {
     filter: grayscale(0%) opacity(1);
     background: var(--bg-secondary);
@@ -135,6 +137,7 @@ and will be our flex container to hold our menu items*/
     margin: 0 1.5rem;
 }
 
+/*highlights menu icons only when user hovers over icon*/
 #nav-icon:hover {
     color: goldenrod;
 }
