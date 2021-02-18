@@ -1,18 +1,24 @@
-.App {
+.App, body, .OrdersForm {
+  /*Need to set width and height on App.js 
+  to set sizes for all pages*/
+  width:100vw;
+  height: 100vh;
+  background: url("./components/Images/20697.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  font-size: 20px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   text-align: center;
   justify-items: center;
   justify-content: center;
-  /*100% width*/
-  width: 100vw;
-  /*100% height*/
-  height: 100vh;
+  margin:0;
+  padding:0;
   color: white;
   text-shadow: 2px 2px 2px black;
-  background-color: indigo;
-  /*This was the main reason why sidebar, searchbar and content from routes
-  did not render. Need to be on flex to allow items to be on same line,separated
-  lines require a <div>*/
-  /* display:flex; */
+  background-color: rgb(3, 12, 65);
+
+
 }
 
 h1 {
@@ -26,28 +32,17 @@ h1 {
 #search-bar{
   text-align: left;
   height: 10px;
-  margin-top: 30px;
+  margin-top: 10px;
   padding: 10px;
   font-size: 20px;
+  border: solid thick grey;
+  box-shadow: 1px 1px 2px 2px lightblue;
 }
 
 /*will throw error in body html inpsection without overflow params*/
 body {
   overflow-wrap: normal;
-}
-
-/*font size for all pages to stay uniform*/
-.Home, 
-.About, 
-.OrdersForm, 
-.PartOrders, 
-.FullOrders, 
-.Inventory 
-{
-  font-size: 20px;
-  text-align: center;
   justify-items: center;
   justify-content: center;
-
-
 }
+

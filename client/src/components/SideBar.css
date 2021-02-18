@@ -55,7 +55,7 @@ main {
     a relative size to the view port. It is equal to 100% of the height
     and resize as browser window size changes
     */
-    height: 100vh;
+    height: 100%;
     /*Keeps navbar positioned in the same place, no matter 
     the movement of the scroll*/
     position: fixed;
@@ -82,7 +82,7 @@ and will be our flex container to hold our menu items*/
     flex-direction: column;
     /*items will center here*/
     align-items: center;
-    height: 100%;;
+    height: 100%;
 }
 
 .nav-item {

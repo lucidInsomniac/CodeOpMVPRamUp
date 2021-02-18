@@ -1,21 +1,16 @@
 .OrdersForm { 
-    /*100% width*/
-  /* width: 100vw; */
-  /*100% height*/
-  /* height: auto;
-  text-align: center; */
-  text-align: center;
-  justify-items: center;
-  justify-content: center;
+  text-align: center; 
+  /* justify-items: center;
+  justify-content: center; */
   /*100% width*/
   width: 100vw;
   /*100% height*/
-  height: auto;
+  height: 100vh;
   color: white;
   text-shadow: 2px 2px 2px black;
-  background-color: indigo;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   
-}
+} 
 
 h2 {
     margin-top: 20px;
@@ -24,10 +19,120 @@ h2 {
     
 }
 
-form {
+
+Form {
+	max-width: 800px;
+    height: auto;
+	background: none;
+	margin: auto auto;
+	border-radius: 10px;
+	/* border: 6px solid #305A72; */
+    border: solid dotted white;
+    box-shadow: 1px 1px 2px 2px lightblue;
+}
+
+.row1 {
+    padding-left: 130px;
+    width: 100%;
+    display: grid;
+    gap: 0rem 6rem;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: auto auto;
+}
+
+
+
+.row2 {
+    margin:auto;
+    padding-right: 5%;
+    display: flexbox;
+    width: 62%;
+    
+}
+
+.row3{
+    width: 65%;
+    padding-left: 16%;
+}
+
+.row4 {
+    display: grid;
+    gap: 1rem 4rem;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: auto auto;
+}
+
+.row4 #qty{
+    width:30%;
+}
+
+.row5{
+    display: grid;
+    gap: 1rem 4rem;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: auto auto;
+}
+
+#item{
+    font-size: 85%;
+}
+Form [type="text"] {
+	width: 100%;
+    font-size: large;
+	height:auto;
+    padding: 10px;
+    text-align: left;
+    border: solid dotted black;
+    box-shadow: 1px 1px 3px 3px lightblue;
+}
+
+#part-order, #full-order, #size {
+    width: 40%;
+    height: 28%;
+    text-align: center;
+    font-size: 85%;
+    border: solid dotted black;
+    box-shadow: 1px 1px 2px 2px lightblue;
+}
+
+#qty{
     text-align: center;
 }
-.pure-g {
+
+Button{
+    margin-top: 80px;
+    margin-bottom:60px;
+	-moz-box-shadow: inset 0px 1px 0px 0px #3985B1;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #3985B1;
+	box-shadow: inset 0px 1px 0px 0px #3985B1;
+	background-color: #216288;
+	/* border: 1px solid #17445E; */
+    border: solid thin grey;
+    box-shadow: 1px 1px 2px 2px lightblue;
+	display: inline-block;
+	cursor: pointer;
+	color: #FFFFFF;
+	padding: 8px 18px;
+	text-decoration: none;
+	font-size: 100%;
+}
+
+Button:hover {
+	background: linear-gradient(to bottom, #2D77A2 5%, #337DA8 100%);
+	background-color: #28739E;
+}
+
+ label { 
+     text-align: center;
+    display: block;
+    padding-top: 60px;
+    padding-bottom: 20px;
+    /* font-size: larger;  */
+} 
+
+
+
+/* .pure-g {
     margin-top: 80px;
 }
 
@@ -72,6 +177,7 @@ input, textarea, select {
     
 }
 
+
 textarea {
     height: 60%;
 }
@@ -89,4 +195,4 @@ textarea {
 
 table {
     padding-top: 20px;
-}
+} */

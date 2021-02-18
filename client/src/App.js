@@ -6,6 +6,8 @@ import {BrowserRouter as Router} from 'react-router-dom'
 import './App.css'
 
 
+
+
 // // This displays all the components, react-router to coordinate
 export default function App() {
 
@@ -182,7 +184,6 @@ export default function App() {
       // );
     // }
 
-
   //render display
   return (
         <Router>
@@ -210,6 +211,7 @@ export default function App() {
                         orders={search(orders)}
                         inventories={search(inventories)}
                         allOrders={search(allOrders)}
+                      
                     />
               </div>
           </div>   
