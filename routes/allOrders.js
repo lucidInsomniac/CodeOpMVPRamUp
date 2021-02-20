@@ -50,9 +50,9 @@ router.get("/", async (req, res) => {
   // in MYSQL "describe inventory" 
   router.post("/", async (req, res) => {
     // The request's body is available in req.body
-    let { ord_date, vendor, team, item, size, qty, part_ord, full_ord} = req.body;
+    let { ordDate, vendor, team, item, size, qty, part_ord, full_ord} = req.body; //<== This needs to match up with frontend Apps.js params, otherwise you get "undefined" values for DB
     //check values
-    console.log('BACKEND POST', ord_date, vendor, team, item, size, qty,part_ord,full_ord)
+    console.log('BACKEND POST', ordDate, vendor, team, item, size, qty,part_ord,full_ord)
 
     //Has to be in MYSQL syntax
     let sql = `INSERT INTO inventory 
@@ -62,10 +62,10 @@ router.get("/", async (req, res) => {
       item,
       size,
       qty,
-      part_ord,
+      part_ord,   
       full_ord
       ) VALUES (
-        "${ord_date}",
+        "${ordDate}",
         "${vendor}",
         "${team}", 
         "${item}", 

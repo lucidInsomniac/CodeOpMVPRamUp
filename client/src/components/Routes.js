@@ -38,18 +38,20 @@ export default function Routes( props ) {
                     Display only if Full Order = NO */}
                 <Route path="/part_orders">
                     <PartOrders 
-                        orders={props.orders} 
-                        onUpdateOrder={order =>props.updateOrder(order)}
-                        onDeleteOrder={id => props.deleteOrder(id)}
-                  
-
+                        partOrders={props.partOrders} 
+                        onUpdatePartOrder={id =>props.updatePartOrder(id)}
+                        onDeletePartOrder={id => props.deletePartOrder(id)}
                     />
                 </Route>
                 
                 {/* collection of all full received existing and new items, and displays all items
                   Display only if Full Order = YES */}
                 <Route path="/full_orders">
-                    <FullOrders inventories={props.inventories} />
+                    <FullOrders 
+                        fullOrders={props.fullOrders} 
+                        onUpdateFullOrder={id => props.updateFullOrder(id)}
+                        onDeleteFullOrder={id => props.deleteFullOrder(id)}
+                    />
                 </Route>
                 
                 {/* Displays all existing and new orders */}

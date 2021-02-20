@@ -7,17 +7,19 @@ import './App.css'
 
 
 
-
-// // This displays all the components, react-router to coordinate
+// This displays all the components, react-router to coordinate
 export default function App() {
 
-  //hook for collection of inventory from OrdersForm, saved as array
-  const [orders, setOrders] = useState([]);
-  //hook for collection completed orders, saved as array
-  const [inventories, setInventories] = useState([]);
-  //hook for all existing and new orders, saved as array
+  //state for collection of inventory from OrdersForm, saved as array
+  const [partOrders, setPartOrders] = useState([]);
+
+  //state for collection completed orders, saved as array
+  const [fullOrders, setFullOrders] = useState([]);
+
+  //state for all existing and new orders, saved as array
   const [allOrders, setAllOrders] = useState([]);
-  //hook for search bar query function, saved as string
+
+  //state for search bar query function, saved as string
   const [ query, setQuery] = useState("")
 
   //Test Function for Mock Display ONLY
@@ -28,12 +30,12 @@ export default function App() {
   //   console.log('parent-orders', orders)
 
 
-/**************GET Data********************************** */
+/************************************************************GET DATA************************************************************* */
 
-    //useEffect  to Get ALL existing and new orders
+    //useEffect hook for Inventory.js to Get ALL existing and new orders
   useEffect(() => {
     //FETCH DONE
-    fetch("/alldata") //this connects to the server api.js
+    fetch("/allorders") //this connects to the server api.js
       // our promise for fetch, instead of using "async", "wait", and "try"
       //This is the request
       .then(response => response.json())
@@ -53,20 +55,20 @@ export default function App() {
   }, []); //gets saved in the state
 
 
-  //useEffect  to Get INVENTORY ONLY IF FULL ORDER = NO
+  //useEffect hook for PartOrd.js  to Get orders ONLY IF FULL ORDER = NO
   useEffect(() => {
     //FETCH DONE
-    fetch("/receiving") //this connects to the server api.js
+    fetch("/part_orders") //this connects to the server api.js
       // our promise for fetch, instead of using "async", "wait", and "try"
       //This is the request
       .then(response => response.json())
       //this is the response returned with actual data
-      .then(orders => {
-        console.log(orders);
+      .then(partOrders => {
+        console.log(partOrders);
         // upon success, update tasks
-        setOrders(orders);
+        setPartOrders(partOrders);
         //check
-        console.log( 'fetch', orders)
+        console.log( 'fetch', partOrders)
       })
       //catches error
       .catch(err => {
@@ -76,20 +78,20 @@ export default function App() {
   }, []); //gets saved in the state
 
   
-  //useEffect  to Get INVENTORY ONLY IF FULL ORDER = YES
+  //useEffect hook for FullOrd.js to Get orders ONLY IF FULL ORDER = YES
   useEffect(() => {
     //FETCH DONE
-    fetch("/inventory") //this connects to the server api.js
+    fetch("/full_orders") //this connects to the server api.js
       // our promise for fetch, instead of using "async", "wait", and "try"
       //This is the request
       .then(response => response.json())
       //this is the response returned with actual data
-      .then(inventories => {
-        console.log(inventories);
+      .then(fullOrders => {
+        console.log(fullOrders);
         // upon success, update tasks
-        setInventories(inventories);
+        setFullOrders(fullOrders);
         //check
-        console.log( 'fetch', inventories)
+        console.log( 'fetch', fullOrders)
       })
       //catches error
       .catch(err => {
@@ -99,13 +101,14 @@ export default function App() {
   }, []); //gets saved in the state
 
 
-  /*******************POST Data********************************** */
+  /******************************************************POST DATA*************************************************************** */
 
-    //function to POST orders
+    //function to POST orders from OrdersForm.js to Inventory.js
+    //Displays in Inventory, then sorts to relative to Partial or Full Orders based on order status
     function addOrder (order) {
       //pass order from Form BUT WE NEED TO DEFINE IT FIRST!!
       let newOrder = {  //<==== ALWAYS CHECK HERE FIRST BEFORE POST!!
-        ord_date: order.ord_date,
+        ordDate: order.ordDate,
         vendor: order.vendor,
         team: order.team,
         item: order.item,
@@ -128,17 +131,17 @@ export default function App() {
       //check
       console.log("Parent-post", newOrder) // Data passes here
 
-      //Shows DB with new added entry
-      fetch("/alldata", options) // ==> Make sure to ref ALL orders
+      //Shows DB in Inventory.js with new added entry
+      fetch("/allorders", options) // ==> Make sure to ref ALL orders
        // our promise for fetch, instead of using "async", "wait", and "try"
        .then(response => response.json())
        //the response returned with actual data
-       .then(orders => {
+       .then(allOrders => {
         //  console.log(orders);
          // upon success, update tasks
-         setOrders(orders);
+         setAllOrders(allOrders);
          //check
-         console.log("Parent-setOrders", orders)
+         console.log("Parent-setOrders", allOrders)
        })
        //catches error
        .catch(err => {
@@ -148,12 +151,13 @@ export default function App() {
 
     }
 
-    //POST to inventory
 
-  /**************UPDATE Data********************************** */
 
-    //function to UPDATE orders
-    function updateOrder(order) {
+
+  /***************************************************UPDATE DATA************************************************************* */
+
+    //function to UPDATE PartOrd.js
+    function updatePartOrder(order) {
       // update task from database
       // upon success, update tasks
       // upon failure, show error message
@@ -167,17 +171,17 @@ export default function App() {
         },
   
         //elements into JSON elements from the data entered in the body
-        body: JSON.stringify(orders )
+        body: JSON.stringify(partOrders)
       };
   
-      fetch(`/receiving/${order.ord_id}`, options)
+      fetch(`/part_orders/${order.ord_id}`, options)
         // our promise for fetch, instead of using "async", "wait", and "try"
         .then(response => response.json())
         //the response returned with actual data
-        .then(orders => {
-          console.log(orders);
+        .then(partOrders => {
+          console.log(partOrders);
           // upon success, update tasks
-          setOrders(orders);
+          setPartOrders(partOrders);
         })
   
         //catches error
@@ -188,8 +192,8 @@ export default function App() {
     }
   
 
-    //function to UPDATE inventory
-    function updateInventory(id) {
+    //function to UPDATE FullOrd.js
+    function updateFullOrder(id) {
       // update task from database
       // upon success, update tasks
       // upon failure, show error message
@@ -203,17 +207,17 @@ export default function App() {
         },
   
         //elements into JSON elements from the data entered in the body
-        body: JSON.stringify(inventories)
+        body: JSON.stringify(fullOrders)
       };
   
-      fetch(`/allData/${id}`, options)
+      fetch(`/full_orders/${id}`, options)
         // our promise for fetch, instead of using "async", "wait", and "try"
         .then(response => response.json())
         //the response returned with actual data
-        .then(inventories => {
-          console.log(inventories);
+        .then(fullOrders => {
+          console.log(fullOrders);
           // upon success, update tasks
-          setInventories(inventories);
+          setFullOrders(fullOrders);
         })
   
         //catches error
@@ -225,27 +229,27 @@ export default function App() {
   
 
 
-  /**************DELETE Data********************************** */
-  function deleteOrder(id) {
+  /************************************************DELETE DATA********************************************************************* */
+  function deletePartOrder(id) {
     //Method default is always GET, to change it, you need to
     //explicitly tell REACT to send DELETE request
     let options = {
       method: "DELETE", //We are removing an existing task from our list of tasks
       //method to convert the "task" key and "tasks" value JS
       //elements into JSON elements from the data entered in the body
-      body: JSON.stringify(orders)
+      body: JSON.stringify(partOrders)
     };
 
-    fetch(`/receiving/${id}`, options)
+    fetch(`/part_orders/${id}`, options)
       // our promise for fetch, instead of using "async", "wait", and "try"
       .then(response => response.json())
       //the response returned with actual data
-      .then(orders => {
+      .then(partOrders => {
         // console.log('delete order', id)  //id not define
         // console.log('delete order',orders);
         // upon success, update tasks
-        setOrders(orders);
-        console.log('delete order', orders)
+        setPartOrders(partOrders);
+        console.log('delete order', partOrders)
       })
       //catches error
       .catch(err => {
@@ -254,25 +258,25 @@ export default function App() {
       });
   }
 
-    //function to DELETE inventory
-    function deleteInventory(id) {
+    //function to DELETE on Full Orders
+    function deleteFullOrder(id) {
       //Method default is always GET, to change it, you need to
       //explicitly tell REACT to send DELETE request
       let options = {
         method: "DELETE", //We are removing an existing task from our list of tasks
         //method to convert the "task" key and "tasks" value JS
         //elements into JSON elements from the data entered in the body
-        body: JSON.stringify(inventories)
+        body: JSON.stringify(fullOrders)
       };
   
-      fetch(`/inventory/${id}`, options)
+      fetch(`/full_orders/${id}`, options)
         // our promise for fetch, instead of using "async", "wait", and "try"
         .then(response => response.json())
         //the response returned with actual data
-        .then(inventories => {
-          console.log(inventories);
+        .then(fullOrders => {
+          console.log(fullOrders);
           // upon success, update tasks
-          setInventories(inventories);
+          setFullOrders(fullOrders);
         })
         //catches error
         .catch(err => {
@@ -282,7 +286,7 @@ export default function App() {
     }
   
   
-    /********************************************************** */
+    /******************************************************SEARCH BAR************************************************************* */
 
     //Search Bar Filter functions, searches through all columns
     function search (rows) {
@@ -314,17 +318,15 @@ export default function App() {
       // );
     // }
 
-  //render display
+
+    
+  /************************************************REDNER DISPLAY***************************************************************/
   return (
         <Router >
               {/* --->Here is where the Sidebar sits<--- */}
           <div className="App" id="outer-cointainer">
               <div className="SideBar">
-                  <SideBar 
-                      // orders={search(orders)}
-                      // inventories={search(inventories)}
-                      // allOrders={search(allOrders)}
-                  />
+                  <SideBar />
               </div>
                 {/* --->This is where the Search Bar goes<--- */}
               <div className="body" id="wrapper">
@@ -339,16 +341,23 @@ export default function App() {
                         />
                       {/* --->All page components are located here<--- */}
                     <Routes 
+                        // Partial Orders/ PartOrders.js
                         addOrder={newOrder => addOrder(newOrder)}
-                        searchOrders={search(orders)}
-                        updateOrder={order => updateOrder(order)}
-                        deleteOrder={id => deleteOrder(id)} //onDelete is btwn only Routes and PartORds
-                        orders = {orders}
+                        searchPartOrders={search(partOrders)}
+                        updatePartOrder={id => updatePartOrder(id)}
+                        deletePartOrder={id => deletePartOrder(id)} //function must match here, onDelete is ONLY btwn only Routes and child
+                        partOrders = {partOrders}
+                        
+                        //Full Orders/ FullOrders.js
+                        fullOrders={fullOrders}
+                        searchFullOrders={search(fullOrders)}
+                        updateFullOrder={id => updateFullOrder(id)}
+r                        deleteFullOrder={id => deleteFullOrder(id)}
+                        
+                        //Inventory/ Inventory.js
+                        searchAllOrders={search(allOrders)}
+                        allOrders={allOrders}
 
-                        inventories={search(inventories)}
-                        onUpdateInventory={id => updateInventory(id)}
-                        onDeleteInventory={id => deleteInventory(id)}
-                        allOrders={search(allOrders)}
                     />
               </div>
           </div>   

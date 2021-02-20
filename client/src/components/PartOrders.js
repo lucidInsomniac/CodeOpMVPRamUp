@@ -5,29 +5,28 @@ import { Table, Button } from 'react-bootstrap'
 export default function PartOrders( props) {   
     //check data
     console.log('PartOrders' + JSON.stringify(props[0]))
-    console.log('PartOrders', props.orders);
+    console.log('PartOrders', props.partOrders);
     
-    //pulls column name as keys from DB and displays it
-    const columns= props.orders[0] && Object.keys(props.orders[0])
+    //pulls column data as keys from DB and displays it
+    const columns= props.partOrders[0] && Object.keys(props.partOrders[0])
 
-
-    function handleClickDelete (o) {
-        props.onDeleteOrder(o)
+    //Event handler for delete triggered by onDelete to send data back up to App.js
+    function handleClickDelete (po) {
+        props.onDeletePartOrder(po)
 
     }
 
-    function handleClickUpdate (o) {
-        props.onUpdateOrder(o)
+    //Event handler for edit triggered by onUpdate to send data back up to App.js
+    function handleClickUpdate (po) {
+        props.onUpdatePartOrder(po)
     }
-    
-    /*Inline Text edit */
 
 
     return (
         <div className="PartOrders">
             <h2>Partial Orders</h2>
             
-            <Table size="sm" className="Table">
+            <Table size="sm" className="Table" cellPadding={10} cellSpacing={2}>
 
                 <thead className="headers">
                     {/* can dynamically add data into table.
@@ -44,28 +43,26 @@ export default function PartOrders( props) {
                         <th>Partial Order</th>
                         <th>Full Order</th>
                     </tr>
-                    {/* <tr>{ props.orders[0] && 
-                            props.orders[0] && columns.map( (heading, index) =><th key={index}>{ heading }</th>)}</tr> */}
+                   
                 </thead>
 
                 <tbody className="tbody">
                     {/* map data inside body, it goes over each column using map func
                     key needs to be unique can use index and pass as param*/}
-                { props.orders && 
-                    props.orders.map( ( order ) => (
+                { props.partOrders && 
+                    props.partOrders.map( ( partOrder ) => (
                      
-                    <tr className="keyrow" key={order.ord_id}> 
+                    <tr className="keyrow" key={partOrder.ord_id}> 
                         {  
                             // we pass row and incl column prop to access data in that cell
                         columns.map( (e) =>  (
-                            <td key={order.ord_id}>{order[e]}</td>
+                            <td key={partOrder.ord_id}>{partOrder[e]}</td>
                         ))}
                             <td>
                                 <Button 
                                     id="edit"
                                     className="Edit"
-                                    onClick={() => handleClickUpdate(order)}
-                                    // onClick={() =>props.onUpdateOrder(props.order[0].ord_id)}
+                                    onClick={() => handleClickUpdate(partOrder.ord_id)}
                                     type="button"
                                 >
                                     Edit
@@ -75,8 +72,7 @@ export default function PartOrders( props) {
                                 <Button
                                     id="delete"
                                     className="Delete"
-                                    onClick={() => handleClickDelete(order.ord_id)}
-                                    // onClick={() => props.onDeleteOrder(order.ord_id)}//note responding to id 
+                                    onClick={() => handleClickDelete(partOrder.ord_id)}
                                     type="button"
                                 >
                                     Delete

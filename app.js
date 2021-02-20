@@ -5,10 +5,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 //Need to create another line with new var  for new route
-var indexRouter = require('./routes/allData');
-var usersRouter = require('./routes/allData');
-var users2Router = require('./routes/inventory');
-var users3Router = require('./routes/receiving');
+var indexRouter = require('./routes/allOrders');
+var usersRouter = require('./routes/allOrders');
+var users2Router = require('./routes/full_orders');
+var users3Router = require('./routes/part_orders');
 
 var app = express();
 
@@ -24,10 +24,10 @@ app.get("/", function(req, res, next) {
 });
 
 app.use('/', indexRouter);
-app.use('/allData', usersRouter);
+app.use('/allOrders', usersRouter);
 //Need to create another line with new var  for new route
-app.use('/inventory', users2Router);
-app.use('/receiving', users3Router);
+app.use('/full_orders', users2Router);
+app.use('/part_orders', users3Router);
 
 // Anything that doesn't match the above, send back index.html
 app.get("*", (req, res) => {

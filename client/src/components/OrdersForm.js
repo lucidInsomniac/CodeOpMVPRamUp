@@ -33,7 +33,7 @@ export default function OrdersForm (props) {
     event.preventDefault();
 
     //save all date in state obj to be sent to parent
-    const newOrder = {
+    const order = {
 
       ordDate: ordDate,
       vendor: vendor,
@@ -45,12 +45,12 @@ export default function OrdersForm (props) {
       full_ord: full_ord
     }
       //check inventory has value
-      console.log('newOrder', newOrder)
+      console.log('newOrder', order)
 
     // onSubmit, send the state obj with all the data to parent
-    props.onSubmit(newOrder)
+    props.onSubmit(order)
     //check post submit
-    console.log("formSubmit", newOrder) //This submitted and was sent up to App.js
+    console.log("formSubmit", order) //This submitted and was sent up to App.js
     //but App.js was unable to locate
 
     //reset all fields
