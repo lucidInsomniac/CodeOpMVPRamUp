@@ -5,6 +5,8 @@ import { Form, Button }from 'react-bootstrap'
 
 //Order input
 export default function OrdersForm (props) {
+  //check
+  console.log('Form', props)
 
   //hooks for form input values: 
   //ordDate
@@ -28,10 +30,10 @@ export default function OrdersForm (props) {
   //by submit event
   function handleSubmit(event) {
     //prevent entire doc from reloading, only target event source
-    event.preventDefault()
+    event.preventDefault();
 
     //save all date in state obj to be sent to parent
-    const order = {
+    const newOrder = {
 
       ordDate: ordDate,
       vendor: vendor,
@@ -43,10 +45,13 @@ export default function OrdersForm (props) {
       full_ord: full_ord
     }
       //check inventory has value
-      console.log('form', order)
+      console.log('newOrder', newOrder)
 
     // onSubmit, send the state obj with all the data to parent
-    props.onSubmit(order)
+    props.onSubmit(newOrder)
+    //check post submit
+    console.log("formSubmit", newOrder) //This submitted and was sent up to App.js
+    //but App.js was unable to locate
 
     //reset all fields
     setOrdDate("")
@@ -96,16 +101,25 @@ export default function OrdersForm (props) {
         }
   }
 
+
       //render form here
 
     return (
       <div className="OrdersForm"> 
-        <h2>Add Orders Here</h2>
-        <Form className="Form" onSubmit={handleSubmit}>
 
+        <h2>Add Orders Here</h2>
+
+
+        {/* The container for the form component starts here */}
+        <Form className="Form" 
+          onSubmit={handleSubmit}>
+
+            {/* This is the first row with Order Date and Vendor */}
           <Form.Row className="row1">
+              {/* The Group prop for form acts like a div */}
               <Form.Group controlId="group">
                   <Form.Label>Order Date</Form.Label>
+                  {/* Form.Control is the same as saying <input> <select> or <textarea>*/}
                       <Form.Control onChange={handleChange} name="ordDate" value={ordDate} id="order-date"type="text" placeholder="mm/dd/yy" />
               </Form.Group>
               <Form.Group controlId="group">
@@ -114,16 +128,22 @@ export default function OrdersForm (props) {
               </Form.Group >
           </Form.Row>
 
+
+            {/* Row 2 is a single line */}
           <Form.Group className="row2" controlId="group">
               <Form.Label>Team</Form.Label>
                   <Form.Control onChange={handleChange} name="team" value={team} id="team" type="text" placeholder="Team Name" />
           </Form.Group>
 
+
+            {/* Row 3 is a single line  */}
           <Form.Group className="row3" controlId="group">
               <Form.Label>Item</Form.Label>
                   <Form.Control onChange={handleChange} name="item" value={item} id="item" as="textarea" rows={5} type="text" placeholder="Item Name and Description" />
           </Form.Group>
 
+
+            {/* This is a row 4 with Qty and Size */}
           <Form.Row className="row4">
               <Form.Group controlId="group">
                   <Form.Label>Qty</Form.Label>
@@ -144,6 +164,8 @@ export default function OrdersForm (props) {
                       </Form.Control>
               </Form.Group>
           </Form.Row>
+
+          {/* This is row 5 with partial and full orders */}
           <Form.Row className="row5">
               <Form.Group controlId="group">
                   <Form.Label>Partial Order</Form.Label>
@@ -155,7 +177,7 @@ export default function OrdersForm (props) {
               </Form.Group>
               <Form.Group controlId="group">
                   <Form.Label>Full Order</Form.Label>
-                    <Form.Control onChange={handleChange} name="full_ord"value="full_ord" id="full-order" as="select" defaultValue="Select">
+                    <Form.Control onChange={handleChange} name="full_ord"value={full_ord} id="full-order" as="select" defaultValue="Select">
                           <option>Select</option> 
                           <option>Yes</option>
                           <option>No</option>
@@ -163,9 +185,11 @@ export default function OrdersForm (props) {
               </Form.Group>
           </Form.Row>
 
+            {/* The submit button goes here */}
           <Button variant="primary" type="submit">Submit</Button>
 
         </Form>
+        
       </div>
     )
 }

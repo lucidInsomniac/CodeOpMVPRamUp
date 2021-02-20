@@ -25,7 +25,7 @@ router.get("/", async (req, res) => {
       //db data must be known, we tell MYSQL to select from the table called "inventory", since we are
       //already in the DB rampup
       //Has to be in MYSQL syntax
-      let results = await db("SELECT ord_id, ord_date, vendor,team, item, size, qty, part_ord, full_ord from orders where full_ord = 'No' ORDER BY ord_date ASC;");
+      let results = await db("SELECT * from inventory where full_ord = 'No' ORDER BY ord_date ASC;");
       //check
       console.log("RESULTS", results);
       //you should send back the full list of items with status
@@ -52,7 +52,7 @@ router.get("/", async (req, res) => {
     //Has to be in MYSQL syntax
     let sql = `
       SELECT *
-      FROM orders
+      FROM inventory
       WHERE ord_id = ${ord_id}
     `;
   
@@ -71,58 +71,52 @@ router.get("/", async (req, res) => {
     }
   });
   
-  //POST new receiving data     -----> Actual Test works on Postman
-  //!!NEED TO MAKE SURE MYSQL HAS COLUMNS BEFORE TESTING
-  //!!!!!!Make sure Postman body raw is set to JSON  !!!!!!!!!!
-  // Make sure your sql commands match their data type, you can check by using command
-  // in MYSQL "describe inventory" 
-  router.post("/", async (req, res) => {
-    // The request's body is available in req.body
-    let { ord_date, vendor, team, item, size, qty, part_ord, full_ord, inv_id } = req.body;
-    //Has to be in MYSQL syntax
-    let sql = `
-      INSERT INTO orders 
-      (ord_date,
-        vendor,
-        team,
-        item,
-        size,
-        qty,
-        part_ord,
-        full_ord, 
-        inv_id
-        ) 
-        VALUES  ( 
-          "${ord_date}", 
-          "${vendor}", 
-          "${team}", 
-          "${item}", 
-          "${size}", 
-          ${qty}, 
-          "${part_ord}", 
-          "${full_ord}",
-          (SELECT inv_id 
-            FROM inventory
-            Where inv_id = ${inv_id}) 
-          );
-    `; 
-    //Whenever we access a DB with "async" and "await", we need the "try" and "catch"
-    try {
-      //inserts the data
-      let results = await db(sql);
-      //awaiting response to MYSQL to select all data, // If the query is successful
-      //Has to be in MYSQL syntax
-      results = await db("SELECT ord_id, ord_date, vendor,team, item, size, qty, part_ord, full_ord from orders where full_ord = 'No' ORDER BY ord_date ASC;");
-      //you should send back the full list of items
-      //console.log(results.data);
-      res.status(201).send(results.data);
-    } catch (err) {
-      //Catch errors if any encountered
-      //Response to error, 500 status with message
-      // console.log(err.message)
-      res.status(500).send({ error: err.message });
-    }
-  });
+  // //POST new receiving data     -----> Actual Test works on Postman
+  // //!!NEED TO MAKE SURE MYSQL HAS COLUMNS BEFORE TESTING
+  // //!!!!!!Make sure Postman body raw is set to JSON  !!!!!!!!!!
+  // // Make sure your sql commands match their data type, you can check by using command
+  // // in MYSQL "describe inventory" 
+  // router.post("/", async (req, res) => {
+  //   // The request's body is available in req.body
+  //   let { ord_date, vendor, team, item, size, qty, part_ord, full_ord } = req.body;
+  //   //Has to be in MYSQL syntax
+  //   let sql = `INSERT INTO inventory 
+  //   (ord_date,
+  //     vendor,
+  //     team,
+  //     item,
+  //     size,
+  //     qty,
+  //     part_ord,
+  //     full_ord
+  //     ) VALUES (
+  //       "${ord_date}",
+  //       "${vendor}",
+  //       "${team}", 
+  //       "${item}", 
+  //       "${size}", 
+  //       ${qty}, 
+  //       "${part_ord}", 
+  //       "${full_ord}"
+  //       );
+  //       `; 
+  //   //Whenever we access a DB with "async" and "await", we need the "try" and "catch"
+  //   try {
+  //     //inserts the data
+  //     let results = await db(sql);
+  //     //awaiting response to MYSQL to select all data, // If the query is successful
+  //     //Has to be in MYSQL syntax
+  //     results = await db("SELECT * from inventory where full_ord = 'No' ORDER BY ord_date ASC;");
+  //     //you should send back the full list of items
+  //     //console.log(results.data);
+  //     res.status(201).send(results.data);
+  //   } catch (err) {
+  //     //Catch errors if any encountered
+  //     //Response to error, 500 status with message
+  //     // console.log(err.message)
+  //     res.status(500).send({ error: err.message });
+  //   }
+  // });
   
   //PUT receiving data Update/Replace by ID
   // Kind of works
@@ -134,7 +128,7 @@ router.get("/", async (req, res) => {
     try {
       //Tells MYSQL to select all rows from table "inventory" with matching id from URL
       //Has to be in MYSQL syntax
-      let sql = `SELECT * FROM orders WHERE ord_id = ${ord_id}`;
+      let sql = `SELECT * FROM inventory WHERE ord_id = ${ord_id}`;
       //awaiting response from DB to add new inventory
       let results = await db(sql);
       //If DB finds a value of 1 for the array length in our data array
@@ -146,7 +140,7 @@ router.get("/", async (req, res) => {
         let { ord_date, vendor, team, item, size, qty, part_ord, full_ord } = req.body;
         // Make sure modified task doesn't try to change primary (ord_id) and foreign keys (inv_id)
         sql = `               
-          UPDATE orders
+          UPDATE inventory
           SET 
           ord_date = '${ord_date}',
           vendor = '${vendor}',
@@ -156,14 +150,13 @@ router.get("/", async (req, res) => {
           qty = '${qty}',
           part_ord = '${part_ord}',
           full_ord = '${full_ord}'
-          WHERE ord_id = ${ord_id}
         `;
   
         //awaiting response on adding the new data to the DB
         await db(sql);
         // Replace old task with modified one
         //Has to be in MYSQL syntax
-        results = await db("SELECT ord_id, ord_date, vendor,team, item, size, qty, part_ord, full_ord from orders where full_ord = 'No' ORDER BY ord_date ASC");
+        results = await db("SELECT * from inventory where full_ord = 'No' ORDER BY ord_date ASC");
         //And return the full list of items when successful
         res.send(results.data);
       } else {
@@ -185,19 +178,19 @@ router.get("/", async (req, res) => {
     try {
       //Tell MYSQL to select all from the table "inventory with the id matching the id from URL
       //Has to be in MYSQL syntax
-      let sql = `SELECT * FROM orders WHERE ord_id = ${ord_id}`;
+      let sql = `SELECT * FROM inventory WHERE ord_id = ${ord_id}`;
       //awaiting response from DB to add new task
       let results = await db(sql);
       //If DB finds a value of 1 for the array length in our data array
       if (results.data.length === 1) {
   
         //Has to be in MYSQL syntax
-        sql = `DELETE FROM orders WHERE ord_id = ${ord_id}`;
+        sql = `DELETE FROM inventory WHERE ord_id = ${ord_id}`;
         // Delete the task selected task
         await db(sql);
         //Awaiting response from MYSQL to select all data from table "inventory"
         //Has to be in MYSQL syntax
-        results = await db("SELECT ord_id, ord_date, vendor,team, item, size, qty, part_ord, full_ord from orders where full_ord = 'No' ORDER BY ord_date ASC");
+        results = await db("SELECT * from inventory where full_ord = 'No' ORDER BY ord_date ASC");
         //And return the full list of inventory when successful
         res.send(results.data);
       } else {

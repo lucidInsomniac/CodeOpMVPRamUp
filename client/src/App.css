@@ -46,3 +46,10 @@ body {
   justify-content: center;
 }
 
+
+
+Table {
+  display: flexbox;
+  padding-left: 22%;
+
+}

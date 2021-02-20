@@ -101,55 +101,185 @@ export default function App() {
 
   /*******************POST Data********************************** */
 
-//     //function to POST orders
-//     function addOrder (order) {
-//       //pass order from Form
-//       let newOrder = { order: order };
+    //function to POST orders
+    function addOrder (order) {
+      //pass order from Form BUT WE NEED TO DEFINE IT FIRST!!
+      let newOrder = {  //<==== ALWAYS CHECK HERE FIRST BEFORE POST!!
+        ord_date: order.ord_date,
+        vendor: order.vendor,
+        team: order.team,
+        item: order.item,
+        size: order.size,
+        qty: order.qty,
+        part_ord: order.part_ord,
+        full_ord: order.full_ord
+      }
 
-//       //Method default is alway GET, need to explicitly tell REACT to send POST
-//       let options = {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json" //Description of file type is a JSON format
-//         },
-//         //method to convert "order"key and "newOrder"value JS int JSON when iput from body
-//         body: JSON.stringify(newOrder)
-//       };
+      //Method default is alway GET, need to explicitly tell REACT to send POST
+      let options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json" //Description of file type is a JSON format
+        },
+        //method to convert "order"key and "newOrder"value JS int JSON when iput from body
+        body: JSON.stringify(newOrder)
+        
+      };
+      //check
+      console.log("Parent-post", newOrder) // Data passes here
 
-//       //Shows DB with new added entry
-//       fetch("/receiving", options)
-//        // our promise for fetch, instead of using "async", "wait", and "try"
-//        .then(response => response.json())
-//        //the response returned with actual data
-//        .then(orders => {
-//          console.log(orders);
-//          // upon success, update tasks
-//          setOrders(orders);
-//        })
-//        //catches error
-//        .catch(err => {
-//          // upon failure, show error message
-//          console.log("ERROR:", err.message);
-//        });
+      //Shows DB with new added entry
+      fetch("/alldata", options) // ==> Make sure to ref ALL orders
+       // our promise for fetch, instead of using "async", "wait", and "try"
+       .then(response => response.json())
+       //the response returned with actual data
+       .then(orders => {
+        //  console.log(orders);
+         // upon success, update tasks
+         setOrders(orders);
+         //check
+         console.log("Parent-setOrders", orders)
+       })
+       //catches error
+       .catch(err => {
+         // upon failure, show error message
+         console.log("ERROR:", err.message);
+       });
 
-//     }
+    }
 
     //POST to inventory
 
   /**************UPDATE Data********************************** */
 
     //function to UPDATE orders
-
+    function updateOrder(order) {
+      // update task from database
+      // upon success, update tasks
+      // upon failure, show error message
+  
+      //Method default is always GET, to change it, you need to
+      //explicitly tell REACT to send PUT request
+      let options = {
+        method: "PUT", //We are updating a task
+        headers: {
+          "Content-Type": "application/json" //Description of file type is a JSON format
+        },
+  
+        //elements into JSON elements from the data entered in the body
+        body: JSON.stringify(orders )
+      };
+  
+      fetch(`/receiving/${order.ord_id}`, options)
+        // our promise for fetch, instead of using "async", "wait", and "try"
+        .then(response => response.json())
+        //the response returned with actual data
+        .then(orders => {
+          console.log(orders);
+          // upon success, update tasks
+          setOrders(orders);
+        })
+  
+        //catches error
+        .catch(err => {
+          // upon failure, show error message
+          console.log("ERROR:", err.message);
+        });
+    }
+  
 
     //function to UPDATE inventory
-
+    function updateInventory(id) {
+      // update task from database
+      // upon success, update tasks
+      // upon failure, show error message
+  
+      //Method default is always GET, to change it, you need to
+      //explicitly tell REACT to send PUT request
+      let options = {
+        method: "PUT", //We are updating a task
+        headers: {
+          "Content-Type": "application/json" //Description of file type is a JSON format
+        },
+  
+        //elements into JSON elements from the data entered in the body
+        body: JSON.stringify(inventories)
+      };
+  
+      fetch(`/allData/${id}`, options)
+        // our promise for fetch, instead of using "async", "wait", and "try"
+        .then(response => response.json())
+        //the response returned with actual data
+        .then(inventories => {
+          console.log(inventories);
+          // upon success, update tasks
+          setInventories(inventories);
+        })
+  
+        //catches error
+        .catch(err => {
+          // upon failure, show error message
+          console.log("ERROR:", err.message);
+        });
+    }
+  
 
 
   /**************DELETE Data********************************** */
+  function deleteOrder(id) {
+    //Method default is always GET, to change it, you need to
+    //explicitly tell REACT to send DELETE request
+    let options = {
+      method: "DELETE", //We are removing an existing task from our list of tasks
+      //method to convert the "task" key and "tasks" value JS
+      //elements into JSON elements from the data entered in the body
+      body: JSON.stringify(orders)
+    };
 
+    fetch(`/receiving/${id}`, options)
+      // our promise for fetch, instead of using "async", "wait", and "try"
+      .then(response => response.json())
+      //the response returned with actual data
+      .then(orders => {
+        // console.log('delete order', id)  //id not define
+        // console.log('delete order',orders);
+        // upon success, update tasks
+        setOrders(orders);
+        console.log('delete order', orders)
+      })
+      //catches error
+      .catch(err => {
+        // upon failure, show error message
+        console.log("ERROR:", err.message);
+      });
+  }
 
     //function to DELETE inventory
-
+    function deleteInventory(id) {
+      //Method default is always GET, to change it, you need to
+      //explicitly tell REACT to send DELETE request
+      let options = {
+        method: "DELETE", //We are removing an existing task from our list of tasks
+        //method to convert the "task" key and "tasks" value JS
+        //elements into JSON elements from the data entered in the body
+        body: JSON.stringify(inventories)
+      };
+  
+      fetch(`/inventory/${id}`, options)
+        // our promise for fetch, instead of using "async", "wait", and "try"
+        .then(response => response.json())
+        //the response returned with actual data
+        .then(inventories => {
+          console.log(inventories);
+          // upon success, update tasks
+          setInventories(inventories);
+        })
+        //catches error
+        .catch(err => {
+          // upon failure, show error message
+          console.log("ERROR:", err.message);
+        });
+    }
   
   
     /********************************************************** */
@@ -186,16 +316,17 @@ export default function App() {
 
   //render display
   return (
-        <Router>
+        <Router >
+              {/* --->Here is where the Sidebar sits<--- */}
           <div className="App" id="outer-cointainer">
               <div className="SideBar">
                   <SideBar 
-                      orders={search(orders)}
-                      inventories={search(inventories)}
-                      allOrders={search(allOrders)}
+                      // orders={search(orders)}
+                      // inventories={search(inventories)}
+                      // allOrders={search(allOrders)}
                   />
               </div>
-
+                {/* --->This is where the Search Bar goes<--- */}
               <div className="body" id="wrapper">
                     <label htmlFor="search-bar" />
                     {/* The search bar goes here */}
@@ -206,12 +337,18 @@ export default function App() {
                             value={ query }
                             onChange= {(e) => setQuery(e.target.value)}
                         />
-
+                      {/* --->All page components are located here<--- */}
                     <Routes 
-                        orders={search(orders)}
+                        addOrder={newOrder => addOrder(newOrder)}
+                        searchOrders={search(orders)}
+                        updateOrder={order => updateOrder(order)}
+                        deleteOrder={id => deleteOrder(id)} //onDelete is btwn only Routes and PartORds
+                        orders = {orders}
+
                         inventories={search(inventories)}
+                        onUpdateInventory={id => updateInventory(id)}
+                        onDeleteInventory={id => deleteInventory(id)}
                         allOrders={search(allOrders)}
-                      
                     />
               </div>
           </div>   

@@ -18,12 +18,16 @@ con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
 
-  let sql = "SELECT * FROM orders;";
+  let sql = "CREATE TABLE inventory (ord_id INT NOT NULL AUTO_INCREMENT, ord_date VARCHAR (10), \
+            vendor VARCHAR (20),team VARCHAR (30), item VARCHAR (100), size VARCHAR (10),\
+            qty INT NOT NULL,  \
+            part_ord VARCHAR (3) NOT NULL, full_ord VARCHAR (3) NOT NULL, PRIMARY KEY (ord_id)\
+            );"
   con.query(sql, function (err, result) {
     if (err) throw err;
-    console.log("Selected table called orders was successful!");
+    console.log("Yay! Your inventory table was created successfully!");
 
-    console.log("Closing...");
+    console.log("Bye bye for now :) ...");
   });
 
   con.end();

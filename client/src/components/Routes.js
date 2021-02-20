@@ -27,13 +27,23 @@ export default function Routes( props ) {
 
                 {/* Enter orders here  */}
                 <Route path="/orders_input">
-                    <OrdersForm />
+                    <OrdersForm 
+                        // This is passing data up but data is not being passed to ALL orders
+                        onSubmit={(newOrder) => props.addOrder(newOrder)}/> 
+
+
                 </Route>
 
                 {/* This component displays all unreceived and partial entered from the form.
                     Display only if Full Order = NO */}
                 <Route path="/part_orders">
-                    <PartOrders orders={props.orders} />
+                    <PartOrders 
+                        orders={props.orders} 
+                        onUpdateOrder={order =>props.updateOrder(order)}
+                        onDeleteOrder={id => props.deleteOrder(id)}
+                  
+
+                    />
                 </Route>
                 
                 {/* collection of all full received existing and new items, and displays all items
