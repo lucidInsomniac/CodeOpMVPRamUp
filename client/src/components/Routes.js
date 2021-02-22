@@ -8,7 +8,8 @@ import OrdersForm from './OrdersForm'
 import PartOrders from './PartOrders'
 import FullOrders from './FullOrders'
 import Inventory from './Inventory'
-import PartOrdEditForm from './PartOrdEditForm'
+import EditPartOrdForm from './EditPartOrdForm'
+import EditFullOrdForm from './EditFullOrdForm'
 
 
 
@@ -48,21 +49,35 @@ export default function Routes( props ) {
                 </Route>
 
                 <Route path="/part_orders/edit/:id">
-                    <PartOrdEditForm 
+                    <EditPartOrdForm 
                         partOrders={props.partOrders} 
-                        onUpdateSubmit={id => props.updatePartOrder(id)}
+                        onUpdatePartOrder={partOrdId=> props.updatePartOrder(partOrdId)}
                     />
                 </Route>
                 
                 {/* collection of all full received existing and new items, and displays all items
                   Display only if Full Order = YES */}
-                <Route path="/full_orders">
+                <Route path="/full_orders" exact>
                     <FullOrders 
                         fullOrders={props.fullOrders} 
-                        // onUpdateFullOrder={id => props.updateFullOrder(id)}
                         onDeleteFullOrder={id => props.deleteFullOrder(id)}
+                        onGetFullOrdId={id => props.getFullOrdId(id)}
                     />
                 </Route>
+
+                <Route path="/full_orders/edit/:id">
+                   <EditFullOrdForm 
+                        fullOrders={props.fullOrders} 
+                        onUpdateFullOrder={fullOrdId => props.updateFullOrder(fullOrdId)}
+                   /> 
+                </Route>
+                
+                {/* <Route path="/full_orders/edit/:id">
+                    <EditFullOrdForm 
+                        fullOrders={props.fullOrders}
+                        onUpdateFullOrder={fullOrdId => props.updateFullOrder(fullOrdId)}
+                    />
+                </Route> */}
                 
                 {/* Displays all existing and new orders */}
                 <Route path="/inventory">

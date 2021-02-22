@@ -1,6 +1,9 @@
 // feeds data from mysql from Receiving table
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Table, Button } from 'react-bootstrap'
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 
 export default function FullOrders (props) {   //this would be props for the component
@@ -17,8 +20,10 @@ export default function FullOrders (props) {   //this would be props for the com
     }
 
     //Event handler for edit triggered by onUpdate to send data back up to App.js
-    function handleClickUpdate (fo) {
-        props.onUpdateFullOrder(fo)
+    function handleClickEdit (fo) {
+        //check correct ord_id was select
+        console.log("Edit was clicked", fo)
+        props.onGetFullOrdId(fo)
     }
 
 
@@ -59,14 +64,16 @@ export default function FullOrders (props) {   //this would be props for the com
                             <td key={fullOrder.ord_id}>{fullOrder[e]}</td>
                         ))}
                             <td>
-                                <Button 
-                                    id="edit"
-                                    className="Edit"
-                                    onClick={() => handleClickUpdate(fullOrder.ord_id)}
-                                    type="button"
-                                >
-                                    Edit
-                                </Button>
+                                <Link to={`/full_orders/edit/${fullOrder.ord_id}`}>
+                                    <Button 
+                                        id="edit"
+                                        className="Edit"
+                                        onClick={() => handleClickEdit(fullOrder.ord_id)}
+                                        type="button"
+                                    >
+                                        <EditIcon/>
+                                    </Button>
+                                </Link>
                             </td>
                             <td>
                                 <Button
@@ -75,7 +82,7 @@ export default function FullOrders (props) {   //this would be props for the com
                                     onClick={() => handleClickDelete(fullOrder.ord_id)}
                                     type="button"
                                 >
-                                    Delete
+                                    <DeleteIcon />
                                 </Button>
                             </td>
                     </tr>

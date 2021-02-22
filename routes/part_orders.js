@@ -150,6 +150,7 @@ router.get("/", async (req, res) => {
           qty = '${qty}',
           part_ord = '${part_ord}',
           full_ord = '${full_ord}'
+          WHERE ord_id = ${ord_id}
         `;
   
         //awaiting response on adding the new data to the DB

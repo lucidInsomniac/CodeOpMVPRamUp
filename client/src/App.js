@@ -23,15 +23,11 @@ export default function App() {
   const [ query, setQuery] = useState("")
 
   //init empty state for update partial order
-  const [editPartOrd, setEditPartOrd] = useState("")
+  const [partOrdId, setPartOrdId] = useState("")
 
-  
-  //Test Function for Mock Display ONLY
-  // function addOrder(newOrder) {
-  //     console.log('parent-newOrd', newOrder)
-  //     setOrders((state) => [...state, newOrder]);
-  //   }
-  //   console.log('parent-orders', orders)
+  //init empty state for update partial order
+  const [fullOrdId, setFullOrdId] = useState("")
+
 
 
 /************************************************************GET DATA************************************************************* */
@@ -103,26 +99,7 @@ export default function App() {
         console.log("ERROR:", err.message);
       });
   }, []); //gets saved in the state
-
-  /**********************************************GET BY ID ******************************************** */
-    function getPartOrdId(editPartOrd) {
-
-      fetch(`/part_orders/${editPartOrd}`)
-        .then(result => result.json())
-        .then(editPartOrd => {
-          setEditPartOrd(editPartOrd)
-        })
-        .catch(err => {
-          console.log(`Error: ${err.message}`)
-        });
-
-    }
-
-    useEffect(() => {
-      getPartOrdId(editPartOrd);
-      // eslint-disable-next-line
-    }, []) 
-
+    
     
 
 
@@ -179,9 +156,30 @@ export default function App() {
 
   /***************************************************UPDATE DATA************************************************************* */
 
+
+    //Get Partial orders by Id
+    function getPartOrdId(partOrdId) {
+
+      fetch(`/part_orders/${partOrdId}`)
+        .then(result => result.json())
+        .then(partOrdId => {
+          setPartOrdId(partOrdId)
+        })
+        .catch(err => {
+          console.log(`Error: ${err.message}`)
+        });
+
+    }
+
+    useEffect(() => {
+      getPartOrdId(partOrdId);
+      // eslint-disable-next-line
+    }, []) 
+
+
     //function to UPDATE PartOrd.js
-    function updatePartOrder(id) {
-      console.log("PARENT UPDATE PART", id) // correct value shows
+    function updatePartOrder(partOrdId) {
+      console.log("PARENT UPDATE PART", partOrdId) // correct value shows
   
       //Method default is always GET, to change it, you need to
       //explicitly tell REACT to send PUT request
@@ -196,7 +194,7 @@ export default function App() {
       };
         //check
         console.log("PARENT UPDATE PARTIAL", partOrders) //correct value shows
-      fetch(`/part_orders/${id}`, options)
+      fetch(`/part_orders/${partOrdId}`, options)
         // our promise for fetch, instead of using "async", "wait", and "try"
         .then(response => response.json())
         //the response returned with actual data
@@ -212,43 +210,61 @@ export default function App() {
           console.log("ERROR:", err.message);
         });
     }
+
+    //Get Full Orders by Id
+   
+    function getFullOrdId(fullOrdId) {
+
+      fetch(`/full_orders/${fullOrdId}`)
+        .then(result => result.json())
+        .then(fullOrdId => {
+          setFullOrdId(fullOrdId)
+        })
+        .catch(err => {
+          console.log(`Error: ${err.message}`)
+        });
+
+    }
+
+    
+    
   
 
-    //function to UPDATE FullOrd.js
-    // function updateFullOrder(id) {
-    //   // update task from database
-    //   // upon success, update tasks
-    //   // upon failure, show error message
+    // function to UPDATE FullOrd.js
+    function updateFullOrder(fullOrdId) {  
+      //Method default is always GET, to change it, you need to
+      //explicitly tell REACT to send PUT request
+      let options = {
+        method: "PUT", //We are updating a task
+        headers: {
+          "Content-Type": "application/json" //Description of file type is a JSON format
+        },
   
-    //   //Method default is always GET, to change it, you need to
-    //   //explicitly tell REACT to send PUT request
-    //   let options = {
-    //     method: "PUT", //We are updating a task
-    //     headers: {
-    //       "Content-Type": "application/json" //Description of file type is a JSON format
-    //     },
+        //elements into JSON elements from the data entered in the body
+        body: JSON.stringify(fullOrders)
+      };
   
-    //     //elements into JSON elements from the data entered in the body
-    //     body: JSON.stringify(fullOrders)
-    //   };
+      fetch(`/full_orders/${fullOrdId}`, options)
+        // our promise for fetch, instead of using "async", "wait", and "try"
+        .then(response => response.json())
+        //the response returned with actual data
+        .then(fullOrders => {
+          console.log(fullOrders);
+          // upon success, update tasks
+          setFullOrders(fullOrders);
+        })
   
-    //   fetch(`/full_orders/${id}`, options)
-    //     // our promise for fetch, instead of using "async", "wait", and "try"
-    //     .then(response => response.json())
-    //     //the response returned with actual data
-    //     .then(fullOrders => {
-    //       console.log(fullOrders);
-    //       // upon success, update tasks
-    //       setFullOrders(fullOrders);
-    //     })
-  
-    //     //catches error
-    //     .catch(err => {
-    //       // upon failure, show error message
-    //       console.log("ERROR:", err.message);
-    //     });
-    // }
-  
+        //catches error
+        .catch(err => {
+          // upon failure, show error message
+          console.log("ERROR:", err.message);
+        });
+    }
+    
+    useEffect(() => {
+      getFullOrdId(fullOrdId);
+      // eslint-disable-next-line
+    }, []) 
 
 
   /************************************************DELETE DATA********************************************************************* */
@@ -373,14 +389,16 @@ export default function App() {
                         getPartOrdId={getPartOrdId}
 
                         //Edit Partial Orders/ PartOrdEditForm.js
-                        updatePartOrder={id => updatePartOrder(id)}
-                      
+                        updatePartOrder={partOrdId => updatePartOrder(partOrdId)}
                         
                         //Full Orders/ FullOrders.js
-                        fullOrders={fullOrders}
                         searchFullOrders={search(fullOrders)}
-                        // updateFullOrder={id => updateFullOrder(id)}
-r                        deleteFullOrder={id => deleteFullOrder(id)}
+                        deleteFullOrder={id => deleteFullOrder(id)}
+                        fullOrders={fullOrders}
+                        getFullOrdId={getFullOrdId}
+
+                        //Edit Full Orders/ FullOrdEditForm.js
+                        updateFullOrder={fullOrdId => updateFullOrder(fullOrdId)}
                         
                         //Inventory/ Inventory.js
                         searchAllOrders={search(allOrders)}
