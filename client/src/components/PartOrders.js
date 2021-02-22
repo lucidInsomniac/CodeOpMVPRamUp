@@ -1,12 +1,18 @@
-import React from 'react'
+import React  from 'react'
 //ref video: https://youtu.be/d1r0aK5awWk
+import { Link } from 'react-router-dom'
 import { Table, Button } from 'react-bootstrap'
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
+// import PartOrdEditForm from './PartOrdEditForm'
+
+
 
 export default function PartOrders( props) {   
     //check data
     console.log('PartOrders' + JSON.stringify(props[0]))
     console.log('PartOrders', props.partOrders);
-    
+
     //pulls column data as keys from DB and displays it
     const columns= props.partOrders[0] && Object.keys(props.partOrders[0])
 
@@ -16,11 +22,11 @@ export default function PartOrders( props) {
 
     }
 
-    //Event handler for edit triggered by onUpdate to send data back up to App.js
-    function handleClickUpdate (po) {
-        props.onUpdatePartOrder(po)
+    function handleClickEdit (po) {
+        //check correct ord_id was select
+        console.log("Edit was clicked", po)
+        props.onGetPartOrdId(po)
     }
-
 
     return (
         <div className="PartOrders">
@@ -59,14 +65,16 @@ export default function PartOrders( props) {
                             <td key={partOrder.ord_id}>{partOrder[e]}</td>
                         ))}
                             <td>
-                                <Button 
-                                    id="edit"
-                                    className="Edit"
-                                    onClick={() => handleClickUpdate(partOrder.ord_id)}
-                                    type="button"
-                                >
-                                    Edit
-                                </Button>
+                                <Link to={`/part_orders/edit/${partOrder.ord_id}`}>
+                                    <Button 
+                                        id="edit"
+                                        className="Edit"
+                                        onClick={() => handleClickEdit(partOrder.ord_id)}
+                                        type="button"
+                                    >
+                                        <EditIcon/>
+                                    </Button>
+                                </Link>
                             </td>
                             <td>
                                 <Button
@@ -75,7 +83,7 @@ export default function PartOrders( props) {
                                     onClick={() => handleClickDelete(partOrder.ord_id)}
                                     type="button"
                                 >
-                                    Delete
+                                    <DeleteIcon />
                                 </Button>
                             </td>
                     </tr>

@@ -22,6 +22,10 @@ export default function App() {
   //state for search bar query function, saved as string
   const [ query, setQuery] = useState("")
 
+  //init empty state for update partial order
+  const [editPartOrd, setEditPartOrd] = useState("")
+
+  
   //Test Function for Mock Display ONLY
   // function addOrder(newOrder) {
   //     console.log('parent-newOrd', newOrder)
@@ -87,7 +91,7 @@ export default function App() {
       .then(response => response.json())
       //this is the response returned with actual data
       .then(fullOrders => {
-        console.log(fullOrders);
+        // console.log(fullOrders);
         // upon success, update tasks
         setFullOrders(fullOrders);
         //check
@@ -99,6 +103,27 @@ export default function App() {
         console.log("ERROR:", err.message);
       });
   }, []); //gets saved in the state
+
+  /**********************************************GET BY ID ******************************************** */
+    function getPartOrdId(editPartOrd) {
+
+      fetch(`/part_orders/${editPartOrd}`)
+        .then(result => result.json())
+        .then(editPartOrd => {
+          setEditPartOrd(editPartOrd)
+        })
+        .catch(err => {
+          console.log(`Error: ${err.message}`)
+        });
+
+    }
+
+    useEffect(() => {
+      getPartOrdId(editPartOrd);
+      // eslint-disable-next-line
+    }, []) 
+
+    
 
 
   /******************************************************POST DATA*************************************************************** */
@@ -152,15 +177,11 @@ export default function App() {
     }
 
 
-
-
   /***************************************************UPDATE DATA************************************************************* */
 
     //function to UPDATE PartOrd.js
-    function updatePartOrder(order) {
-      // update task from database
-      // upon success, update tasks
-      // upon failure, show error message
+    function updatePartOrder(id) {
+      console.log("PARENT UPDATE PART", id) // correct value shows
   
       //Method default is always GET, to change it, you need to
       //explicitly tell REACT to send PUT request
@@ -173,13 +194,14 @@ export default function App() {
         //elements into JSON elements from the data entered in the body
         body: JSON.stringify(partOrders)
       };
-  
-      fetch(`/part_orders/${order.ord_id}`, options)
+        //check
+        console.log("PARENT UPDATE PARTIAL", partOrders) //correct value shows
+      fetch(`/part_orders/${id}`, options)
         // our promise for fetch, instead of using "async", "wait", and "try"
         .then(response => response.json())
         //the response returned with actual data
         .then(partOrders => {
-          console.log(partOrders);
+          // console.log(partOrders);
           // upon success, update tasks
           setPartOrders(partOrders);
         })
@@ -193,39 +215,39 @@ export default function App() {
   
 
     //function to UPDATE FullOrd.js
-    function updateFullOrder(id) {
-      // update task from database
-      // upon success, update tasks
-      // upon failure, show error message
+    // function updateFullOrder(id) {
+    //   // update task from database
+    //   // upon success, update tasks
+    //   // upon failure, show error message
   
-      //Method default is always GET, to change it, you need to
-      //explicitly tell REACT to send PUT request
-      let options = {
-        method: "PUT", //We are updating a task
-        headers: {
-          "Content-Type": "application/json" //Description of file type is a JSON format
-        },
+    //   //Method default is always GET, to change it, you need to
+    //   //explicitly tell REACT to send PUT request
+    //   let options = {
+    //     method: "PUT", //We are updating a task
+    //     headers: {
+    //       "Content-Type": "application/json" //Description of file type is a JSON format
+    //     },
   
-        //elements into JSON elements from the data entered in the body
-        body: JSON.stringify(fullOrders)
-      };
+    //     //elements into JSON elements from the data entered in the body
+    //     body: JSON.stringify(fullOrders)
+    //   };
   
-      fetch(`/full_orders/${id}`, options)
-        // our promise for fetch, instead of using "async", "wait", and "try"
-        .then(response => response.json())
-        //the response returned with actual data
-        .then(fullOrders => {
-          console.log(fullOrders);
-          // upon success, update tasks
-          setFullOrders(fullOrders);
-        })
+    //   fetch(`/full_orders/${id}`, options)
+    //     // our promise for fetch, instead of using "async", "wait", and "try"
+    //     .then(response => response.json())
+    //     //the response returned with actual data
+    //     .then(fullOrders => {
+    //       console.log(fullOrders);
+    //       // upon success, update tasks
+    //       setFullOrders(fullOrders);
+    //     })
   
-        //catches error
-        .catch(err => {
-          // upon failure, show error message
-          console.log("ERROR:", err.message);
-        });
-    }
+    //     //catches error
+    //     .catch(err => {
+    //       // upon failure, show error message
+    //       console.log("ERROR:", err.message);
+    //     });
+    // }
   
 
 
@@ -341,24 +363,30 @@ export default function App() {
                         />
                       {/* --->All page components are located here<--- */}
                     <Routes 
-                        // Partial Orders/ PartOrders.js
+                        //Order Form / OrdersForm.js
                         addOrder={newOrder => addOrder(newOrder)}
+
+                        // Partial Orders/ PartOrders.js
                         searchPartOrders={search(partOrders)}
-                        updatePartOrder={id => updatePartOrder(id)}
                         deletePartOrder={id => deletePartOrder(id)} //function must match here, onDelete is ONLY btwn only Routes and child
                         partOrders = {partOrders}
+                        getPartOrdId={getPartOrdId}
+
+                        //Edit Partial Orders/ PartOrdEditForm.js
+                        updatePartOrder={id => updatePartOrder(id)}
+                      
                         
                         //Full Orders/ FullOrders.js
                         fullOrders={fullOrders}
                         searchFullOrders={search(fullOrders)}
-                        updateFullOrder={id => updateFullOrder(id)}
+                        // updateFullOrder={id => updateFullOrder(id)}
 r                        deleteFullOrder={id => deleteFullOrder(id)}
                         
                         //Inventory/ Inventory.js
                         searchAllOrders={search(allOrders)}
                         allOrders={allOrders}
-
                     />
+
               </div>
           </div>   
         </Router>

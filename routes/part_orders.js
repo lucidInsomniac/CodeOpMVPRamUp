@@ -167,7 +167,7 @@ router.get("/", async (req, res) => {
     } catch (err) {
       res.status(500).send({ error: err.message });
     }
-  });
+  }); 
   
   //DELETE data by ID
   //Actual receiving data and test on Postman works!

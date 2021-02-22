@@ -8,6 +8,8 @@ import OrdersForm from './OrdersForm'
 import PartOrders from './PartOrders'
 import FullOrders from './FullOrders'
 import Inventory from './Inventory'
+import PartOrdEditForm from './PartOrdEditForm'
+
 
 
 export default function Routes( props ) {
@@ -16,12 +18,12 @@ export default function Routes( props ) {
             // Allows you to switch paths when clicked
             <Switch>
                 {/* Add Dashboard Home View */}
-                <Route path="/home" exact>
+                <Route path="/home">
                     <Home />
                 </Route>
                 
                 {/* About Project */}
-                <Route path="/about">
+                <Route path="/about" exact>
                     <About />
                 </Route>
 
@@ -29,18 +31,26 @@ export default function Routes( props ) {
                 <Route path="/orders_input">
                     <OrdersForm 
                         // This is passing data up but data is not being passed to ALL orders
-                        onSubmit={(newOrder) => props.addOrder(newOrder)}/> 
+                        onSubmit={(newOrder) => props.addOrder(newOrder)}
+                    /> 
 
 
                 </Route>
 
                 {/* This component displays all unreceived and partial entered from the form.
                     Display only if Full Order = NO */}
-                <Route path="/part_orders">
+                <Route path="/part_orders" exact>
                     <PartOrders 
                         partOrders={props.partOrders} 
-                        onUpdatePartOrder={id =>props.updatePartOrder(id)}
+                        onGetPartOrdId={id => props.getPartOrdId(id)}
                         onDeletePartOrder={id => props.deletePartOrder(id)}
+                    />
+                </Route>
+
+                <Route path="/part_orders/edit/:id">
+                    <PartOrdEditForm 
+                        partOrders={props.partOrders} 
+                        onUpdateSubmit={id => props.updatePartOrder(id)}
                     />
                 </Route>
                 
@@ -49,7 +59,7 @@ export default function Routes( props ) {
                 <Route path="/full_orders">
                     <FullOrders 
                         fullOrders={props.fullOrders} 
-                        onUpdateFullOrder={id => props.updateFullOrder(id)}
+                        // onUpdateFullOrder={id => props.updateFullOrder(id)}
                         onDeleteFullOrder={id => props.deleteFullOrder(id)}
                     />
                 </Route>
