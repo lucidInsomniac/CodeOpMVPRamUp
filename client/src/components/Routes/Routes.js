@@ -47,7 +47,8 @@ export default function Routes( props ) {
                         onDeletePartOrder={id => props.deletePartOrder(id)}
                     />
                 </Route>
-
+                
+                {/* Edit Partial Orders here, they will send data back to allorders */}
                 <Route path="/part_orders/edit/:id">
                     <EditPartOrdForm 
                         partOrders={props.partOrders} 
@@ -64,7 +65,8 @@ export default function Routes( props ) {
                         onGetFullOrdId={id => props.getFullOrdId(id)}
                     />
                 </Route>
-
+                  
+                  {/* Edit Full Orders here, they will send data back to allorders */}
                 <Route path="/full_orders/edit/:id">
                    <EditFullOrdForm 
                         fullOrders={props.fullOrders} 
@@ -74,7 +76,7 @@ export default function Routes( props ) {
                 </Route>
         
                 
-                {/* Displays all existing and new orders */}
+                {/* Displays all orders, existing and new orders */}
                 <Route path="/inventory">
                     <Inventory allOrders={props.allOrders} />
                 </Route>

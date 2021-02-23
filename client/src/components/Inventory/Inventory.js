@@ -16,6 +16,7 @@ export default function Inventory (props) {
         <div className="Inventory">
             <h2>All Orders</h2>
             
+            {/* React-Boostrap syntax for table rendering, with inline CSS for cell spacing */}
             <Table size="sm" className="Table" cellPadding={10} cellSpacing={2}>
 
                 <thead className="headers">
@@ -33,8 +34,7 @@ export default function Inventory (props) {
                         <th>Partial Order</th>
                         <th>Full Order</th>
                     </tr>
-                    {/* <tr>{ props.orders[0] && 
-                            props.orders[0] && columns.map( (heading, index) =><th key={index}>{ heading }</th>)}</tr> */}
+                  
                 </thead>
 
                 <tbody className="tbody">
@@ -45,7 +45,7 @@ export default function Inventory (props) {
                      
                     <tr className="keyrow" key={allOrder.ord_id}> 
                         {  
-                            // we pass row and incl column prop to access data in that cell
+                            // we pass row and include column prop to access data in that cell
                         columns.map( (e) =>  (
                             <td key={allOrder.ord_id}>{allOrder[e]}</td>
                         ))}

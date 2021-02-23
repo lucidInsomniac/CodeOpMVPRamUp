@@ -5,11 +5,6 @@ import './SideBar.css'
 //import const SidebarData 
 import { SidebarData } from './SidebarData'
 import { Link } from 'react-router-dom'
-// //Icon for Menu
-// import MenuIcon from '@material-ui/icons/Menu';
-// //Icon for Close
-// import CloseIcon from '@material-ui/icons/Close';
-
 
 
 // This displays all the components, react-router to coordinate
@@ -36,15 +31,20 @@ export default function SideBar() {
                                 onClick={() => (
                                     window.location.pathname = val.path
                                 )}
-                            >
+                            >   
+                                {/* This is how we list the sidebar menu items */}
+                                {/* Here goes the link to the component when clicked */}
                                 <Link 
                                     className="nav-link"
                                     to ={val.path} exact>
-
+                                    
+                                    {/* Here goes the icon */}
                                     <div id="nav-icon">
                                         {val.icon}
                                     </div> 
 
+                                    {/* Here goes the text to indicate the menu item, <span> 
+                                    is used like <div> but for text */}
                                     <span id="line-title">
                                         {val.title}
                                     </span>

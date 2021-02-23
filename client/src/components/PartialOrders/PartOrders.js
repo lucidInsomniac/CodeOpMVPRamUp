@@ -21,6 +21,8 @@ export default function PartOrders( props) {
 
     }
 
+    //Event handler for onClick triggered event to send to 
+    //parent to GET partial order by ID
     function handleClickEdit (po) {
         //check correct ord_id was select
         console.log("Edit was clicked", po)
@@ -30,7 +32,8 @@ export default function PartOrders( props) {
     return (
         <div className="PartOrders">
             <h2>Partial Orders</h2>
-            
+
+            {/* React-Boostrap syntax for table rendering, with inline CSS for cell spacing */}
             <Table size="sm" className="Table" cellPadding={10} cellSpacing={2}>
 
                 <thead className="headers">
@@ -52,6 +55,7 @@ export default function PartOrders( props) {
                 </thead>
 
                 <tbody className="tbody">
+
                     {/* map data inside body, it goes over each column using map func
                     key needs to be unique can use index and pass as param*/}
                 { props.partOrders && 
@@ -59,10 +63,12 @@ export default function PartOrders( props) {
                      
                     <tr className="keyrow" key={partOrder.ord_id}> 
                         {  
-                            // we pass row and incl column prop to access data in that cell
+                            // we pass row and incl column prop to access data in that cell, <td> tag
                         columns.map( (e) =>  (
                             <td key={partOrder.ord_id}>{partOrder[e]}</td>
                         ))}
+
+                            {/* Edit button starts here */}
                             <td>
                                 <Link to={`/part_orders/edit/${partOrder.ord_id}`}>
                                     <Button 
@@ -70,11 +76,14 @@ export default function PartOrders( props) {
                                         className="Edit"
                                         onClick={() => handleClickEdit(partOrder.ord_id)}
                                         type="button"
-                                    >
+                                    >   
+                                        {/* Icon for edit button */}
                                         <EditIcon/>
                                     </Button>
                                 </Link>
                             </td>
+
+                                {/* Delete button starts here */}
                             <td>
                                 <Button
                                     id="delete"

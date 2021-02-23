@@ -5,7 +5,7 @@ import './EditPartOrdForm.css'
 
 
 export default function ParOrdEditForm (props) {
-  //check
+  //check props
   console.log("Update partial form", JSON.stringify(props))
   console.log("Update partial form INDEX", props.partOrders[0])
   console.log("Update partial form ID", props.partOrders[0].ord_id)
@@ -26,10 +26,10 @@ export default function ParOrdEditForm (props) {
   })
 
 
-  //check update order
+  //check updated state
   console.log("BEFORE SUBMIT", currentOrd)
 
-  //event handler when submit is triggered
+  //event handler when submit is triggered to send updated data back to parent and DB
   function handleSubmit(event) {
     event.preventDefault()
     //use new data for selected employee
@@ -41,9 +41,10 @@ export default function ParOrdEditForm (props) {
     setCurrentOrder("")
   }
   
+  //Event handler to handle value changes
   function handleOnChange (event) {
     let {name, value} = event.target
-
+    //if name of input matches, set value to that variable
     if (name) {
         setCurrentOrder(value)
     }
@@ -56,7 +57,7 @@ export default function ParOrdEditForm (props) {
 
         <h2>Edit Partial Orders Here</h2>
 
-        {/* The container for the form component starts here */}
+        {/* React-Bootstrap syntax, container for the form component starts here */}
         <Form className="Form" onUpdatePartOrder={handleSubmit}>
             
             {/* This is the first row with Order Date and Vendor */}
@@ -96,6 +97,7 @@ export default function ParOrdEditForm (props) {
               </Form.Group>
               <Form.Group controlId="group">
                   <Form.Label>Size</Form.Label>
+                    {/* This creates the dropdown selection */}
                       <Form.Control onChange={handleOnChange} name="size" value={currentOrd.size} id="size" as="select" defaultValue="Choose...">
                           <option>Choose...</option>
                           <option>XS / YXL</option>
@@ -129,8 +131,9 @@ export default function ParOrdEditForm (props) {
                     </Form.Control>
               </Form.Group>
           </Form.Row>
+
+          {/* The Update button starts here */}
           <Link to="/inventory">
-              {/* The submit button goes here */}
             <Button 
                 className="update-btn-part-ord" 
                 type="submit"
@@ -139,6 +142,7 @@ export default function ParOrdEditForm (props) {
             </Button>
           </Link>
 
+           {/* The Cancel button starts here */}
           <Link to="/part_orders">
              <Button className="cancel-btn" type="submit">Cancel</Button>
           </Link>

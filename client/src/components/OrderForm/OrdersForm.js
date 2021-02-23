@@ -8,7 +8,7 @@ export default function OrdersForm (props) {
   //check
   console.log('Form', props)
 
-  //hooks for form input values: 
+  //states for form input values: 
   //ordDate
   const [ordDate, setOrdDate] = useState('');
   //team
@@ -26,7 +26,7 @@ export default function OrdersForm (props) {
   //full order
   const [full_ord, setFullOrd] = useState('');
 
-  //Event hanlder for event listener onSubmit when triggered
+  //Event handlder for event listener onSubmit when triggered
   //by submit event
   function handleSubmit(event) {
     //prevent entire doc from reloading, only target event source
@@ -44,7 +44,7 @@ export default function OrdersForm (props) {
       part_ord: part_ord,
       full_ord: full_ord
     }
-      //check inventory has value
+      //check order has value
       console.log('newOrder', order)
 
     // onSubmit, send the state obj with all the data to parent
@@ -67,7 +67,7 @@ export default function OrdersForm (props) {
 
 
   //Event handler for event listener onClick when triggered by
-  //on-click event
+  //on-click event, set state for each input field
   function handleChange (event) {
     let {name, value} = event.target
 
@@ -103,14 +103,13 @@ export default function OrdersForm (props) {
 
 
       //render form here
-
     return (
       <div className="OrdersForm"> 
 
         <h2>Add Orders Here</h2>
 
 
-        {/* The container for the form component starts here */}
+        {/* React-Bootstrap syntax, container for the form component starts here */}
         <Form className="Form" 
           onSubmit={handleSubmit}>
 
@@ -194,7 +193,7 @@ export default function OrdersForm (props) {
     )
 }
 
-/**********************************Original Code******************************************************************** */
+/**********************************Original Code to help understand React-Bootstrap******************************************************************** */
 
       // divs, input, className, and htmlFor formated in Pure CSS
       // Link to Documentation: https://purecss.io/forms/

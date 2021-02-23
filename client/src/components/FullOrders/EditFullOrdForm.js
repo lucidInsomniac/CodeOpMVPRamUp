@@ -5,7 +5,7 @@ import './EditFullOrdForm.css'
 
 
 export default function FullOrdEditForm (props) {
-   //check
+   //check props
    console.log("Update FULL form", JSON.stringify(props))
    console.log("Update FULL form", props.fullOrders[0])
  //   console.log("Update partial form", props.partOrders[0].ord_id)
@@ -22,45 +22,11 @@ export default function FullOrdEditForm (props) {
      full_ord: props.fullOrders[0].full_ord
    })
 
-
-
-    //init empty state obj
-    //hooks for form input values: 
-    //   const [ordDate, setOrdDate] = useState("");
-    //   //team
-    //   const [vendor, setVendor] = useState('')
-    //   //item
-    //   const [team, setTeam] = useState('');
-    //   //item
-    //   const [item, setItem] = useState('');
-    //   //size
-    //   const [size, setSize] = useState('');
-    //   //qty
-    //   const [qty, setQty] = useState('');
-    //   //part order
-    //   const [part_ord, setPartOrd] = useState('');
-    //   //full order
-    //   const [full_ord, setFullOrd] = useState('');
-
-    //to go back to referenced page already cached
-    // let history = useHistory();
-    
-
-    //save all date in state obj to be sent to parent
-    //   const updateOrder = {
-    //     ordDate: ordDate,
-    //     vendor: vendor,
-    //     team: team,
-    //     item: item,
-    //     size: size,
-    //     qty: qty,
-    //     part_ord: part_ord,
-    //     full_ord: full_ord
-    //   }
-  //check update order
+  //check updated state
   console.log("BEFORE SUBMIT", currentOrd)
 
-  //event handler when submit is triggered
+  //event handler when submit is triggered to 
+  //send data back to parent and update DB
   function handleSubmit(event) {
     event.preventDefault()
     //use new data for selected employee
@@ -68,66 +34,25 @@ export default function FullOrdEditForm (props) {
     //check update order
     console.log("AFTER SUBMIT", currentOrd)
 
-    //go back to id
-    // history.push(`/part_orders/${updateOrder.id}`)
-
     //reset all fields
     setCurrentOrder("")
-    //  setOrdDate("")
-    //  setVendor("")
-    //  setTeam("")
-    //  setItem("")
-    //  setSize("")
-    //  setQty("")
-    //  setPartOrd("")
-    //  setFullOrd("")
   }
   
+  //Event handler to handle value changes
   function handleOnChange (event) {
     let {name, value} = event.target
-
+    //if name of input matches, set value to that variable
     if (name) {
         setCurrentOrder(value)
     }
   }
-
-        //         switch(name) {
-        //             case 'ordDate':   
-        //                 setOrdDate(value);
-        //                 break;
-        //             case 'vendor':
-        //                 setVendor(value);
-        //                 break;
-        //             case 'team':
-        //                 setTeam(value);
-        //                 break;
-        //             case 'item':
-        //                 setItem(value);
-        //                 break;
-        //             case 'size':
-        //                 setSize(value);
-        //                 break;
-        //             case 'qty':
-        //                 setQty(value);
-        //                 break;
-        //             case 'part_ord':
-        //                 setPartOrd(value);
-        //                 break;
-        //             case 'full_ord':
-        //                 setFullOrd(value);
-        //                 break;
-        //             default:
-        //                   break;
-        //         }
-        //   }
-
 
     return (
         <div className="EditForm"> 
 
         <h2>Edit Full Orders Order Here</h2>
 
-        {/* The container for the form component starts here */}
+        {/* React-Bootsrap syntax, container for the form component starts here */}
         <Form className="Form" onUpdateFullOrder={handleSubmit}>
             
             {/* This is the first row with Order Date and Vendor */}
@@ -167,6 +92,7 @@ export default function FullOrdEditForm (props) {
               </Form.Group>
               <Form.Group controlId="group">
                   <Form.Label>Size</Form.Label>
+                  {/* This creates the dropdown selection */}
                       <Form.Control onChange={handleOnChange} name="size" value={currentOrd.size} id="size" as="select" defaultValue="Choose...">
                           <option>Choose...</option>
                           <option>XS / YXL</option>
@@ -200,6 +126,8 @@ export default function FullOrdEditForm (props) {
                     </Form.Control>
               </Form.Group>
           </Form.Row>
+
+          {/* The Update button starts here */}
           <Link to="/inventory">
               {/* The submit button goes here */}
             <Button 
@@ -210,6 +138,7 @@ export default function FullOrdEditForm (props) {
             </Button>
           </Link>
 
+          {/* The Cancel button starts here */}
           <Link to="/full_orders">
              <Button className="cancel-btn" type="submit">Cancel</Button>
           </Link>
