@@ -2,14 +2,14 @@ import React from 'react'
 //import route and switch 
 import { Route, Switch } from 'react-router-dom'
 //import all page components for Routes 
-import Home from './Home'
-import About from './About'
-import OrdersForm from './OrdersForm'
-import PartOrders from './PartOrders'
-import FullOrders from './FullOrders'
-import Inventory from './Inventory'
-import EditPartOrdForm from './EditPartOrdForm'
-import EditFullOrdForm from './EditFullOrdForm'
+import Home from '../Home/Home'
+import About from '../About/About'
+import OrdersForm from '../OrderForm/OrdersForm'
+import PartOrders from '../PartialOrders/PartOrders'
+import FullOrders from '../FullOrders/FullOrders'
+import Inventory from '../Inventory/Inventory'
+import EditPartOrdForm from '../PartialOrders/EditPartOrdForm'
+import EditFullOrdForm from '../FullOrders/EditFullOrdForm'
 
 
 

@@ -5,7 +5,7 @@
   height: 100vh;
   background: url("./components/Images/20697.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size:cover;
   background-position: center;
   font-size: 20px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -32,7 +32,7 @@ h1 {
 #search-bar{
   text-align: left;
   height: 10px;
-  margin-top: 10px;
+  margin-top: 0;
   padding: 10px;
   font-size: 20px;
   border: solid thick grey;
@@ -52,4 +52,58 @@ Table {
   display: flexbox;
   padding-left: 22%;
 
+}
+
+img {
+  margin-left: 20%;
+  
+}
+
+.part-chart {
+  display: inline-block;
+  flex-direction: row;
+  margin-bottom: 5% ;
+}
+
+.full-chart {
+  display: inline-flex;
+  margin-left:2%;
+  width: 100%;
+
+}
+
+.partialorders {
+  border: 1px thin lightblue;
+  box-shadow: 3px 2px 6px lightblue;
+  width: 20%;
+  margin-left: 4%;
+}
+.fullorders{
+  width: 20%;
+  border: 1px thin lightblue;
+  box-shadow: 3px 2px 6px lightblue;
+}
+
+.donut-chart{
+  width: 20%;
+  border: 1px thin lightblue;
+  box-shadow: 3px 2px 6px lightblue;
+}
+
+#avatar {
+  display: block;
+  margin-left: 90%;
+  /* margin-top: 4%; */
+  margin-bottom: 0;
+  padding-bottom: 0;
+  height: 1rem;
+  width: 3rem;
+  min-width: 3rem;
+  border: 3px solid;
+  font-size: 100px;
+}
+
+
+#avatar:hover{
+  color: goldenrod;
 }

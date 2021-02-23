@@ -1,10 +1,9 @@
 // this will be the dashboard view
 import React, { useState, useEffect} from 'react' 
-import SideBar from './components/SideBar'
-import Routes from './components/Routes'
+import SideBar from './components/Sidebar/SideBar'
+import Routes from './components/Routes/Routes'
 import {BrowserRouter as Router} from 'react-router-dom'
 import './App.css'
-
 
 
 // This displays all the components, react-router to coordinate
@@ -366,6 +365,12 @@ export default function App() {
               <div className="SideBar">
                   <SideBar />
               </div>
+              
+              {/* mock display for profile avatar icon */}
+              <div className="avatar-icon">
+              <i className="fab fa-optin-monster" id="avatar" />
+              </div>
+
                 {/* --->This is where the Search Bar goes<--- */}
               <div className="body" id="wrapper">
                     <label htmlFor="search-bar" />
@@ -377,6 +382,7 @@ export default function App() {
                             value={ query }
                             onChange= {(e) => setQuery(e.target.value)}
                         />
+
                       {/* --->All page components are located here<--- */}
                     <Routes 
                         //Order Form / OrdersForm.js
