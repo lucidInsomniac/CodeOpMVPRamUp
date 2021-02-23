@@ -116,7 +116,7 @@ Future features in the pipeline, might not be included in MVP based on time allo
 
 - Generate to PDF for print
 
-- Form: Edit, Save settings
+- Form: Edit settings
 
 - Login/Register
 
