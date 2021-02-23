@@ -36,9 +36,9 @@ This part walks through the features included in this minimal viable product.
 
 ### Features
 
-- Be able to create, delete, and update: orders, inventory, and athlete cards
+- Be able to create, delete, update and separate orders, and inventory
 
-- Be able to view: orders, inventory, and athlete cards
+- Be able to view: orders, and inventory
 
 - Navigate with a sidebar with menu
 
@@ -48,33 +48,39 @@ This part walks through the features included in this minimal viable product.
 
 This app has 6 pages:
 
-1. A homepage that displays a welcome message, and sidebar for navigating the menu to other pages
+1. An "About" page introducing the app and features.
 
-2. A "Receiving"page to list all orders and allows updating
+2. A "Home" page that displays a welcome message, with charts displaying current percentages of available gear vs borrowed, a profile icon, and sidebar for navigating the menu to other pages
 
 3. An "Ordering" page that is a form for entering orders
 
-4. An "Inventory" page that displays all the current inventory from the MYSQL database
+4. A "Partial Orders"page to list all unreceived and partially received orders by order date and allows updating, and deleting
 
-5. There is a "Distribution"page, that shows a grid of athlete's where you can click on them to display and enlarged image of the athlete and their provided information
+5. A "Full Orders"page to list all completely received orders by order date and allows updating, and deleting
 
-6. An "Athlete" form for an athlete to fill out in order to receive gear for their sport.
+6. An "Inventory" page that displays all the current inventory from the MYSQL database
+
+7. There is a search bar for orders and inventory
+
+8. Form: Edit, Cancel, Delete,
 
 ### Technologies
 
-- React
+- React JS
 
-- Pure CSS
+- Material UI Icons for side bar icons
 
-- Material UI
+- Font Awesome for mock-up avatar
 
-- Jira
+- Jira for error, bug and story tracking
 
-- React Router
+- React Router for Frontend routes
 
-- MYSQL
+- MYSQL DB
 
-- Express
+- Express JS for server
+
+- canva.com for mock-up charts on homepage
 
 ### Roadmap
 
@@ -110,15 +116,11 @@ Future features in the pipeline, might not be included in MVP based on time allo
 
 - Generate to PDF for print
 
-- Form: Edit, Cancel, Delete, Save settings
+- Form: Edit, Save settings
 
 - Login/Register
 
 - User roles: Manager, Student Staff, and Athlete
-
-- Search Bar for inventory, orders, and athletes
-
-- Filter for Search Bar
 
 ### Technologies
 
@@ -130,7 +132,7 @@ Future features in the pipeline, might not be included in MVP based on time allo
 
 - Zendesk
 
-- Barcode scanner API
+- Barcode and QR code scanner API
 
 - Confluence: Internal FAQ
 
