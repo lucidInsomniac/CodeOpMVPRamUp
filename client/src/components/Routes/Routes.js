@@ -69,15 +69,10 @@ export default function Routes( props ) {
                    <EditFullOrdForm 
                         fullOrders={props.fullOrders} 
                         onUpdateFullOrder={fullOrdId => props.updateFullOrder(fullOrdId)}
+                        
                    /> 
                 </Route>
-                
-                {/* <Route path="/full_orders/edit/:id">
-                    <EditFullOrdForm 
-                        fullOrders={props.fullOrders}
-                        onUpdateFullOrder={fullOrdId => props.updateFullOrder(fullOrdId)}
-                    />
-                </Route> */}
+        
                 
                 {/* Displays all existing and new orders */}
                 <Route path="/inventory">

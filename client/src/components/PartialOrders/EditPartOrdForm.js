@@ -7,11 +7,14 @@ import './EditPartOrdForm.css'
 export default function ParOrdEditForm (props) {
   //check
   console.log("Update partial form", JSON.stringify(props))
-  console.log("Update partial form", props.partOrders[0])
-//   console.log("Update partial form", props.partOrders[0].ord_id)
+  console.log("Update partial form INDEX", props.partOrders[0])
+  console.log("Update partial form ID", props.partOrders[0].ord_id)
+
+  
 
   //initial state that pre-fills the input fields 
-  const [ currentOrd, setCurrentOrder ] = useState({
+  let [ currentOrd, setCurrentOrder ] = useState({
+  
     ordDate: props.partOrders[0].ord_date,
     vendor: props.partOrders[0].vendor,
     team: props.partOrders[0].team,
