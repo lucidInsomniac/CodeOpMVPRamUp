@@ -102,11 +102,12 @@ This app has 6 pages:
 
     - Node JS
 
-3. Error and Bug Tracking 
+3. Error and Bug Tracking
 
     - Jira for error, bug and story tracking
 
 ## Error Logs
+
     1. React-Bootstrap error: 
 
         part_orders:1 Refused to apply style from 'https://maxcdn.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css' because its MIME type ('application/xml') is not a supported stylesheet MIME type, and strict MIME checking is enabled.
@@ -116,11 +117,16 @@ This app has 6 pages:
         Failed to load resource: the server responded with a status of 403 ()
 
 ## Known Bug Issues
+
     - Search bar temporarily stopped working
 
     - Some dates are not listed in order even though sql commands set to ORDER BY ASC
 
     - Submitted new order would not render in "Partial Orders" or "Full Orders" if input for both fields were not selected with "Yes"or "No".  -- Issue resolved 02/24/2021
+
+## Jira Log as of: 02/25/2021
+
+![Screenshot of current log](/ProjectInfo/Jira2.png)
 
 ### Roadmap
 
