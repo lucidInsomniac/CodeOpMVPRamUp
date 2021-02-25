@@ -120,11 +120,32 @@ This app has 6 pages:
 
 ## Known Bug Issues
 
-    - Search bar temporarily stopped working
+    1. The "Edit" Button is not responsive at all for "Partial Orders" and "Full Orders"pages. Isolated issue to how data is passed from /components/Routes.js. Check console log, nothing registers when "Update" Button in both "Partial Orders" and "Full Orders" pages:
 
-    - Some dates are not listed in order even though sql commands set to ORDER BY ASC
+            [Line 55] props.updatePartOrder()
 
-    - Submitted new order would not render in "Partial Orders" or "Full Orders" if input for both fields were not selected with "Yes"or "No".  -- Issue resolved 02/24/2021
+            [Line 73] props.updateFullOrder()
+
+        They fetch with "PUT" method function on client App.js if used to replace the following functions and come up as "undefined" for eacg value: 
+
+            [Line 46] props.getPartOrdId()
+
+            [Line 65] props.getFullOrdId()
+
+        Isolation incident is most likely in handleSubmit event handlers for both:
+
+            /components/PartialOrders/EditPartOrdForm.js  [Line 33]
+            
+        AND 
+            
+            /components/FullOrders/EditFullOrdForm.js  [Line 30]
+
+
+    2. Search bar temporarily stopped working
+
+    3. Some dates are not listed in order even though sql commands set to ORDER BY ASC
+
+    4. Submitted new order would not render in "Partial Orders" or "Full Orders" if input for both fields were not selected with "Yes"or "No".  -- Issue resolved 02/24/2021
 
 ## Jira Log as of: 02/25/2021
 
