@@ -1,3 +1,8 @@
+
+=====================================================
+
+Creating MYSQL Script files:
+
 -- How to export DB file:
 -- mysql -u root -p [dbname] > [path to filename.sql]
 
@@ -7,11 +12,11 @@
 -- How to create sql file:
 -- Video ref: https://youtu.be/Tw0FMyNM_88
 
+--DB Schema lookup flowchart shapes: https://www.rff.com/flowchart_shapes.php
 =====================================================
 
-Creating MYSQL Script files:
-
 change to desired DB with:
+
 =====================================================
 
         /*change DB*/

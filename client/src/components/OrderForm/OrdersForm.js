@@ -91,10 +91,10 @@ export default function OrdersForm (props) {
                 setQty(value);
                 break;
             case 'part_ord':
-                setPartOrd(value);
+                setPartOrd("N/A");
                 break;
             case 'full_ord':
-                setFullOrd(value);
+                setFullOrd("N/A");
                 break;
             default:
                   break;
@@ -168,19 +168,11 @@ export default function OrdersForm (props) {
           <Form.Row className="row5">
               <Form.Group controlId="group">
                   <Form.Label>Partial Order</Form.Label>
-                    <Form.Control onChange={handleChange} name="part_ord" value={part_ord} id="part-order" as="select" defaultValue="Select">
-                          <option>Select</option>
-                          <option>Yes</option>
-                          <option>No</option>
-                    </Form.Control>
+                    <Form.Control onChange={handleChange} name="part_ord" value={part_ord} id="part-order" placeholder="N/A" />
               </Form.Group>
               <Form.Group controlId="group">
                   <Form.Label>Full Order</Form.Label>
-                    <Form.Control onChange={handleChange} name="full_ord"value={full_ord} id="full-order" as="select" defaultValue="Select">
-                          <option>Select</option> 
-                          <option>Yes</option>
-                          <option>No</option>
-                    </Form.Control>
+                    <Form.Control onChange={handleChange} /*as="select"*/ name="full_ord"value={full_ord} id="full-order" placeholder="N/A" />
               </Form.Group>
           </Form.Row>
 

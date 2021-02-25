@@ -114,7 +114,7 @@ export default function App() {
         team: order.team,
         item: order.item,
         size: order.size,
-        qty: order.qty,
+        qty: order.qty ,
         part_ord: order.part_ord,
         full_ord: order.full_ord
       }

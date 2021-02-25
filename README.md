@@ -6,9 +6,9 @@ Ramp Up'!' is an app for equipment managers in the athletics industry to manage 
 
 ## Motivation and Description
 
-At the moment, the athletics industry  does not have an app made with the equipment manager in mind.  There are similar apps available that offer basic needs like helping to keep  track of inventory with barcodes or QR codes. They even provide distribution and return features, as well as check in or out options for individual items.
+At the moment, the athletics industry  does not have an app made with the equipment manager in mind.  There are similar apps available that offer basic needs like helping to keep  track of inventory with barcodes or QR codes. They even provide distribution and return features, as well as check in or out options for individual items. However, these are for start and end of season periods and does not include daily operations.
 
-However, equipment management require a more thorough app to help with daily operations such as:
+Equipment management requires thorough app to help with daily operations such as:
 
 - Break down of how many items were returned vs given out
 
@@ -36,13 +36,15 @@ This part walks through the features included in this minimal viable product.
 
 ### Features
 
-- Be able to create, delete, update and separate orders, and inventory
+- Be able to create, search, delete, update, and separate orders and inventory
+
+- Edit feature will pull existing data from database and allow changes. Provided with update and cancel button
 
 - Be able to view: orders, and inventory
 
 - Navigate with a sidebar with menu
 
-- Data will be input by user in frontend and will be saved in a MYSQL database
+- Data will be input by user in frontend and will be saved in a MYSQL database on the backend
 
 ### Design Overview
 
@@ -64,23 +66,61 @@ This app has 6 pages:
 
 8. Form: Edit, Cancel, Delete,
 
+## MySQL Database Schema
+
+![RampUp Database Schema for MySQL](/ProjectInfo/rampupDBSchema.png)
+
+## User Workflows
+
+### 1. How to Check Or Add Order(s)
+
+![How to Add Order(s)](/ProjectInfo/CheckAddOrder.png)
+
+### 2. How to Edit Or Delete Order(s)
+
+![How to Edit Order(s)](/ProjectInfo/EditDeleteOrder.png)
+
 ### Technologies
 
-- React JS
+1. Frontend
 
-- Material UI Icons for side bar icons
+    - React JS
 
-- Font Awesome for mock-up avatar
+    - Material UI Icons for side bar icons
 
-- Jira for error, bug and story tracking
+    - Font Awesome for mock-up avatar
 
-- React Router for Frontend routes
+    - React Router for Frontend routes
 
-- MYSQL DB
+    - canva.com for mock-up charts on homepage
 
-- Express JS for server
+2. Backend
 
-- canva.com for mock-up charts on homepage
+    - MYSQL DB
+
+    - Express JS
+
+    - Node JS
+
+3. Error and Bug Tracking 
+
+    - Jira for error, bug and story tracking
+
+## Error Logs
+    1. React-Bootstrap error: 
+
+        part_orders:1 Refused to apply style from 'https://maxcdn.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css' because its MIME type ('application/xml') is not a supported stylesheet MIME type, and strict MIME checking is enabled.
+
+    2. React-Bootstrap error:
+    
+        Failed to load resource: the server responded with a status of 403 ()
+
+## Known Bug Issues
+    - Search bar temporarily stopped working
+
+    - Some dates are not listed in order even though sql commands set to ORDER BY ASC
+
+    - Submitted new order would not render in "Partial Orders" or "Full Orders" if input for both fields were not selected with "Yes"or "No".  -- Issue resolved 02/24/2021
 
 ### Roadmap
 
@@ -118,6 +158,8 @@ Future features in the pipeline, might not be included in MVP based on time allo
 
 - Form: Edit settings
 
+- Athlete Cards
+
 - Login/Register
 
 - User roles: Manager, Student Staff, and Athlete
@@ -149,4 +191,4 @@ Future features in the pipeline, might not be included in MVP based on time allo
 5. Integrate Zendesk as contact for users to report issues
 
 ​ _This is a student project that was created at
-[CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona._
+[CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona.

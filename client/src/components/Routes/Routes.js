@@ -29,7 +29,7 @@ export default function Routes( props ) {
                 </Route>
 
                 {/* Enter orders here  */}
-                <Route path="/orders_input">
+                <Route path="/add_order">
                     <OrdersForm 
                         // This is passing data up but data is not being passed to ALL orders
                         onSubmit={(newOrder) => props.addOrder(newOrder)}

@@ -39,9 +39,9 @@ export const SidebarData = [
         path: "/about",
         icon: <InfoIcon />
     },
-    {   //Orders Input
-        title: "Orders Input",
-        path: "/orders_input",
+    {   //Add Order(s)
+        title: "Add Order",
+        path: "/add_order",
         icon: <LocalShippingIcon />  
     },
     {   //Partial Orders

@@ -54,43 +54,43 @@ router.get("/", async (req, res) => {
     //check values
     console.log('BACKEND POST', ordDate, vendor, team, item, size, qty,part_ord,full_ord)
 
-    //Has to be in MYSQL syntax
-    let sql = `INSERT INTO inventory 
-    (ord_date,
-      vendor,
-      team,
-      item,
-      size,
-      qty,
-      part_ord,   
-      full_ord
-      ) VALUES (
-        "${ordDate}",
-        "${vendor}",
-        "${team}", 
-        "${item}", 
-        "${size}", 
-        ${qty}, 
-        "${part_ord}", 
-        "${full_ord}"
-        );
-        `; 
-    //Whenever we access a DB with "async" and "await", we need the "try" and "catch"
-    try {
-      //inserts the data
-      let results = await db(sql);
-      //awaiting response to MYSQL to select all data, // If the query is successful
-      //Has to be in MYSQL syntax
-      results = await db("SELECT * from inventory ORDER BY ord_date ASC;");
-      //you should send back the full list of items
-      //console.log(results.data);
-      res.status(201).send(results.data);
-    } catch (err) {
-      //Catch errors if any encountered
-      //Response to error, 500 status with message
-      // console.log(err.message)
-      res.status(500).send({ error: err.message });
-    }
-  });
-
-      module.exports = router; 
+     //Has to be in MYSQL syntax
+     let sql = `INSERT INTO inventory 
+     (ord_date,
+       vendor,
+       team,
+       item,
+       size,
+       qty,
+       part_ord,   
+       full_ord
+       ) VALUES (
+         "${ordDate}",
+         "${vendor}",
+         "${team}", 
+         "${item}", 
+         "${size}", 
+         ${qty}, 
+         "${part_ord}", 
+         "${full_ord}"
+         );
+         `; 
+     //Whenever we access a DB with "async" and "await", we need the "try" and "catch"
+     try {
+       //inserts the data
+       let results = await db(sql);
+       //awaiting response to MYSQL to select all data, // If the query is successful
+       //Has to be in MYSQL syntax
+       results = await db("SELECT * from inventory ORDER BY ord_date ASC;");
+       //you should send back the full list of items
+       //console.log(results.data);
+       res.status(201).send(results.data);
+     } catch (err) {
+       //Catch errors if any encountered
+       //Response to error, 500 status with message
+       // console.log(err.message)
+       res.status(500).send({ error: err.message });
+     }
+   });
+ 
+       module.exports = router; 
