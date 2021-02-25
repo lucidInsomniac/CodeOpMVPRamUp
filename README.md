@@ -86,6 +86,8 @@ This app has 6 pages:
 
     - React JS
 
+    - React-Bootstrap
+
     - Material UI Icons for side bar icons
 
     - Font Awesome for mock-up avatar
