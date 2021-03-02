@@ -31,10 +31,8 @@ export default function OrdersForm (props) {
   function handleSubmit(event) {
     //prevent entire doc from reloading, only target event source
     event.preventDefault();
-
     //save all date in state obj to be sent to parent
     const order = {
-
       ordDate: ordDate,
       vendor: vendor,
       team: team,
@@ -52,7 +50,6 @@ export default function OrdersForm (props) {
     //check post submit
     console.log("formSubmit", order) //This submitted and was sent up to App.js
     //but App.js was unable to locate
-
     //reset all fields
     setOrdDate("")
     setVendor("")
@@ -62,7 +59,6 @@ export default function OrdersForm (props) {
     setQty("")
     setPartOrd("")
     setFullOrd("")
-
   }
 
 
@@ -71,34 +67,34 @@ export default function OrdersForm (props) {
   function handleChange (event) {
     let {name, value} = event.target
 
-        switch(name) {
-            case 'ordDate':   
-                setOrdDate(value);
-                break;
-            case 'vendor':
-                setVendor(value);
-                break;
-            case 'team':
-                setTeam(value);
-                break;
-            case 'item':
-                setItem(value);
-                break;
-            case 'size':
-                setSize(value);
-                break;
-            case 'qty':
-                setQty(value);
-                break;
-            case 'part_ord':
-                setPartOrd("N/A");
-                break;
-            case 'full_ord':
-                setFullOrd("N/A");
-                break;
-            default:
-                  break;
-        }
+    switch(name) {
+      case 'ordDate':   
+          setOrdDate(value);
+          break;
+      case 'vendor':
+          setVendor(value);
+          break;
+      case 'team':
+          setTeam(value);
+          break;
+      case 'item':
+          setItem(value);
+          break;
+      case 'size':
+          setSize(value);
+          break;
+      case 'qty':
+          setQty(value);
+          break;
+      case 'part_ord':
+          setPartOrd(value);
+          break;
+      case 'full_ord':
+          setFullOrd(value);
+          break;
+      default:
+            break;
+    }
   }
 
 
@@ -168,17 +164,23 @@ export default function OrdersForm (props) {
           <Form.Row className="row5">
               <Form.Group controlId="group">
                   <Form.Label>Partial Order</Form.Label>
-                    <Form.Control onChange={handleChange} name="part_ord" value={part_ord} id="part-order" placeholder="N/A" />
+                    <Form.Control onChange={handleChange} name="part_ord" value={part_ord} id="part-order" as="select" defaultValue="Select">
+                          <option>Select</option>
+                          <option>Yes</option>
+                          <option>No</option>
+                    </Form.Control>
               </Form.Group>
               <Form.Group controlId="group">
                   <Form.Label>Full Order</Form.Label>
-                    <Form.Control onChange={handleChange} /*as="select"*/ name="full_ord"value={full_ord} id="full-order" placeholder="N/A" />
+                    <Form.Control onChange={handleChange} name="full_ord"value={full_ord} id="full-order" as="select" defaultValue="Select">
+                          <option>Select</option> 
+                          <option>Yes</option>
+                          <option>No</option>
+                    </Form.Control>
               </Form.Group>
           </Form.Row>
-
             {/* The submit button goes here */}
           <Button variant="primary" type="submit">Submit</Button>
-
         </Form>
         
       </div>
