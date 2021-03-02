@@ -70,7 +70,7 @@ This app has 6 pages:
 
 ![RampUp Database Schema for MySQL](/ProjectInfo/rampupDBSchema.png)
 
-<!-- ## User Workflows
+## User Workflows
 
 ### 1. How to Check Or Add Order(s)
 
@@ -78,7 +78,7 @@ This app has 6 pages:
 
 ### 2. How to Edit Or Delete Order(s)
 
-![How to Edit Order(s)](/ProjectInfo/EditDeleteOrder.png) -->
+![How to Edit Order(s)](/ProjectInfo/EditDeleteOrder.png)
 
 ### Technologies
 
